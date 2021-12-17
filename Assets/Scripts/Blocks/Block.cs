@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class Block : MonoBehaviour
 {
@@ -12,7 +13,12 @@ public class Block : MonoBehaviour
     {
         //Randomize sprite if more then 1 possible sprite;
         if(possibleSprites.Length > 0)
-            GetComponent<SpriteRenderer>().sprite = possibleSprites[Random.Range(0, possibleSprites.Length)];   
+            GetComponent<SpriteRenderer>().sprite = possibleSprites[Random.Range(0, possibleSprites.Length)];
+
+        if (falls)
+            GetComponent<Rigidbody2D>().isKinematic = false;
+        else
+            GetComponent<Rigidbody2D>().isKinematic = true;
     }
 
     public bool DamageBlock(int damage)
