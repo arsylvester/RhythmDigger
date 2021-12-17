@@ -16,9 +16,9 @@ public class Block : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = possibleSprites[Random.Range(0, possibleSprites.Length)];
 
         if (falls)
-            GetComponent<Rigidbody2D>().isKinematic = false;
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         else
-            GetComponent<Rigidbody2D>().isKinematic = true;
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
     }
 
     public bool DamageBlock(int damage)
