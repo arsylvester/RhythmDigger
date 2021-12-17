@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class TriggerBlock : Block
 {
@@ -13,6 +14,7 @@ public class TriggerBlock : Block
         Destroy(gameObject);
     }
 
+    [Button]
     public override void Activate()
     {
         //Play Trigger vfx and sfx here
@@ -24,12 +26,13 @@ public class TriggerBlock : Block
         //Loop through all circle casts and damage block if needed
         for (int i = 0; i < blocksToTrigger.Length; i++)
         {
-            if (Physics2D.OverlapCircle(currentPos + blocksToTrigger[i], .5f, filter, results) > 0)
+            if (Physics2D.OverlapCircle(currentPos + blocksToTrigger[i], .1f, filter, results) > 0)
             {
                 foreach (Collider2D result in results)
                 {
+                    if (result == null) break;
                     Block block = result.GetComponent<Block>();
-                    if (block)
+                    if (block && block != this)
                     {
                         block.Activate();
                     }
