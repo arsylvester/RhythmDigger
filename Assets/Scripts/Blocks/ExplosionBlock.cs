@@ -33,6 +33,14 @@ public class ExplosionBlock : Block
                     {
                         block.DamageBlock(damageDealt);
                     }
+                    else
+                    {
+                        PlayerController player = result.GetComponent<PlayerController>();
+                        if(player)
+                        {
+                            player.TakeDamage(1, 0, Vector2.zero, 0, false, false);
+                        }
+                    }
                 }
             }
         }

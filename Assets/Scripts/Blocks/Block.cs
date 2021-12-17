@@ -6,6 +6,14 @@ public class Block : MonoBehaviour
 {
     [SerializeField] int blockHealth = 1;
     [SerializeField] bool falls = false;
+    [SerializeField] Sprite[] possibleSprites;
+
+    private void Start()
+    {
+        //Randomize sprite if more then 1 possible sprite;
+        if(possibleSprites.Length > 0)
+            GetComponent<SpriteRenderer>().sprite = possibleSprites[Random.Range(0, possibleSprites.Length)];   
+    }
 
     public bool DamageBlock(int damage)
     {
