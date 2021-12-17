@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c673cbe7c3d2c84ea64f3ba86b9774a, type: 3}
+  m_Name: Attack State
+  m_EditorClassIdentifier: 
+  playerStateMachine: {fileID: 0}
+  playerController: {fileID: 0}
+  maxTime: 20
+  loop: 0
+  iasa: 20
+  attackName: Attack1
+  prefab:
+  - {fileID: 0}
+  hitParticle: {fileID: 0}
+  particleEffects:
+  - {fileID: 2797078893020016659, guid: d68ae20263cac5745b9a6fa8c3d88989, type: 3}
+  - {fileID: 3402121886291534489, guid: 85097ac16fcd28d4fb61c5aabd901f91, type: 3}
+  icon: {fileID: 0}
+  iframes: {x: 0, y: 0}
+  armorFrames: {x: 0, y: 0}
+  guardFrames: {x: 0, y: 0}
+  unstoppable: 0
+  armorPierce: 0
+  attackMovespeed: 0
+  forwardMovement:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  strafeMovement:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  particleTime: 0000000008000000
+  particlePos:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  particleOffset: []
+  newParticlePos: []
+  sfxTime: 
+  sfxClip: []
+  sfxVolume: []
+  hitSFX: []
+  voicefxTime: 
+  voicefxClip: []
+  voicefxVolume: []
+  prefabTime: 
+  prefabPos: []
+  newPrefabPos: []
+  hitboxTime:
+  - {x: 1, y: 5}
+  multihitTime: 00000000
+  hitboxPos:
+  - {x: 0, y: 0, z: 0}
+  hitboxSize:
+  - 5
+  hitboxDamage: 05000000
+  hitboxKnockbackDist:
+  - 5
+  hitboxKnockbackDir:
+  - {x: 0, y: 0}
+  attackPivot: {x: 0, y: 0}
+  newhitboxKnockbackDir: []
+  newhitboxPos: []
+  hitStopTime: 0

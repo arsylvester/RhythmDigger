@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 612484f492e855b4e82020c768627e3e, type: 3}
+  m_Name: Hurt State
+  m_EditorClassIdentifier: 
+  playerStateMachine: {fileID: 0}
+  playerController: {fileID: 0}
+  maxTime: 15
+  loop: 0
+  iasa: 8
+  iframes: {x: 0, y: 40}
+  hurtFriction:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.179578
+    - serializedVersion: 3
+      time: 59.84827
+      value: 0.9465254
+      inSlope: -0.0022677002
+      outSlope: -0.0022677002
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.09759157
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  hurtSFX: {fileID: 8300000, guid: 60293410965d59b418ac9240d4854f24, type: 3}
