@@ -1,17 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[CreateAssetMenu(menuName = "PlayerStates/Idle")]
-public class IdleState : PlayerState
+[CreateAssetMenu(menuName = "PlayerStates/Dig")]
+public class DigState : PlayerState
 {
-
-
-    //IF IDLE STATE FOR LONGER THAN 10 FRAMES AND KILLED ENEMY  DO RELOAD //THIS WAY COMBOS AREN'T INTERRUPTED
     public override void Init(PlayerStateMachine playerMachine)
     {
         playerStateMachine = playerMachine;
-        playerController = playerMachine.playerController;
     }
 
     public override void OnEnter()
@@ -20,10 +15,7 @@ public class IdleState : PlayerState
         playerStateMachine.playerController.internalVelocity.y = 0;
         playerStateMachine.playerController.anim.SetFloat("xDir", playerStateMachine.playerController.facingDir.x);
         playerStateMachine.playerController.anim.SetFloat("yDir", playerStateMachine.playerController.facingDir.y);
-        playerStateMachine.playerController.anim.Play("Idle");
-        //playerStateMachine.playerController.airJumpCount = playerStateMachine.playerController.maxAirJumps;
-        //playerStateMachine.playerController.airDodgeCount = playerStateMachine.playerController.maxAirDodges;
-        //playerStateMachine.playerController.canJump = true;
+        playerStateMachine.playerController.anim.Play("Attack");
     }
 
 
@@ -51,32 +43,11 @@ public class IdleState : PlayerState
         {
             playerStateMachine.ChangeState(PlayerStateEnums.Fall);
         }
-        if (playerStateMachine.playerController.InputDir.sqrMagnitude !=0 && playerController.moveBuffer > 0)
-        {
-            if (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right || playerController.InputDir == Vector2.down)
-                playerController.storedDir = playerController.InputDir;
-            bool canMove = playerController.CheckOpenBlock(playerController.storedDir);
-            if (canMove) 
-            {
-                playerStateMachine.ChangeState(PlayerStateEnums.Move); 
-            }
-            else
-			{
-                if (!playerController.CheckBlock(playerController.storedDir, 1))
-                {
-                    Debug.Log("Move Dig");
-                    playerStateMachine.ChangeState(PlayerStateEnums.AttackMove);
-                }
-                else
-                {
-                    Debug.Log("Dig");
-                    playerStateMachine.ChangeState(PlayerStateEnums.Attack);
-                }
-            }
-
-
-        }
-        {
+        //if (playerStateMachine.playerController.InputDir.x !=0)
+        //{
+        //    playerStateMachine.ChangeState(PlayerStateEnums.Move);
+        //}
+        //{
         //    if (playerStateMachine.playerController.button2Buffer > 0)
         //    {
         //        playerStateMachine.ChangeState(PlayerStateEnums.Jump);
@@ -91,7 +62,7 @@ public class IdleState : PlayerState
         //    {
         //        playerStateMachine.ChangeState(PlayerStateEnums.Dodge);
         //    }
-        }
+
     }
 }
 

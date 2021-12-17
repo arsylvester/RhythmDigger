@@ -1,5 +1,62 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1470280933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1470280934}
+  - component: {fileID: 1470280935}
+  m_Layer: 8
+  m_Name: Ground Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1470280934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470280933}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8325515743459368553}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1470280935
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470280933}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.05}
+  m_EdgeRadius: 0
 --- !u!1 &8325515742384499142
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +66,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8325515742384499143}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +101,7 @@ GameObject:
   - component: {fileID: 8325515743459368555}
   - component: {fileID: 8325515743459368554}
   - component: {fileID: 7067131626584333949}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -64,6 +121,7 @@ Transform:
   m_Children:
   - {fileID: 8325515743901659082}
   - {fileID: 8325515742384499143}
+  - {fileID: 1470280934}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -94,7 +152,7 @@ MonoBehaviour:
   targetVelocity: {x: 0, y: 0}
   storeGroundVelocityTime: 0
   terminalYVelocity: -100
-  gravity: 3
+  gravity: 5
   gravityMod: 1
   isGrounded: 0
   groundLayers:
@@ -111,6 +169,7 @@ MonoBehaviour:
   canBounce: 0
   bounceFriction: 1
   bounceTime: 0
+  groundCollider: {fileID: 1470280935}
   baseTang: 0
   hittable:
     serializedVersion: 2
@@ -131,18 +190,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76c533650b6bbb245b9bcc5d2c4ab227, type: 2}
   - {fileID: 11400000, guid: 23cb3e27b865ef1479f5141efbf00530, type: 2}
   - {fileID: 11400000, guid: c8cb7c357215c1d4abfdba25df066674, type: 2}
-  - {fileID: 11400000, guid: 4ee17c72c14c0824fb395827f67c920f, type: 2}
+  - {fileID: 11400000, guid: e8dae8e90c6da234ab6710e91fdc3017, type: 2}
   - {fileID: 11400000, guid: c106e25bc025deb4d88a5d17b19a15f5, type: 2}
   - {fileID: 11400000, guid: 77e2bb8357b00a3458f5cd32f6501c92, type: 2}
   - {fileID: 11400000, guid: da973ecb220a22a4b8bde59ccf9c3ee6, type: 2}
   - {fileID: 11400000, guid: 32996bd0afefae745b928a3baa246c47, type: 2}
+  - {fileID: 11400000, guid: b818f9da1d0de9841b2dd9bb31179952, type: 2}
   - {fileID: 11400000, guid: 2d9fc5b55e0a7cb4b904e54facbd9892, type: 2}
   - {fileID: 11400000, guid: 67c6ec9800a6ab1489f3048e65f65d81, type: 2}
   canRotate: 1
   _inputDir: {x: 0, y: 0}
   facingDir: {x: 1, y: 0}
   storedDir: {x: 0, y: 0}
-  inputBuffer: 0
+  inputBuffer: 6
+  moveBuffer: 0
   button1Buffer: 0
   button1ReleaseBuffer: 0
   fallBuffer: 0
@@ -151,6 +212,7 @@ MonoBehaviour:
   dustParticle: {fileID: 0}
   drawHitboxes: 0
   isDead: 0
+  desiredPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &7861333442394197749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +371,7 @@ GameObject:
   - component: {fileID: 8325515743901659082}
   - component: {fileID: 8325515743901659083}
   - component: {fileID: 8325515743901659084}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +453,7 @@ Animator:
   m_GameObject: {fileID: 8325515743901659081}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c1a0917f98bdf443bbe58f2d62da501, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

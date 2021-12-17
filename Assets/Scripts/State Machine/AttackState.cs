@@ -136,7 +136,7 @@ public class AttackState : PlayerState
         }
         if(playerStateMachine.playerController.currentTime > 4)
         {
-            playerStateMachine.playerController.canRotate = false;
+            //playerStateMachine.playerController.canRotate = false;
         }
         base.OnFixedUpdate();
         AttackID();

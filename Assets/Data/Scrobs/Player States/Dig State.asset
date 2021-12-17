@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76d6e4fe76bd7f245a272cf844e1034b, type: 3}
-  m_Name: Attack Move State
+  m_Script: {fileID: 11500000, guid: 6c8fc7f7a08a2784f91c28574d9c16cc, type: 3}
+  m_Name: Dig State
   m_EditorClassIdentifier: 
   playerStateMachine: {fileID: 0}
   playerController: {fileID: 0}
-  maxTime: 60
+  maxTime: 6
   loop: 0
   iasa: 0
