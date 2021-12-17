@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Game Files/Input Actions/PlayerInputActions.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/InitPackageChristian/Objects/PlayerInputActions.inputactions'
 
 using System;
 using System.Collections;

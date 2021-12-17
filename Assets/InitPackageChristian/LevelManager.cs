@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
@@ -10,11 +10,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private int activeLevel;
     public int Level => activeLevel - 1;
-    public LevelData[] LevelDatas;
 
-    private RoomConnectorType lastConnectedType = RoomConnectorType.LR;
     public int height;
-    private List<Room> activeRooms;
     public CinemachineVirtualCamera cam;
     PolygonCollider2D polyCollider => GetComponent<PolygonCollider2D>();
 
@@ -243,3 +240,4 @@ public class LevelManager : MonoBehaviour
         activeRooms = new List<Room>();
     }
 }
+*/

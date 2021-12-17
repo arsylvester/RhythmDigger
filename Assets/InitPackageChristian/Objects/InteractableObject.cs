@@ -416,11 +416,11 @@ public abstract class InteractableObject : MonoBehaviour
                 {
                     groundVelocity.x = rightHit.transform.gameObject.GetComponent<InteractableObject>().targetVelocity.x * 1.35f;
                 }
-                if (rightHit.transform.gameObject.GetComponent<MovingPlatform>())
+                /*if (rightHit.transform.gameObject.GetComponent<MovingPlatform>())
                 {
                     groundVelocity = rightHit.transform.gameObject.GetComponent<MovingPlatform>().rbody.velocity * 1.35f;
                     storeGroundVelocityTime = rightHit.transform.gameObject.GetComponent<MovingPlatform>().appliedVelTime;
-                }
+                }*/
                 return true;
             }
             else
@@ -434,11 +434,11 @@ public abstract class InteractableObject : MonoBehaviour
                 {
                     groundVelocity.x = leftHit.transform.gameObject.GetComponent<InteractableObject>().targetVelocity.x * 1.35f;
                 }
-                if (leftHit.transform.gameObject.GetComponent<MovingPlatform>())
+               /* if (leftHit.transform.gameObject.GetComponent<MovingPlatform>())
                 {
                     groundVelocity = leftHit.transform.gameObject.GetComponent<MovingPlatform>().rbody.velocity * 1.35f;
                     storeGroundVelocityTime = leftHit.transform.gameObject.GetComponent<MovingPlatform>().appliedVelTime;
-                }
+                }*/
                 return true;
             }
             else
