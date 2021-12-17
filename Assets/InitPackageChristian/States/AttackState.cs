@@ -171,7 +171,7 @@ public class AttackState : PlayerState
     void AttackVelocity()
     {
         playerStateMachine.playerController.internalVelocity = playerStateMachine.playerController.storedDir.normalized * forwardMovement.Evaluate(playerStateMachine.playerController.currentTime) * attackMovespeed;
-        playerStateMachine.playerController.internalVelocity += new Vector2(playerStateMachine.playerController.storedDir.x, playerStateMachine.playerController.storedDir.y).normalized.Rotate(-90) * attackMovespeed * strafeMovement.Evaluate(playerStateMachine.playerController.currentTime);
+        //playerStateMachine.playerController.internalVelocity += new Vector2(playerStateMachine.playerController.storedDir.x, playerStateMachine.playerController.storedDir.y).normalized.Rotate(-90) * attackMovespeed * strafeMovement.Evaluate(playerStateMachine.playerController.currentTime);
     }
 
     void CreateDamageFrames()
@@ -263,13 +263,13 @@ public class AttackState : PlayerState
                 if (playerStateMachine.playerController.currentTime == prefabTime[i])
                 {
                     GameObject obj = Instantiate(prefab[i], playerStateMachine.player.transform.position + newPrefabPos[i], Quaternion.identity);
-                    if (obj.GetComponent<ProjectileSpawner>())
+                    /*if (obj.GetComponent<ProjectileSpawner>())
                     {
                         obj.transform.parent = playerStateMachine.player.transform;
                         obj.GetComponent<ProjectileSpawner>().hittable = playerStateMachine.playerController.hittable;
                         obj.GetComponent<ProjectileSpawner>().dir = attackDir;
                         obj.GetComponent<ProjectileSpawner>().SetTimeScale(playerStateMachine.playerController.scaledTime);
-                    }
+                    }*/
                 }
             }
         }
@@ -282,11 +282,11 @@ public class AttackState : PlayerState
             if (playerStateMachine.playerController.currentTime == particleTime[i])
             {
                 GameObject VFX = Instantiate(particleEffects[i], playerStateMachine.player.transform.position + new Vector3(newParticlePos[i].x, newParticlePos[i].y, 0) + particleOffset[i], playerStateMachine.playerController.attackPivot.transform.rotation, playerStateMachine.player.transform);
-                if (VFX.GetComponent<CustomVFX>())
+               /* if (VFX.GetComponent<CustomVFX>())
                 {
                     VFX.GetComponent<CustomVFX>().scaledTime = playerStateMachine.playerController.scaledTime;
                     VFX.GetComponent<CustomVFX>().CreateVFX(attackDir, playerStateMachine.playerController.storedDir);
-                }
+                }*/
             }
         }
     }//creates prefabs at specified frame and location
@@ -330,23 +330,23 @@ public class AttackState : PlayerState
 
         for (int i = 0; i < hitboxPos.Length; i++)
         {
-            newhitboxPos[i] = new Vector2(hitboxPos[i].x, hitboxPos[i].y).Rotate(playerStateMachine.playerController.attackPivot.transform.rotation.eulerAngles.z);
+            //newhitboxPos[i] = new Vector2(hitboxPos[i].x, hitboxPos[i].y).Rotate(playerStateMachine.playerController.attackPivot.transform.rotation.eulerAngles.z);
         }
 
         for (int i = 0; i < prefabPos.Length; i++)
         {
-            newPrefabPos[i] = new Vector2(prefabPos[i].x, prefabPos[i].y).Rotate(playerStateMachine.playerController.attackPivot.transform.rotation.eulerAngles.z);
+           // newPrefabPos[i] = new Vector2(prefabPos[i].x, prefabPos[i].y).Rotate(playerStateMachine.playerController.attackPivot.transform.rotation.eulerAngles.z);
         }
 
         for (int i = 0; i < particlePos.Length; i++)
         {
-            newParticlePos[i] = new Vector2(particlePos[i].x, particlePos[i].y).Rotate(playerStateMachine.playerController.attackPivot.transform.rotation.eulerAngles.z);
+            //newParticlePos[i] = new Vector2(particlePos[i].x, particlePos[i].y).Rotate(playerStateMachine.playerController.attackPivot.transform.rotation.eulerAngles.z);
         }
 
         Quaternion storedDir = Quaternion.Euler(0, 0, Mathf.Atan2(playerStateMachine.playerController.storedDir.y, playerStateMachine.playerController.storedDir.x) * Mathf.Rad2Deg - 90f);
         for (int i = 0; i < hitboxKnockbackDir.Length; i++)
         {
-            newhitboxKnockbackDir[i] = new Vector2(hitboxKnockbackDir[i].x, hitboxKnockbackDir[i].y).Rotate(storedDir.eulerAngles.z);
+            //newhitboxKnockbackDir[i] = new Vector2(hitboxKnockbackDir[i].x, hitboxKnockbackDir[i].y).Rotate(storedDir.eulerAngles.z);
         }
 
         playerStateMachine.playerController.anim.SetFloat("xDir", attackDir.x);

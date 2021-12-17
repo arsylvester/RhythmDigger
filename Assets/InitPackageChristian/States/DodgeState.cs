@@ -59,8 +59,8 @@ public class DodgeState : PlayerState
         {
             if(playerStateMachine.playerController.currentTime % afterImageFrames == 0)
 			{
-                AfterImageVFX obj = Instantiate(afterImage, playerController.transform.position, Quaternion.identity).GetComponent<AfterImageVFX>();
-                obj.spriteRenderer.sprite = playerController.spriteRenderer.sprite;
+               // AfterImageVFX obj = Instantiate(afterImage, playerController.transform.position, Quaternion.identity).GetComponent<AfterImageVFX>();
+                //obj.spriteRenderer.sprite = playerController.spriteRenderer.sprite;
 			}
             playerController.myTang = ObjectTangibility.Invincible;
         }

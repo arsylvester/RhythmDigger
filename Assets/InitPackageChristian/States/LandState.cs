@@ -67,7 +67,7 @@ public class LandState : PlayerState
         //    {
         //        playerStateMachine.ChangeState(PlayerStateEnums.Dodge);
         //    }
-        }
+        
     }
 }
 
