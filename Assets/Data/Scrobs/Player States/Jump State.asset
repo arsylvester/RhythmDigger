@@ -9,53 +9,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89814bdceaa54294b9032f1d912b742e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4527d54af60b01d458a52ed5b2d37aca, type: 3}
   m_Name: Jump State
   m_EditorClassIdentifier: 
   playerStateMachine: {fileID: 0}
   playerController: {fileID: 0}
-  maxTime: 40
+  maxTime: 20
   loop: 0
-  iasa: 40
-  jumpForce: 75
-  airJumpForce: 60
-  minYVel: 0.5
+  iasa: 0
+  jumpForce: 2
+  airJumpForce: 2
+  minYVel: 1
   movementCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 9.979359
-      inSlope: -0.78551656
-      outSlope: -0.78551656
+      value: 0
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 2.199747
-      value: 8.251421
-      inSlope: Infinity
-      outSlope: Infinity
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    - serializedVersion: 3
-      time: 60
-      value: 8.570821
-      inSlope: 0.0027629621
-      outSlope: 0.0027629621
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 80
-      value: 8.570821
-      inSlope: Infinity
-      outSlope: Infinity
-      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0
@@ -68,24 +50,24 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -0.0017499998
-      outSlope: -0.0017499998
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0
     - serializedVersion: 3
-      time: 40
-      value: 0.93
-      inSlope: -0.0017499998
-      outSlope: -0.0017499998
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  jumpSFX: {fileID: 8300000, guid: 0066bdb29fcc1424b978be73c8d73df5, type: 3}
-  airJumpSFX: {fileID: 8300000, guid: 7cf403b0ca62ec84cbeea65590683169, type: 3}
-  superJumpSFX: {fileID: 8300000, guid: a5218dae4f137bc40bbdf80b42d73e8b, type: 3}
+  jumpSFX: {fileID: 0}
+  airJumpSFX: {fileID: 0}
+  superJumpSFX: {fileID: 0}

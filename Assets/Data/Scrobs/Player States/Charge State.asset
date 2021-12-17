@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92840d1f3e15061438bc61f97d50ec1a, type: 3}
-  m_Name: Dead State
+  m_Script: {fileID: 11500000, guid: c9da5ac6e92bfa8479ef357cce092153, type: 3}
+  m_Name: Charge State
   m_EditorClassIdentifier: 
   playerStateMachine: {fileID: 0}
   playerController: {fileID: 0}
   maxTime: 60
   loop: 1
   iasa: 0
-  deadSFX: {fileID: 0}

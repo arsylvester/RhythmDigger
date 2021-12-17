@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0bc4988eb80a334ba43bd2e33218764, type: 3}
+  m_Script: {fileID: 11500000, guid: dafcf198ece05d84885d3d28c78230ce, type: 3}
   m_Name: Idle State
   m_EditorClassIdentifier: 
   playerStateMachine: {fileID: 0}
   playerController: {fileID: 0}
-  maxTime: 180
+  maxTime: 60
   loop: 1
   iasa: 0
