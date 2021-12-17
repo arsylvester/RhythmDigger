@@ -1,8 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(menuName = "PlayerStates/Move")]
-public class MovementState : PlayerState
+
+[CreateAssetMenu(menuName = "PlayerStates/AttackMove")]
+public class DigMoveState : PlayerState
 {
     public AnimationCurve movementCurve;
     public float distance;
@@ -16,13 +17,14 @@ public class MovementState : PlayerState
         base.OnEnter();
         playerController.anim.SetFloat("xDir", playerStateMachine.playerController.facingDir.x * playerController.anim.GetFloat("moveSpeed"));
         playerController.anim.SetFloat("yDir", playerStateMachine.playerController.facingDir.y * playerController.anim.GetFloat("moveSpeed"));
-        playerController.anim.Play("Move");
-        
-        float Xpos = playerController.InputDir.x < 0 ? Mathf.CeilToInt(playerController.transform.position.x) : Mathf.FloorToInt(playerController.transform.position.x);
-        playerController.desiredPosition = new Vector3(Xpos + distance * (1.5f * playerController.InputDir.x) , playerController.transform.position.y, playerController.transform.position.z);
+        playerController.anim.Play("Attack");
+        if (playerController.storedDir.x != 0)
+        {
+            float Xpos = playerController.InputDir.x < 0 ? Mathf.CeilToInt(playerController.transform.position.x) : Mathf.FloorToInt(playerController.transform.position.x);
+            playerController.desiredPosition = new Vector3(Xpos + distance * (1.5f * playerController.InputDir.x), playerController.transform.position.y, playerController.transform.position.z);
+        }
         playerController.moveBuffer = 0;
     }
-
 
     public override void OnUpdate()
     {
@@ -45,7 +47,10 @@ public class MovementState : PlayerState
 
     public override void OnExit()
     {
-        playerController.transform.position = new Vector3(playerController.desiredPosition.x, playerController.transform.position.y, playerController.transform.position.z);
+        if (playerController.storedDir.x != 0)
+        {
+            playerController.transform.position = new Vector3(playerController.desiredPosition.x, playerController.transform.position.y, playerController.transform.position.z);
+        }
         playerController.internalVelocity.x *= 0;
     }
 

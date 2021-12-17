@@ -9,41 +9,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a0f1bb39b1ced844b657328f0c6ac3f, type: 3}
-  m_Name: Fall State
+  m_Script: {fileID: 11500000, guid: 76d6e4fe76bd7f245a272cf844e1034b, type: 3}
+  m_Name: Dig Move State
   m_EditorClassIdentifier: 
   playerStateMachine: {fileID: 0}
   playerController: {fileID: 0}
-  maxTime: 60
-  loop: 1
+  maxTime: 6
+  loop: 0
   iasa: 0
-  gravityModCurve:
+  movementCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 30
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.13420394
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 6.5
-      value: 0.5
+      time: 1
+      value: 30
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  movementCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  distance: 1

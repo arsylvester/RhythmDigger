@@ -47,6 +47,7 @@ public abstract class InteractableObject : MonoBehaviour
     public bool canBounce;
     public float bounceFriction;
     public int bounceTime;
+    public BoxCollider2D groundCollider;
 
     public virtual void OnCollisionEnter2D(Collision2D collision)
 	{
@@ -389,65 +390,76 @@ public abstract class InteractableObject : MonoBehaviour
 
     public bool Grounded(LayerMask mask) //Check if we touch the ground we want to touch
     {
-        float length = 0.2f;
-        float width = 0.2f;
-        if (GetComponent<CircleCollider2D>())
-        {
-            width = GetComponent<CircleCollider2D>().radius;
-            length = GetComponent<CircleCollider2D>().radius;
-        }
-        else if (GetComponent<BoxCollider2D>())
-        {
-            width = (GetComponent<BoxCollider2D>().size.x * 0.5f);
-            length = (GetComponent<BoxCollider2D>().size.y * 0.5f);
-        }
-        else if (GetComponent<CapsuleCollider2D>())
-        {
-            width = (GetComponent<CapsuleCollider2D>().size.x * 0.5f);
-            length = (GetComponent<CapsuleCollider2D>().size.y * 0.5f);
-        }
-        RaycastHit2D rightHit = Physics2D.Raycast(transform.position + new Vector3(width * 0.9f, -length), Vector2.down, 0.01f, mask);
-        RaycastHit2D leftHit = Physics2D.Raycast(transform.position + new Vector3(-width * 0.9f, -length), Vector2.down, 0.01f, mask);
-        if (rightHit)
-        {
-            if (rightHit.transform.gameObject != this.gameObject)
+
+        Collider2D[] collisions = Physics2D.OverlapBoxAll(transform.position, groundCollider.size, 0, groundLayers);
+        foreach (Collider2D hitObject in collisions)//anything hit
+		{
+            if (hitObject.gameObject != this && hitObject.gameObject != null && hitObject.gameObject != groundCollider.gameObject)
             {
-                if (rightHit.transform.gameObject.GetComponent<InteractableObject>())
-                {
-                    groundVelocity.x = rightHit.transform.gameObject.GetComponent<InteractableObject>().targetVelocity.x * 1.35f;
-                }
-                /*if (rightHit.transform.gameObject.GetComponent<MovingPlatform>())
-                {
-                    groundVelocity = rightHit.transform.gameObject.GetComponent<MovingPlatform>().rbody.velocity * 1.35f;
-                    storeGroundVelocityTime = rightHit.transform.gameObject.GetComponent<MovingPlatform>().appliedVelTime;
-                }*/
                 return true;
             }
-            else
-                return false;
-        }
-        else if (leftHit)
-        {
-            if (leftHit.transform.gameObject != this.gameObject)
-            {
-                if (leftHit.transform.gameObject.GetComponent<InteractableObject>())
-                {
-                    groundVelocity.x = leftHit.transform.gameObject.GetComponent<InteractableObject>().targetVelocity.x * 1.35f;
-                }
-               /* if (leftHit.transform.gameObject.GetComponent<MovingPlatform>())
-                {
-                    groundVelocity = leftHit.transform.gameObject.GetComponent<MovingPlatform>().rbody.velocity * 1.35f;
-                    storeGroundVelocityTime = leftHit.transform.gameObject.GetComponent<MovingPlatform>().appliedVelTime;
-                }*/
-                return true;
-            }
-            else
-                return false;
-        }
-        else
-        {
-            return false;
-        }
+		}
+        return false;
+
+        //    float length = 0.2f;
+        //float width = 0.2f;
+        //if (GetComponent<CircleCollider2D>())
+        //{
+        //    width = GetComponent<CircleCollider2D>().radius;
+        //    length = GetComponent<CircleCollider2D>().radius;
+        //}
+        //else if (GetComponent<BoxCollider2D>())
+        //{
+        //    width = (GetComponent<BoxCollider2D>().size.x * 0.5f);
+        //    length = (GetComponent<BoxCollider2D>().size.y * 0.5f);
+        //}
+        //else if (GetComponent<CapsuleCollider2D>())
+        //{
+        //    width = (GetComponent<CapsuleCollider2D>().size.x * 0.5f);
+        //    length = (GetComponent<CapsuleCollider2D>().size.y * 0.5f);
+        //}
+        //RaycastHit2D rightHit = Physics2D.Raycast(transform.position + new Vector3(width * 0.9f, -length), Vector2.down, 0.01f, mask);
+        //RaycastHit2D leftHit = Physics2D.Raycast(transform.position + new Vector3(-width * 0.9f, -length), Vector2.down, 0.01f, mask);
+        //if (rightHit)
+        //{
+        //    if (rightHit.transform.gameObject != this.gameObject)
+        //    {
+        //        if (rightHit.transform.gameObject.GetComponent<InteractableObject>())
+        //        {
+        //            groundVelocity.x = rightHit.transform.gameObject.GetComponent<InteractableObject>().targetVelocity.x * 1.35f;
+        //        }
+        //        /*if (rightHit.transform.gameObject.GetComponent<MovingPlatform>())
+        //        {
+        //            groundVelocity = rightHit.transform.gameObject.GetComponent<MovingPlatform>().rbody.velocity * 1.35f;
+        //            storeGroundVelocityTime = rightHit.transform.gameObject.GetComponent<MovingPlatform>().appliedVelTime;
+        //        }*/
+        //        return true;
+        //    }
+        //    else
+        //        return false;
+        //}
+        //else if (leftHit)
+        //{
+        //    if (leftHit.transform.gameObject != this.gameObject)
+        //    {
+        //        if (leftHit.transform.gameObject.GetComponent<InteractableObject>())
+        //        {
+        //            groundVelocity.x = leftHit.transform.gameObject.GetComponent<InteractableObject>().targetVelocity.x * 1.35f;
+        //        }
+        //       /* if (leftHit.transform.gameObject.GetComponent<MovingPlatform>())
+        //        {
+        //            groundVelocity = leftHit.transform.gameObject.GetComponent<MovingPlatform>().rbody.velocity * 1.35f;
+        //            storeGroundVelocityTime = leftHit.transform.gameObject.GetComponent<MovingPlatform>().appliedVelTime;
+        //        }*/
+        //        return true;
+        //    }
+        //    else
+        //        return false;
+        //}
+        //else
+        //{
+        //    return false;
+        //}
     }
 
     public void Bounce(Collision2D collision) //Check if we can bounce

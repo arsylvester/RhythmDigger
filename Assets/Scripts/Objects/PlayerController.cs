@@ -116,8 +116,8 @@ public class PlayerController : InteractableObject
 
     void Update()
     {
-        if(!isDead)
-        BufferInputs();
+        if (!isDead)
+            BufferInputs();
         playerMachine.OnUpdate();
         anim.SetFloat("scaledTime", scaledTime);
 
@@ -126,7 +126,8 @@ public class PlayerController : InteractableObject
             if (canRotate)
             {
                 attackPivot.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(InputDir.y, InputDir.x) * Mathf.Rad2Deg - 90f); //set InputDir to 0 to lock a direction,
-                storedDir = InputDir;
+                if (InputDir == Vector2.left || InputDir == Vector2.right || InputDir == Vector2.down)
+                    storedDir = InputDir;
                 SetFacingDir();
             }
         }
@@ -147,7 +148,7 @@ public class PlayerController : InteractableObject
         if (activeTime - currentTime >= 1)
         {
             ApplyFriction();
-            if(!isDead)
+            if (!isDead)
                 playerMachine.OnFixedUpdate();
             if (isGrounded)
                 targetVelocity = groundVelocity;
@@ -161,7 +162,7 @@ public class PlayerController : InteractableObject
     }
 
 
-    public override ObjectTangibility TakeDamage(int damage, float distance,Vector2 knockback, float hitstopTime, bool armorPierce, bool fromPlayer)
+    public override ObjectTangibility TakeDamage(int damage, float distance, Vector2 knockback, float hitstopTime, bool armorPierce, bool fromPlayer)
     {
         HP -= damage;
         externalVelocity += (knockback * distance);
@@ -177,7 +178,7 @@ public class PlayerController : InteractableObject
 
     public void SetFacingDir()
     {
-        if (InputDir.x !=0)
+        if (InputDir.x != 0)
         {
 
             attackPivot.transform.rotation = Quaternion.Euler(0, 0, (Mathf.Atan2(0, InputDir.x) * Mathf.Rad2Deg - 90f)); //set InputDir to 0 to lock a direction,
@@ -190,7 +191,7 @@ public class PlayerController : InteractableObject
     }
 
     public void SetHealthbar()
-	{
+    {
         //GameEventManager.current.PlayerDamage(HP);
     }
     public void SetHealthbarMax()
@@ -198,12 +199,44 @@ public class PlayerController : InteractableObject
         //GameEventManager.current.PlayerHeal(maxHP);
     }
 
+    public bool CheckOpenBlock(Vector2 direction)
+	{
+        Collider2D[] collisions = Physics2D.OverlapCircleAll(direction + new Vector2(transform.position.x, transform.position.y + 0.4f), 0.35f, hittable);
+        foreach (Collider2D hitObject in collisions)//anything hit
+        {
+            if (hitObject.GetComponent<Block>())
+            {
+                Debug.Log($"Checking {hitObject.gameObject.name}");
+                return hitObject.GetComponent<Block>().DamageBlock(0);
+
+            }
+        }
+        return false;
+    }
+
+    public bool CheckBlock(Vector2 direction, int damage)
+    {
+        Collider2D[] collisions = Physics2D.OverlapCircleAll(direction + new Vector2(transform.position.x, transform.position.y+0.4f), 0.35f, hittable);
+        foreach (Collider2D hitObject in collisions)//anything hit
+        {
+            if (hitObject.GetComponent<Block>())
+            {
+                Debug.Log($"Mining {hitObject.gameObject.name}");
+                return !hitObject.GetComponent<Block>().DamageBlock(damage);
+            }
+        }
+        return false;
+    }
+
+
     public override void ApplyFriction()
     {
         if (fallBuffer > 0 || targetVelocity.y > 0)
             isGrounded = Grounded(oneWayGroundLayers);
         else
+        {
             isGrounded = Grounded(groundLayers);
+        }
 
         if (!isGrounded)
         {
@@ -308,18 +341,26 @@ public class PlayerController : InteractableObject
         {
             fallBuffer--;
             gameObject.layer = 30; //LAYER FOR FALLING THROUGH PASS THROUGH OBJECTS
-            
+
         }
-		else
-		{
+        else
+        {
             gameObject.layer = 8; //STANDARD LAYER
-		}
+        }
     }
 
+
     IEnumerator WaitRestart()
-	{
+    {
         //Time.timeScale = 0.5f;
         yield return new WaitForSecondsRealtime(1f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-	}
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector2 direction = storedDir;
+        Gizmos.DrawSphere(direction + new Vector2(transform.position.x, transform.position.y+0.4f), 0.35f);
+    }
 }
