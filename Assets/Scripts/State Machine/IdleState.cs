@@ -11,6 +11,7 @@ public class IdleState : PlayerState
     public override void Init(PlayerStateMachine playerMachine)
     {
         playerStateMachine = playerMachine;
+        playerController = playerMachine.playerController;
     }
 
     public override void OnEnter()
@@ -20,9 +21,9 @@ public class IdleState : PlayerState
         playerStateMachine.playerController.anim.SetFloat("xDir", playerStateMachine.playerController.facingDir.x);
         playerStateMachine.playerController.anim.SetFloat("yDir", playerStateMachine.playerController.facingDir.y);
         playerStateMachine.playerController.anim.Play("Idle");
-        playerStateMachine.playerController.airJumpCount = playerStateMachine.playerController.maxAirJumps;
-        playerStateMachine.playerController.airDodgeCount = playerStateMachine.playerController.maxAirDodges;
-        playerStateMachine.playerController.canJump = true;
+        //playerStateMachine.playerController.airJumpCount = playerStateMachine.playerController.maxAirJumps;
+        //playerStateMachine.playerController.airDodgeCount = playerStateMachine.playerController.maxAirDodges;
+        //playerStateMachine.playerController.canJump = true;
     }
 
 
@@ -50,7 +51,7 @@ public class IdleState : PlayerState
         {
             playerStateMachine.ChangeState(PlayerStateEnums.Fall);
         }
-        if (playerStateMachine.playerController.InputDir.x !=0)
+        if (playerStateMachine.playerController.InputDir.x !=0 && playerController.moveBuffer > 0)
         {
             playerStateMachine.ChangeState(PlayerStateEnums.Move);
         }

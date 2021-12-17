@@ -13,6 +13,7 @@ TagManager:
   - UI
   - 
   - 
+  - Player
   - 
   - 
   - 
@@ -34,8 +35,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - OneWayPlayer
   - 
   m_SortingLayers:
   - name: Default

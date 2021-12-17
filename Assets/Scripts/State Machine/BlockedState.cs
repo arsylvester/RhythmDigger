@@ -15,6 +15,7 @@ public class BlockedState : PlayerState
         base.OnEnter();
         playerStateMachine.playerController.anim.SetFloat("xDir", playerStateMachine.playerController.internalVelocity.x);
         playerStateMachine.playerController.anim.SetFloat("yDir", playerStateMachine.playerController.internalVelocity.y);
+        playerStateMachine.playerController.anim.Play("Blocked");
     }
 
     public override void OnUpdate()

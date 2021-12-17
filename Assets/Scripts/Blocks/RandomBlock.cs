@@ -8,7 +8,7 @@ public class RandomBlock : MonoBehaviour
 
     private void Awake()
     {
-        Instantiate(PossibleBlocks[Random.Range(0, PossibleBlocks.Length)].gameObject, transform.position, transform.rotation);
+        Instantiate(PossibleBlocks[Random.Range(0, PossibleBlocks.Length)].gameObject, transform.position, transform.rotation, transform.parent);
         Destroy(gameObject);
     }
 }
