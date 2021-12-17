@@ -8,8 +8,6 @@ public class Block : MonoBehaviour
     [SerializeField] int blockHealth = 1;
     [SerializeField] bool falls = false;
     [SerializeField] Sprite[] possibleSprites;
-    //Testing
-    public bool TestDestroy = false;
 
     private void Start()
     {
