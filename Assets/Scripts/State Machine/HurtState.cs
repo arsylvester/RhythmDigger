@@ -22,7 +22,7 @@ public class HurtState : PlayerState
         playerStateMachine.playerController.anim.SetFloat("xDir", playerStateMachine.playerController.externalVelocity.x);
         playerStateMachine.playerController.anim.SetFloat("xDir", playerStateMachine.playerController.externalVelocity.y);
         playerStateMachine.playerController.canBounce = true;
-        playerStateMachine.playerController.canJump = false;
+        //playerStateMachine.playerController.canJump = false;
         playerStateMachine.playerController.audioSource.PlayOneShot(hurtSFX);
         playerStateMachine.playerController.anim.Play("Hurt");
     }
@@ -31,7 +31,7 @@ public class HurtState : PlayerState
     {
         playerStateMachine.playerController.myTang = ObjectTangibility.Normal;
         playerStateMachine.playerController.canBounce = false;
-        playerStateMachine.playerController.canJump = true;
+        //playerStateMachine.playerController.canJump = true;
     }
 
     public override void OnFixedUpdate()
