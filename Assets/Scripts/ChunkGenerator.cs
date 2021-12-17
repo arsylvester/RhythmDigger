@@ -29,7 +29,7 @@ public class ChunkGenerator : MonoBehaviour
 
     void GenerateFirstChunks()
     {
-        Instantiate(startChunk.gameObject);
+        Instantiate(startChunk.gameObject).GetComponent<Chunk>().SetPlayer(player);
         currentDepthGenerated = startChunk.height;
         GenerateChunks();
     }
@@ -40,7 +40,7 @@ public class ChunkGenerator : MonoBehaviour
         while(currentDepthGenerated < goalDepth)
         {
             int randomInt = Random.Range(0, possibleChunks.Length);
-            Instantiate(possibleChunks[randomInt].gameObject, new Vector3(0, -currentDepthGenerated), Quaternion.identity);
+            Instantiate(possibleChunks[randomInt].gameObject, new Vector3(0, -currentDepthGenerated), Quaternion.identity).GetComponent<Chunk>().SetPlayer(player);
             currentDepthGenerated += possibleChunks[randomInt].height;
         }
     }
