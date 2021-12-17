@@ -6,7 +6,6 @@ using NaughtyAttributes;
 public class TriggerBlock : Block
 {
     [SerializeField] Vector2[] blocksToTrigger;
-    [SerializeField] int damageDealt = 50;
 
     protected override void OnBlockDestroy()
     {
