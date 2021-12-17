@@ -6,10 +6,14 @@ using NaughtyAttributes;
 public class TriggerBlock : Block
 {
     [SerializeField] Vector2[] blocksToTrigger;
+    bool isTriggering = false;
 
     protected override void OnBlockDestroy()
     {
-        Activate();
+        if (!isTriggering)
+        {
+            Activate();
+        }
         Destroy(gameObject);
     }
 
@@ -18,6 +22,7 @@ public class TriggerBlock : Block
     {
         //Play Trigger vfx and sfx here
 
+        isTriggering = true;
         Vector2 currentPos = transform.position;
         ContactFilter2D filter = new ContactFilter2D();
         Collider2D[] results = new Collider2D[5];
