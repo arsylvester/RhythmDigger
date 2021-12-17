@@ -43,8 +43,8 @@ public class PlayerController : InteractableObject
     public Vector2 storedDir;
 
     public int inputBuffer;
+    public int moveBuffer;
     public int button1Buffer;
-
     public int button1ReleaseBuffer;
 
     public int fallBuffer;
@@ -63,6 +63,7 @@ public class PlayerController : InteractableObject
     public bool drawHitboxes;
 
     public bool isDead;
+    public Vector3 desiredPosition;
 
     void Start()
     {
@@ -72,14 +73,16 @@ public class PlayerController : InteractableObject
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         inputAction = new PlayerInputActions();
         inputAction.PlayerControls.Move.performed += ctx => _inputDir = ctx.ReadValue<Vector2>();
+        inputAction.Enable();
         isDead = false;
     }
 
     private void OnEnable()
     {
-        inputAction.Enable();
+        inputAction?.Enable();
         canRotate = true;
         facingDir = new Vector2(1, 0);
         attackPivot.transform.rotation = Quaternion.Euler(0, 0, 90);
@@ -117,13 +120,12 @@ public class PlayerController : InteractableObject
         BufferInputs();
         playerMachine.OnUpdate();
         anim.SetFloat("scaledTime", scaledTime);
-        anim.transform.localScale = new Vector3(-facingDir.x, 1, 1);
 
         if (InputDir.sqrMagnitude != 0)
         {
             if (canRotate)
             {
-                attackPivot.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(InputDir.y, 0) * Mathf.Rad2Deg - 90f); //set InputDir to 0 to lock a direction,
+                attackPivot.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(InputDir.y, InputDir.x) * Mathf.Rad2Deg - 90f); //set InputDir to 0 to lock a direction,
                 storedDir = InputDir;
                 SetFacingDir();
             }
@@ -177,10 +179,13 @@ public class PlayerController : InteractableObject
     {
         if (InputDir.x !=0)
         {
+
             attackPivot.transform.rotation = Quaternion.Euler(0, 0, (Mathf.Atan2(0, InputDir.x) * Mathf.Rad2Deg - 90f)); //set InputDir to 0 to lock a direction,
             facingDir = (Quaternion.Euler(0, 0, attackPivot.transform.rotation.eulerAngles.z) * Vector2.up).normalized;
             facingDir.x = Mathf.RoundToInt(facingDir.x);
             facingDir.y = Mathf.RoundToInt(facingDir.y);
+            if (facingDir.x != 0)
+                spriteRenderer.flipX = storedDir.x == -1;
         }
     }
 
@@ -275,6 +280,12 @@ public class PlayerController : InteractableObject
             button1Hold = false;
         }
 
+        if (inputAction.PlayerControls.MovePressUp.triggered ||
+            inputAction.PlayerControls.MovePressDown.triggered ||
+            inputAction.PlayerControls.MovePressLeft.triggered ||
+            inputAction.PlayerControls.MovePressRight.triggered)
+            moveBuffer = inputBuffer;
+
         if (InputDir.y == -1)
             fallBuffer = 15;
     }
@@ -289,6 +300,9 @@ public class PlayerController : InteractableObject
 
         if (coyoteTime > 0)
             coyoteTime--;
+
+        if (moveBuffer > 0)
+            moveBuffer--;
 
         if (fallBuffer > 0 || targetVelocity.y > 0)
         {

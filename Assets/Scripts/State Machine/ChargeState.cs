@@ -1,9 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PlayerStates/Blocked")]
-public class BlockedState : PlayerState
+[CreateAssetMenu(menuName = "PlayerStates/Charge")]
+public class ChargeState : PlayerState
 {
     public override void Init(PlayerStateMachine playerMachine)
     {
@@ -15,7 +15,7 @@ public class BlockedState : PlayerState
         base.OnEnter();
         playerStateMachine.playerController.anim.SetFloat("xDir", playerStateMachine.playerController.internalVelocity.x);
         playerStateMachine.playerController.anim.SetFloat("yDir", playerStateMachine.playerController.internalVelocity.y);
-        playerStateMachine.playerController.anim.Play("Blocked");
+        playerStateMachine.playerController.anim.Play("Charge");
     }
 
     public override void OnUpdate()

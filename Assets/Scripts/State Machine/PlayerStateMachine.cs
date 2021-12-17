@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerStateEnums { Idle, Move, Dodge, Jump, Fall, Land, Attack, Hurt, Dead };
+public enum PlayerStateEnums { Idle, Move, Jump, Fall, Land, Attack, AttackMove, Charge, ChargeAttack, ChargeAttackMove, Blocked, Hurt, Dead }; //Idle, Move, Dodge, Jump, Fall, Land, Attack, Hurt, Dead 
+
 public class PlayerStateMachine : MonoBehaviour
 {
     public static PlayerStateMachine current;
