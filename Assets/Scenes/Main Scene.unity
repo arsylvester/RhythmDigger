@@ -1353,7 +1353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3362036784273910506, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: m_UiScaleMode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3362036784273910506, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: m_DefaultSpriteDPI
@@ -1362,6 +1362,18 @@ PrefabInstance:
     - target: {fileID: 3362036784273910506, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: m_FallbackScreenDPI
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036784273910506, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036784273910506, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036784273910506, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 3362036784273910506, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: m_ReferencePixelsPerUnit

@@ -103,6 +103,9 @@ public class PlayerController : InteractableObject
 
     public override void OnCollisionEnter2D(Collision2D collision)
     {
+        if (Crushed())
+            gameObject.SetActive(false);
+
         if (((1 << collision.gameObject.layer) & bounceLayers) != 0)
         {
             Bounce(collision);
@@ -112,6 +115,8 @@ public class PlayerController : InteractableObject
     }
     public override void OnCollisionStay2D(Collision2D collision)
     {
+        if (Crushed())
+            gameObject.SetActive(false);
     }
 
     void Update()

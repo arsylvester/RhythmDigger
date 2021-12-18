@@ -49,6 +49,9 @@ public class Conductor : MonoBehaviour
     public float loopPositionInAnalog;
     public float songLength = 0f;
     public int validBuffer;
+    public float beatElapsed;
+    public Vector2 beatRange;
+    public bool validBeat;
 
     void Awake()
     {
@@ -103,6 +106,9 @@ public class Conductor : MonoBehaviour
 
         if (validBuffer > 0)
             validBuffer--;
+
+        beatElapsed += Time.deltaTime;
+        validBeat = (beatElapsed < (secPerBeat * beatRange.x) || (beatElapsed > (secPerBeat * beatRange.y)));
     }
 
     public void AnimateHeart()
@@ -122,7 +128,8 @@ public class Conductor : MonoBehaviour
         GameObject topBeat2 = currentBeats[1];
         float curPos = topBeat1.GetComponent<RectTransform>().anchoredPosition.x;
         // Debug.Log("Mathf.Abs(curPos): "+Mathf.Abs(curPos)+" goalWidth: "+goalWidth);
-        if(Mathf.Abs(curPos) < goalWidth/2)
+        //if(Mathf.Abs(curPos) < goalWidth/2)
+        if(beatElapsed < (secPerBeat * beatRange.x)|| (beatElapsed > (secPerBeat * beatRange.y)))
         {
             heartbeatAnimator.Play("heartBeat_Good",0,0);
             StartCoroutine(killBeat(topBeat1));
@@ -153,17 +160,19 @@ public class Conductor : MonoBehaviour
         beat.GetComponent<Animator>().Play("beatIndicator_hit",0,0);
 
         // Debug.Log("Waiting!");
-        currentBeats.Remove(beat);
+
 
         yield return new WaitForSeconds(1f);
-
+        currentBeats.Remove(beat);
         Destroy(beat);
 
     }
 
     void CreateBeats()
     {
-
+        beatElapsed = 0;
+        heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
+        Conductor.instance.validBuffer = 3;
         // Create left beat indicator
         // GameObject go = Instantiate(beatIndicatorPrefab, UI_beatSpawnLeft.transform.position, Quaternion.identity) as GameObject;
         // go.transform.parent = UI_beatSpawnLeft.transform;

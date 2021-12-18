@@ -4,11 +4,11 @@ using UnityEngine;
 
 public enum ObjectTangibility {Normal, Armor, Guard, Invincible};
 public abstract class InteractableObject : MonoBehaviour
-{ 
+{
     [Header("   Health")]
     public int HP;
     public int maxHP;
-	public ObjectTangibility myTang;
+    public ObjectTangibility myTang;
 
     [Header("   Time")]
     [Space(10)]
@@ -20,7 +20,7 @@ public abstract class InteractableObject : MonoBehaviour
 
     [Header("   Velocity")]
     [Space(10)]
-    public float friction; 
+    public float friction;
     public float airFriction;
     public Vector2 internalVelocity; //internal velocity
     public Vector2 groundVelocity; //velocity supplied from the ground
@@ -48,24 +48,27 @@ public abstract class InteractableObject : MonoBehaviour
     public float bounceFriction;
     public int bounceTime;
     public BoxCollider2D groundCollider;
+    public BoxCollider2D headCollider;
+    public BoxCollider2D leftCollider;
+    public BoxCollider2D rightCollider;
 
     public virtual void OnCollisionEnter2D(Collision2D collision)
-	{
+    {
         if (Crushed())
         {
-            //DO GAME OVER
+            gameObject.SetActive(false);
         }
-		if (externalVelocity.sqrMagnitude > bounceVelocity && canBounce)
-		{
+        if (externalVelocity.sqrMagnitude > bounceVelocity && canBounce)
+        {
             Bounce(collision);
-		}
+        }
     }
 
     public virtual void OnCollisionStay2D(Collision2D collision)
     {
         if (Crushed())
         {
-            //DO GAME OVER
+            gameObject.SetActive(false);
         }
     }
 
@@ -124,7 +127,7 @@ public abstract class InteractableObject : MonoBehaviour
         }
 
         if (Mathf.Round(externalVelocity.sqrMagnitude * 100f) / 100f == 0)
-		{
+        {
             externalVelocity *= 0;
         }
         if (Mathf.Round(groundVelocity.sqrMagnitude * 100f) / 100f == 0)
@@ -289,109 +292,61 @@ public abstract class InteractableObject : MonoBehaviour
 
     public bool Bonked() //Check if we hit anything solid above our head 
     {
-        float length = 0.2f;
-        float width = 0.2f;
-        if (GetComponent<CircleCollider2D>())
+        Collider2D[] collisions = Physics2D.OverlapBoxAll(headCollider.transform.position, headCollider.size, 0, groundLayers);
+        foreach (Collider2D hitObject in collisions)//anything hit
         {
-            width = GetComponent<CircleCollider2D>().radius;
-            length = GetComponent<CircleCollider2D>().radius;
+            if (hitObject.gameObject != this && hitObject.gameObject != null && hitObject.gameObject != groundCollider.gameObject)
+            {
+                return true;
+            }
         }
-        else if (GetComponent<BoxCollider2D>())
-        {
-            width = (GetComponent<BoxCollider2D>().size.x * 0.5f);
-            length = (GetComponent<BoxCollider2D>().size.y * 0.5f);
-        }
-        else if (GetComponent<CapsuleCollider2D>())
-        {
-            width = (GetComponent<CapsuleCollider2D>().size.x * 0.5f);
-            length = (GetComponent<CapsuleCollider2D>().size.y * 0.5f);
-        }
-        if (Physics2D.Raycast(transform.position + new Vector3(width * 0.9f, length), Vector2.up, length * 0.5f, groundLayers) || Physics2D.Raycast(transform.position + new Vector3(-width * 0.9f, length), Vector2.up, length * 0.5f, groundLayers))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     public bool Crushed()//Check if we were crushed 
     {
-        float length = 0.2f;
-        float width = 0.2f;
-        if (GetComponent<CircleCollider2D>())
-        {
-            width = GetComponent<CircleCollider2D>().radius;
-            length = GetComponent<CircleCollider2D>().radius;
-        }
-        else if (GetComponent<BoxCollider2D>())
-        {
-            width = (GetComponent<BoxCollider2D>().size.x * 0.5f);
-            length = (GetComponent<BoxCollider2D>().size.y * 0.5f);
-        }
-        else if (GetComponent<CapsuleCollider2D>())
-        {
-            width = (GetComponent<CapsuleCollider2D>().size.x * 0.5f);
-            length = (GetComponent<CapsuleCollider2D>().size.y * 0.5f);
-        }
+        bool verticalCrush = false;
+        bool horizontalCrush = false;
 
+        if (Bonked() && Grounded(crushLayers))
+            verticalCrush = true;
 
-        if (GetComponent<CircleCollider2D>())
-        {
-            width = GetComponent<CircleCollider2D>().radius;
-            length = GetComponent<CircleCollider2D>().radius;
-            if ((Physics2D.Raycast(transform.position, Vector2.up, length + 0.005f, crushLayers) && Physics2D.Raycast(transform.position, Vector2.down, length + 0.005f, crushLayers)) ||
-            (Physics2D.Raycast(transform.position, Vector2.left, width + 0.005f, crushLayers) && Physics2D.Raycast(transform.position, Vector2.right, width + 0.005f, crushLayers)))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else if (GetComponent<BoxCollider2D>())
-        {
-            width = (GetComponent<BoxCollider2D>().size.x * 0.5f);
-            length = (GetComponent<BoxCollider2D>().size.y * 0.5f);
-            if ((Physics2D.Raycast(transform.position + new Vector3(width * 0.9f, length), Vector2.up, 0.0075f, crushLayers) && Physics2D.Raycast(transform.position + new Vector3(width * 0.9f, -length), Vector2.down, 0.0075f, crushLayers)) ||
-                (Physics2D.Raycast(transform.position + new Vector3(-width * 0.9f, length), Vector2.up, 0.0075f, crushLayers) && Physics2D.Raycast(transform.position + new Vector3(-width * 0.9f, -length), Vector2.down, 0.0075f, crushLayers)) ||
-                (Physics2D.Raycast(transform.position + new Vector3(-width, length * 0.9f), Vector2.left, 0.0075f, crushLayers) && Physics2D.Raycast(transform.position + new Vector3(width, length * 0.9f), Vector2.right, 0.0075f, crushLayers)) ||
-                (Physics2D.Raycast(transform.position + new Vector3(-width, -length * 0.9f), Vector2.left, 0.0075f, crushLayers) && Physics2D.Raycast(transform.position + new Vector3(width, -length * 0.9f), Vector2.right, 0.0075f, crushLayers)))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else if (GetComponent<CapsuleCollider2D>())
-        {
-            width = (GetComponent<CapsuleCollider2D>().size.x * 0.5f);
-            length = (GetComponent<CapsuleCollider2D>().size.y * 0.5f);
-            if ((Physics2D.Raycast(transform.position + new Vector3(0, length), Vector2.up, 0.0025f, crushLayers) && Physics2D.Raycast(transform.position + new Vector3(0, -length), Vector2.down, 0.0025f, crushLayers)) ||
-                (Physics2D.Raycast(transform.position + new Vector3(-width, length * 0.75f), Vector2.left, 0.0025f, crushLayers) && Physics2D.Raycast(transform.position + new Vector3(width, length * 0.75f), Vector2.right, 0.0025f, crushLayers)) ||
-                (Physics2D.Raycast(transform.position + new Vector3(-width, -length * 0.75f), Vector2.left, 0.0025f, crushLayers) && Physics2D.Raycast(transform.position + new Vector3(width, -length * 0.5f), Vector2.right, 0.0025f, crushLayers)))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
+        if (verticalCrush || horizontalCrush)
+            return true;
+
+        return false;
     } 
+
+    public bool LeftCollision(LayerMask mask)
+	{
+        Collider2D[] collisions = Physics2D.OverlapBoxAll(leftCollider.transform.position, leftCollider.size, 0, groundLayers);
+        foreach (Collider2D hitObject in collisions)//anything hit
+        {
+            if (hitObject.gameObject != this && hitObject.gameObject != null && hitObject.gameObject != groundCollider.gameObject)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool RightCollision()
+	{
+        Collider2D[] collisions = Physics2D.OverlapBoxAll(rightCollider.transform.position, rightCollider.size, 0, groundLayers);
+        foreach (Collider2D hitObject in collisions)//anything hit
+        {
+            if (hitObject.gameObject != this && hitObject.gameObject != null && hitObject.gameObject != groundCollider.gameObject)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public bool Grounded(LayerMask mask) //Check if we touch the ground we want to touch
     {
 
-        Collider2D[] collisions = Physics2D.OverlapBoxAll(transform.position, groundCollider.size, 0, groundLayers);
+        Collider2D[] collisions = Physics2D.OverlapBoxAll(groundCollider.transform.position, groundCollider.size, 0, groundLayers);
         foreach (Collider2D hitObject in collisions)//anything hit
 		{
             if (hitObject.gameObject != this && hitObject.gameObject != null && hitObject.gameObject != groundCollider.gameObject)
@@ -400,66 +355,6 @@ public abstract class InteractableObject : MonoBehaviour
             }
 		}
         return false;
-
-        //    float length = 0.2f;
-        //float width = 0.2f;
-        //if (GetComponent<CircleCollider2D>())
-        //{
-        //    width = GetComponent<CircleCollider2D>().radius;
-        //    length = GetComponent<CircleCollider2D>().radius;
-        //}
-        //else if (GetComponent<BoxCollider2D>())
-        //{
-        //    width = (GetComponent<BoxCollider2D>().size.x * 0.5f);
-        //    length = (GetComponent<BoxCollider2D>().size.y * 0.5f);
-        //}
-        //else if (GetComponent<CapsuleCollider2D>())
-        //{
-        //    width = (GetComponent<CapsuleCollider2D>().size.x * 0.5f);
-        //    length = (GetComponent<CapsuleCollider2D>().size.y * 0.5f);
-        //}
-        //RaycastHit2D rightHit = Physics2D.Raycast(transform.position + new Vector3(width * 0.9f, -length), Vector2.down, 0.01f, mask);
-        //RaycastHit2D leftHit = Physics2D.Raycast(transform.position + new Vector3(-width * 0.9f, -length), Vector2.down, 0.01f, mask);
-        //if (rightHit)
-        //{
-        //    if (rightHit.transform.gameObject != this.gameObject)
-        //    {
-        //        if (rightHit.transform.gameObject.GetComponent<InteractableObject>())
-        //        {
-        //            groundVelocity.x = rightHit.transform.gameObject.GetComponent<InteractableObject>().targetVelocity.x * 1.35f;
-        //        }
-        //        /*if (rightHit.transform.gameObject.GetComponent<MovingPlatform>())
-        //        {
-        //            groundVelocity = rightHit.transform.gameObject.GetComponent<MovingPlatform>().rbody.velocity * 1.35f;
-        //            storeGroundVelocityTime = rightHit.transform.gameObject.GetComponent<MovingPlatform>().appliedVelTime;
-        //        }*/
-        //        return true;
-        //    }
-        //    else
-        //        return false;
-        //}
-        //else if (leftHit)
-        //{
-        //    if (leftHit.transform.gameObject != this.gameObject)
-        //    {
-        //        if (leftHit.transform.gameObject.GetComponent<InteractableObject>())
-        //        {
-        //            groundVelocity.x = leftHit.transform.gameObject.GetComponent<InteractableObject>().targetVelocity.x * 1.35f;
-        //        }
-        //       /* if (leftHit.transform.gameObject.GetComponent<MovingPlatform>())
-        //        {
-        //            groundVelocity = leftHit.transform.gameObject.GetComponent<MovingPlatform>().rbody.velocity * 1.35f;
-        //            storeGroundVelocityTime = leftHit.transform.gameObject.GetComponent<MovingPlatform>().appliedVelTime;
-        //        }*/
-        //        return true;
-        //    }
-        //    else
-        //        return false;
-        //}
-        //else
-        //{
-        //    return false;
-        //}
     }
 
     public void Bounce(Collision2D collision) //Check if we can bounce
