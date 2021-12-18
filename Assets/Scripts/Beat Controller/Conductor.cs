@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Conductor : MonoBehaviour
 {
     public GameObject beatIndicatorPrefab;
@@ -10,7 +10,7 @@ public class Conductor : MonoBehaviour
     public List<GameObject> currentBeats = new List<GameObject>();
     [SerializeField]
     // public List<Sprite> heartbeatAnimation = new List<Sprite>();
-    Animator heartbeatAnimator;
+    public Animator heartbeatAnimator;
 
     //This is determined by the song you're trying to sync up to
     [SerializeField]
@@ -75,6 +75,9 @@ public class Conductor : MonoBehaviour
         // beatMover mover = go.GetComponent<beatMover>();  
         // mover.StartMove(targetPos);
         InvokeRepeating("CreateBeats",0.1f,secPerBeat);
+        heartbeatAnimator.GetComponent<Image>().SetNativeSize();
+        GetComponent<Image>().SetNativeSize();
+        UI_beatGoal.GetComponent<RectTransform>().sizeDelta = heartbeatAnimator.GetComponent<RectTransform>().sizeDelta;
     }
 
     // Update is called once per frame
@@ -114,7 +117,7 @@ public class Conductor : MonoBehaviour
             validBuffer = 0;
             return true;
         }
-        float goalWidth = UI_beatGoal.GetComponent<RectTransform>().rect.width;
+        float goalWidth = UI_beatGoal.GetComponent<RectTransform>().sizeDelta.x;
         GameObject topBeat1 = currentBeats[0];
         GameObject topBeat2 = currentBeats[1];
         float curPos = topBeat1.GetComponent<RectTransform>().anchoredPosition.x;
@@ -131,6 +134,7 @@ public class Conductor : MonoBehaviour
             // currentBeats.Remove(topBeat2);
             // Destroy(topBeat1);
             // Destroy(topBeat2);
+            validBuffer = 0;
             return true;
         }
         else
@@ -145,17 +149,21 @@ public class Conductor : MonoBehaviour
 
     private IEnumerator killBeat(GameObject beat)
     {
-        beat.GetComponent<beatMover>().StopMove();
+        //beat.GetComponent<beatMover>().StopMove();
         beat.GetComponent<Animator>().Play("beatIndicator_hit",0,0);
+
         // Debug.Log("Waiting!");
-        yield return new WaitForSeconds(1f);
         currentBeats.Remove(beat);
+
+        yield return new WaitForSeconds(1f);
+
         Destroy(beat);
+
     }
 
     void CreateBeats()
     {
-        heartbeatAnimator.Play("heartBeat_heartBeat",0,0);
+
         // Create left beat indicator
         // GameObject go = Instantiate(beatIndicatorPrefab, UI_beatSpawnLeft.transform.position, Quaternion.identity) as GameObject;
         // go.transform.parent = UI_beatSpawnLeft.transform;

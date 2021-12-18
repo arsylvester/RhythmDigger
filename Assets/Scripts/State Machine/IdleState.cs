@@ -53,6 +53,7 @@ public class IdleState : PlayerState
         }
         if (playerStateMachine.playerController.InputDir.sqrMagnitude !=0 && playerController.moveBuffer > 0)
         {
+            playerController.moveBuffer = 0;
             if (Conductor.instance.CheckValidBeat())
             {
                 if (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right || playerController.InputDir == Vector2.down)
