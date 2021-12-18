@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4738385178643312206, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
       propertyPath: m_Name
-      value: Block Hard
+      value: Block Hard Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4738385178643312207, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
       propertyPath: m_Sprite
@@ -69,6 +69,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4738385178643312207, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792909823721403276, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
+      propertyPath: rotates
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5792909823721403276, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}

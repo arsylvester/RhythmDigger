@@ -127,7 +127,7 @@ public class Conductor : MonoBehaviour
     {
         //beat.GetComponent<beatMover>().StopMove(); //removed for gamefeel reasons - CB feel free to override if its causing you trouble!
         beat.GetComponent<Animator>().Play("beatIndicator_hit",0,0);
-        currentBeats.Remove(beat);
+        //currentBeats.Remove(beat);
         yield return new WaitForSeconds(1f);
 
         //Destroy(beat);

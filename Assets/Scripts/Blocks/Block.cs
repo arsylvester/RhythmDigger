@@ -7,18 +7,27 @@ public class Block : MonoBehaviour
 {
     [SerializeField] int blockHealth = 1;
     [SerializeField] bool falls = false;
+    [SerializeField] bool rotates = false;
     [SerializeField] Sprite[] possibleSprites;
+    SpriteRenderer spriteRenderer => GetComponentInChildren<SpriteRenderer>();
 
     private void Start()
     {
         //Randomize sprite if more then 1 possible sprite;
         if(possibleSprites.Length > 0)
-            GetComponent<SpriteRenderer>().sprite = possibleSprites[Random.Range(0, possibleSprites.Length)];
+            spriteRenderer.sprite = possibleSprites[Random.Range(0, possibleSprites.Length)];
 
         if (falls)
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         else
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+
+        if (rotates)
+        {
+            spriteRenderer.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 4) * 90);
+            spriteRenderer.flipX = (Random.Range(0,2) == 1);
+            spriteRenderer.flipY = (Random.Range(0,2) == 1);
+        }
     }
 
     public bool DamageBlock(int damage)
