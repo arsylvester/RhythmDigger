@@ -7,13 +7,6 @@
       "dependencies": {},
       "hash": "6ff42768879f6d3721f27c1fc1ba0c1d145a3f27"
     },
-    "com.talecrafter.animationimporter": {
-      "version": "https://github.com/talecrafter/AnimationImporter.git?path=/Assets",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "517f4667d21a94680cec8118cf63a15053bff711"
-    },
     "com.unity.2d.animation": {
       "version": "5.0.5",
       "depth": 0,

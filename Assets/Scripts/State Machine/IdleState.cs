@@ -51,7 +51,7 @@ public class IdleState : PlayerState
         {
             playerStateMachine.ChangeState(PlayerStateEnums.Fall);
         }
-        if (playerStateMachine.playerController.InputDir.sqrMagnitude !=0 && playerController.moveBuffer > 0)
+        if (playerStateMachine.playerController.InputDir.sqrMagnitude !=0 && playerController.moveBuffer > 0 && Conductor.instance.CheckValidBeat())
         {
             if (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right || playerController.InputDir == Vector2.down)
                 playerController.storedDir = playerController.InputDir;
