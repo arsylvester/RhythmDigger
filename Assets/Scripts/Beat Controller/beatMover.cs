@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class beatMover : MonoBehaviour
+public class BeatMover : MonoBehaviour
 {
     private Vector3 startLocation;
     [SerializeField]
@@ -34,11 +34,9 @@ public class beatMover : MonoBehaviour
 
     public void StartMove(Vector3 endPos, float musicBPM){
         rectTransform = GetComponent<RectTransform>();
-        // startPosition = rectTransform.position;
         startPosition = new Vector3(rectTransform.anchoredPosition.x,0,0);
         endPosition = endPos;
         lerpDuration = 60f/musicBPM*4;
-        // endPosition = startPosition + new Vector3(100,0,0);
         StartCoroutine(Move());
     }
 
@@ -48,39 +46,20 @@ public class beatMover : MonoBehaviour
     }
 
     IEnumerator Move()
-    // {
-    //     float timeElapsed = 0;
+    {
+        while (currentTime <= lerpDuration)
+        {
+            currentTime += Time.deltaTime;
+            normalizedValue = currentTime / lerpDuration; // we normalize our time 
 
-    //     while (timeElapsed < lerpDuration)
-    //     {
-    //         valueToLerp = Mathf.Lerp(startValue, endValue, timeElapsed / lerpDuration);
-    //         timeElapsed += Time.deltaTime;
-
-    //         yield return null;
-    //     }
-
-    //     valueToLerp = endValue;
-    // }
-    { 
-        while (currentTime <= lerpDuration) { 
-            currentTime += Time.deltaTime; 
-            normalizedValue=currentTime/lerpDuration; // we normalize our time 
-        
-            rectTransform.anchoredPosition=Vector3.Lerp(startPosition, endPosition, normalizedValue); 
-            // rectTransform.localPosition=Vector3.Lerp(startPosition, endPosition, normalizedValue); 
-            yield return null; 
-            }
+            rectTransform.anchoredPosition = Vector3.Lerp(startPosition, endPosition, normalizedValue);
+            yield return null;
+        }
         rectTransform.anchoredPosition = endPosition;
         Conductor.instance.heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
         Conductor.instance.currentBeats.Remove(gameObject);
-        Conductor.instance.validBuffer = 3;
         yield return new WaitForSeconds(0.05f);
 
-        // Conductor.instance.currentBeats.RemoveAt(0);
-
-
         Destroy(gameObject);
-
-    }
-    
+    } 
 }

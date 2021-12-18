@@ -48,7 +48,7 @@ public class Conductor : MonoBehaviour
     //The current relative position of the song within the loop measured between 0 and 1.
     public float loopPositionInAnalog;
     public float songLength = 0f;
-    public int validBuffer;
+
     public float beatElapsed;
     public Vector2 beatRange;
     public bool validBeat;
@@ -71,12 +71,6 @@ public class Conductor : MonoBehaviour
 
         //Start the music
         musicSource.Play();
-        // Vector3 spawnPos = new Vector3(UI_beatSpawnLeft.transform.position.x,0,0);
-        // Vector3 targetPos = new Vector3(UI_beatGoal.GetComponent<RectTransform>().transform.position.x,0,0);
-        // GameObject go = Instantiate(beatIndicatorPrefab, spawnPos, Quaternion.identity) as GameObject;
-        // go.transform.parent = UI_beatSpawnLeft.GetComponent<RectTransform>().transform;
-        // beatMover mover = go.GetComponent<beatMover>();  
-        // mover.StartMove(targetPos);
         InvokeRepeating("CreateBeats",0.1f,secPerBeat);
         heartbeatAnimator.GetComponent<Image>().SetNativeSize();
         GetComponent<Image>().SetNativeSize();
@@ -91,12 +85,7 @@ public class Conductor : MonoBehaviour
 
         //determine how many beats since the song started
         songPositionInBeats = songPosition / secPerBeat;
-        // bool CreateBeats = true;
 
-        // while(CreateBeats){
-        //     InvokeRepeating("CreateBeats",1,musicBPM);
-        //     CreateBeats = false;
-        // }  
         songLength = musicSource.clip.length;
         beatsPerLoop = (musicBPM)*(songLength/60f);
         loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
@@ -104,8 +93,6 @@ public class Conductor : MonoBehaviour
             completedLoops++;
         loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
 
-        if (validBuffer > 0)
-            validBuffer--;
 
         beatElapsed += Time.deltaTime;
         validBeat = (beatElapsed < (secPerBeat * beatRange.x) || (beatElapsed > (secPerBeat * beatRange.y)));
@@ -118,30 +105,15 @@ public class Conductor : MonoBehaviour
 
     public bool CheckValidBeat()
     {
-        if (validBuffer > 0)
-        {
-            validBuffer = 0;
-            return true;
-        }
         float goalWidth = UI_beatGoal.GetComponent<RectTransform>().sizeDelta.x;
         GameObject topBeat1 = currentBeats[0];
         GameObject topBeat2 = currentBeats[1];
         float curPos = topBeat1.GetComponent<RectTransform>().anchoredPosition.x;
-        // Debug.Log("Mathf.Abs(curPos): "+Mathf.Abs(curPos)+" goalWidth: "+goalWidth);
-        //if(Mathf.Abs(curPos) < goalWidth/2)
-        if(beatElapsed < (secPerBeat * beatRange.x)|| (beatElapsed > (secPerBeat * beatRange.y)))
+        if(validBeat)
         {
             heartbeatAnimator.Play("heartBeat_Good",0,0);
             StartCoroutine(killBeat(topBeat1));
             StartCoroutine(killBeat(topBeat2));
-            // topBeat1.GetComponent<Animator>().Play("beatIndicator_hit",0,0);
-            // topBeat2.GetComponent<Animator>().Play("beatIndicator_hit",0,0);
-            // yield return new WaitForSeconds(0.5f);
-            // currentBeats.Remove(topBeat1);
-            // currentBeats.Remove(topBeat2);
-            // Destroy(topBeat1);
-            // Destroy(topBeat2);
-            validBuffer = 0;
             return true;
         }
         else
@@ -149,47 +121,32 @@ public class Conductor : MonoBehaviour
             heartbeatAnimator.Play("heartBeat_Bad",0,0);
             return false;
         }
-        
-
-        // return Mathf.Abs(curPos) < goalWidth/2;
     }
 
     private IEnumerator killBeat(GameObject beat)
     {
-        //beat.GetComponent<beatMover>().StopMove();
+        //beat.GetComponent<beatMover>().StopMove(); //removed for gamefeel reasons - CB feel free to override if its causing you trouble!
         beat.GetComponent<Animator>().Play("beatIndicator_hit",0,0);
-
-        // Debug.Log("Waiting!");
-
-
-        yield return new WaitForSeconds(1f);
         currentBeats.Remove(beat);
-        Destroy(beat);
+        yield return new WaitForSeconds(1f);
 
+        //Destroy(beat);
     }
 
     void CreateBeats()
     {
         beatElapsed = 0;
         heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
-        Conductor.instance.validBuffer = 3;
+
         // Create left beat indicator
-        // GameObject go = Instantiate(beatIndicatorPrefab, UI_beatSpawnLeft.transform.position, Quaternion.identity) as GameObject;
-        // go.transform.parent = UI_beatSpawnLeft.transform;
         Vector3 spawnPos = new Vector3(UI_beatSpawnLeft.GetComponent<RectTransform>().localPosition.x,0,0);
-        // Vector3 spawnPos = new Vector3(-320,0,0);
         Vector3 targetPos = new Vector3(UI_beatGoal.GetComponent<RectTransform>().anchoredPosition.x,0,0);
-        // Vector3 targetPos = new Vector3(0,0,0);
         RectTransform parent = UI_beatIndicatorController.GetComponent<RectTransform>();
         GameObject goLeft = Instantiate(beatIndicatorPrefab, spawnPos, Quaternion.identity, parent) as GameObject;
-
-        // go.transform.SetParent(UI_beatIndicatorController.GetComponent<RectTransform>().transform,false);
         goLeft.GetComponent<RectTransform>().anchoredPosition = spawnPos;
-        // go.transform.position = Camera.main.WorldToScreenPoint(UI_beatSpawnLeft.transform.position);
-        beatMover mover = goLeft.GetComponent<beatMover>();  
+        BeatMover mover = goLeft.GetComponent<BeatMover>();  
         mover.StartMove(targetPos, musicBPM);
         currentBeats.Add(goLeft);
-
 
         // Create Right beat indicator
         spawnPos = new Vector3(UI_beatSpawnRight.GetComponent<RectTransform>().localPosition.x,0,0);
@@ -197,11 +154,8 @@ public class Conductor : MonoBehaviour
         parent = UI_beatIndicatorController.GetComponent<RectTransform>();
         GameObject goRight = Instantiate(beatIndicatorPrefab, spawnPos, Quaternion.identity, parent) as GameObject;
         goRight.GetComponent<RectTransform>().anchoredPosition = spawnPos;
-        // currentBeats.Add(new List<GameObject>{goLeft,goRight});
         currentBeats.Add(goRight);
-
-        mover = goRight.GetComponent<beatMover>();  
-        mover.StartMove(targetPos, musicBPM);
-        
+        mover = goRight.GetComponent<BeatMover>();  
+        mover.StartMove(targetPos, musicBPM);      
     }
 }

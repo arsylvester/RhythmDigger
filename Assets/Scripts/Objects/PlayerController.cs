@@ -104,7 +104,10 @@ public class PlayerController : InteractableObject
     public override void OnCollisionEnter2D(Collision2D collision)
     {
         if (Crushed())
-            gameObject.SetActive(false);
+        {
+            //gameObject.SetActive(false);
+            Debug.Log("CRUSH ENTER");
+        }
 
         if (((1 << collision.gameObject.layer) & bounceLayers) != 0)
         {
@@ -115,8 +118,11 @@ public class PlayerController : InteractableObject
     }
     public override void OnCollisionStay2D(Collision2D collision)
     {
+        //just a safety when unity sucks ya know
         if (Crushed())
-            gameObject.SetActive(false);
+        {
+            //gameObject.SetActive(false);
+        }
     }
 
     void Update()
@@ -216,7 +222,7 @@ public class PlayerController : InteractableObject
 
             }
         }
-        return false;
+        return true;
     }
 
     public bool CheckBlock(Vector2 direction, int damage)

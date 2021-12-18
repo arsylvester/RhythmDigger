@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerStates/Idle")]
 public class IdleState : PlayerState
 {
-
+    public bool requireBeat;
 
     //IF IDLE STATE FOR LONGER THAN 10 FRAMES AND KILLED ENEMY  DO RELOAD //THIS WAY COMBOS AREN'T INTERRUPTED
     public override void Init(PlayerStateMachine playerMachine)
@@ -51,17 +51,18 @@ public class IdleState : PlayerState
         {
             playerStateMachine.ChangeState(PlayerStateEnums.Fall);
         }
-        if (playerStateMachine.playerController.InputDir.sqrMagnitude !=0 && playerController.moveBuffer > 0)
+        if ((playerStateMachine.playerController.InputDir.x !=0 || playerStateMachine.playerController.InputDir.y == -1) && playerController.moveBuffer > 0)
         {
             playerController.moveBuffer = 0;
-            if (Conductor.instance.CheckValidBeat())
+            if (Conductor.instance.CheckValidBeat() || !requireBeat)
             {
                 if (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right || playerController.InputDir == Vector2.down)
                     playerController.storedDir = playerController.InputDir;
                 bool canMove = playerController.CheckOpenBlock(playerController.storedDir);
-                if (canMove)
+                if (canMove )
                 {
                     playerStateMachine.ChangeState(PlayerStateEnums.Move);
+                    Debug.Log("Normal Move");
                 }
                 else
                 {
@@ -77,12 +78,10 @@ public class IdleState : PlayerState
                     }
                 }
             }
-			else
+			else if(!Conductor.instance.CheckValidBeat())
 			{
                 playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
 			}
-
-
         }
         {
         //    if (playerStateMachine.playerController.button2Buffer > 0)
