@@ -1287,6 +1287,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3362036782701738704, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036782779642669, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 15.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036782779642669, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 15.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036782872091547, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036782872091547, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036782872091547, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 105.840004
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036782872091547, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 12.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036782872091547, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036782872091547, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3362036782872091548, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: m_Color.b
       value: 0.23584908
@@ -1305,6 +1341,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3362036784273910504, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036784273910506, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036784273910506, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_DefaultSpriteDPI
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036784273910506, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_FallbackScreenDPI
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036784273910506, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_ReferencePixelsPerUnit
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036784273910507, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_PixelPerfect
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3362036784273910508, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}

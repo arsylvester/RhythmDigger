@@ -51,28 +51,35 @@ public class IdleState : PlayerState
         {
             playerStateMachine.ChangeState(PlayerStateEnums.Fall);
         }
-        if (playerStateMachine.playerController.InputDir.sqrMagnitude !=0 && playerController.moveBuffer > 0 && Conductor.instance.CheckValidBeat())
+        if (playerStateMachine.playerController.InputDir.sqrMagnitude !=0 && playerController.moveBuffer > 0)
         {
-            if (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right || playerController.InputDir == Vector2.down)
-                playerController.storedDir = playerController.InputDir;
-            bool canMove = playerController.CheckOpenBlock(playerController.storedDir);
-            if (canMove) 
+            if (Conductor.instance.CheckValidBeat())
             {
-                playerStateMachine.ChangeState(PlayerStateEnums.Move); 
-            }
-            else
-			{
-                if (!playerController.CheckBlock(playerController.storedDir, 1))
+                if (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right || playerController.InputDir == Vector2.down)
+                    playerController.storedDir = playerController.InputDir;
+                bool canMove = playerController.CheckOpenBlock(playerController.storedDir);
+                if (canMove)
                 {
-                    Debug.Log("Move Dig");
-                    playerStateMachine.ChangeState(PlayerStateEnums.AttackMove);
+                    playerStateMachine.ChangeState(PlayerStateEnums.Move);
                 }
                 else
                 {
-                    Debug.Log("Dig");
-                    playerStateMachine.ChangeState(PlayerStateEnums.Attack);
+                    if (!playerController.CheckBlock(playerController.storedDir, 1))
+                    {
+                        Debug.Log("Move Dig");
+                        playerStateMachine.ChangeState(PlayerStateEnums.AttackMove);
+                    }
+                    else
+                    {
+                        Debug.Log("Dig");
+                        playerStateMachine.ChangeState(PlayerStateEnums.Attack);
+                    }
                 }
             }
+			else
+			{
+                playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
+			}
 
 
         }

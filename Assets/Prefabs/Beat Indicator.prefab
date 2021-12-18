@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -303.9, y: 0}
-  m_SizeDelta: {x: 50, y: 100}
+  m_SizeDelta: {x: 56.25, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6771269163470696522
 CanvasRenderer:
@@ -97,6 +97,7 @@ MonoBehaviour:
   speedModifier: 0.25
   startPosition: {x: 0, y: 0, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
+  beatImage: {fileID: 8328378650557596108}
 --- !u!61 &-6392156699728306454
 BoxCollider2D:
   m_ObjectHideFlags: 0

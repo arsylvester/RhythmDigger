@@ -11,7 +11,7 @@ public class Conductor : MonoBehaviour
     [SerializeField]
     // public List<Sprite> heartbeatAnimation = new List<Sprite>();
     Animator heartbeatAnimator;
-    
+
     //This is determined by the song you're trying to sync up to
     [SerializeField]
     public float musicBPM = 60f;
@@ -48,6 +48,7 @@ public class Conductor : MonoBehaviour
     //The current relative position of the song within the loop measured between 0 and 1.
     public float loopPositionInAnalog;
     public float songLength = 0f;
+    public int validBuffer;
 
     void Awake()
     {
@@ -97,6 +98,8 @@ public class Conductor : MonoBehaviour
             completedLoops++;
         loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
 
+        if (validBuffer > 0)
+            validBuffer--;
     }
 
     public void AnimateHeart()
@@ -106,6 +109,11 @@ public class Conductor : MonoBehaviour
 
     public bool CheckValidBeat()
     {
+        if (validBuffer > 0)
+        {
+            validBuffer = 0;
+            return true;
+        }
         float goalWidth = UI_beatGoal.GetComponent<RectTransform>().rect.width;
         GameObject topBeat1 = currentBeats[0];
         GameObject topBeat2 = currentBeats[1];

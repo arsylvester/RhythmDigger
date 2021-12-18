@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// using Unity.
+using UnityEngine.UI;
 
 public class beatMover : MonoBehaviour
 {
@@ -23,11 +23,12 @@ public class beatMover : MonoBehaviour
     float normalizedValue;
     public Vector3 startPosition, endPosition;
     private RectTransform rectTransform;
-    
+    public Image beatImage;
     // Start is called before the first frame update
     void Start()
     {
         // rectTransform = GetComponent<RectTransform>();
+        beatImage.SetNativeSize();
         
     }
 
@@ -74,6 +75,7 @@ public class beatMover : MonoBehaviour
         Conductor.instance.currentBeats.Remove(gameObject);
         // Conductor.instance.currentBeats.RemoveAt(0);
         Destroy(gameObject);
+        Conductor.instance.validBuffer = 6;
     }
     
 }
