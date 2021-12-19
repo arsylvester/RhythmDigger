@@ -333,6 +333,8 @@ MonoBehaviour:
   drawHitboxes: 0
   isDead: 0
   desiredPosition: {x: 0, y: 0, z: 0}
+  hurtSFX: {fileID: 11400000, guid: 0557edd5159c6f8469315703b4a86e28, type: 2}
+  deathSFX: {fileID: 11400000, guid: 77ac053d4003c1643833efdcc1e10023, type: 2}
 --- !u!114 &7861333442394197749
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private int gold;
 
-    public delegate void GoldGained();
+    public delegate void GoldGained(int num);
     public static event GoldGained OnGoldGained;
 
     public static GameManager _instance;
@@ -26,6 +26,6 @@ public class GameManager : MonoBehaviour
     public void AddGold(int goldAdded)
     {
         gold += goldAdded;
-        OnGoldGained();
+        OnGoldGained(gold);
     }
 }

@@ -17,6 +17,8 @@ MonoBehaviour:
   rotates: 0
   possibleSprites:
   - {fileID: 6608634889621467271, guid: 7a6ca7d25b5cbc24c8c5691522237f2a, type: 3}
+  blockBreakSFX: {fileID: 11400000, guid: 79db59682f7b29b4f8f4a46242682957, type: 2}
+  blockHitSFX: {fileID: 11400000, guid: 1697c461e23ce0a41938b4625ddcbe3e, type: 2}
   blocksToDestroy:
   - {x: -1, y: -1}
   - {x: -1, y: 0}

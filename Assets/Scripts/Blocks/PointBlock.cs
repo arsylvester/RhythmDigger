@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PointBlock : Block
 {
+    [SerializeField] int pointsToAdd = 1;
     protected override void OnBlockDestroy()
     {
         Activate();
@@ -13,7 +14,8 @@ public class PointBlock : Block
     public override void Activate()
     {
         //Play Points vfx and sfx here
+        blockBreakSFX.PlayOneShot(0);
 
-        //Give points
+        GameManager._instance.AddGold(pointsToAdd);
     }
 }

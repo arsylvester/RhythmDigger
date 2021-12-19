@@ -21,6 +21,7 @@ public class TriggerBlock : Block
     public override void Activate()
     {
         //Play Trigger vfx and sfx here
+        blockBreakSFX.PlayOneShot(0);
 
         isTriggering = true;
         Vector2 currentPos = transform.position;

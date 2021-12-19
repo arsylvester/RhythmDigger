@@ -135,6 +135,8 @@ MonoBehaviour:
   - {fileID: 1515622694917723629, guid: 7a6ca7d25b5cbc24c8c5691522237f2a, type: 3}
   - {fileID: 1503016370545623098, guid: 7a6ca7d25b5cbc24c8c5691522237f2a, type: 3}
   - {fileID: 1489830567317918739, guid: 7a6ca7d25b5cbc24c8c5691522237f2a, type: 3}
+  blockBreakSFX: {fileID: 11400000, guid: ee06ffb8d0abc3d49ac696d91b8a9d61, type: 2}
+  blockHitSFX: {fileID: 11400000, guid: 1697c461e23ce0a41938b4625ddcbe3e, type: 2}
 --- !u!61 &3151922224876022945
 BoxCollider2D:
   m_ObjectHideFlags: 0

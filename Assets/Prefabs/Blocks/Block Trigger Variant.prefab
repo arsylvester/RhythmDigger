@@ -17,6 +17,8 @@ MonoBehaviour:
   rotates: 0
   possibleSprites:
   - {fileID: -2230640015494873224, guid: 7a6ca7d25b5cbc24c8c5691522237f2a, type: 3}
+  blockBreakSFX: {fileID: 11400000, guid: 6075043d1b92ebf4680540d64c5a9216, type: 2}
+  blockHitSFX: {fileID: 11400000, guid: 1697c461e23ce0a41938b4625ddcbe3e, type: 2}
   blocksToTrigger:
   - {x: 0, y: 1}
   - {x: 0, y: -1}

@@ -17,6 +17,9 @@ MonoBehaviour:
   rotates: 0
   possibleSprites:
   - {fileID: 38433539612607256, guid: 7a6ca7d25b5cbc24c8c5691522237f2a, type: 3}
+  blockBreakSFX: {fileID: 11400000, guid: 0bc6a9391d769f04687656fd895aef1f, type: 2}
+  blockHitSFX: {fileID: 11400000, guid: 1697c461e23ce0a41938b4625ddcbe3e, type: 2}
+  pointsToAdd: 1
 --- !u!1001 &1110945589045458308
 PrefabInstance:
   m_ObjectHideFlags: 0

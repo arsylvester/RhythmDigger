@@ -65,6 +65,12 @@ public class PlayerController : InteractableObject
     public bool isDead;
     public Vector3 desiredPosition;
 
+    [Header("SFX")]
+    [SerializeField]
+    private SoundSystem.SoundEvent hurtSFX;
+    [SerializeField]
+    private SoundSystem.SoundEvent deathSFX;
+
     void Start()
     {
         HP = maxHP;
@@ -105,14 +111,7 @@ public class PlayerController : InteractableObject
     {
         if (Crushed())
         {
-            groundCollider.enabled = false;
-            headCollider.enabled = false;
-            leftCollider.enabled = false;
-            rightCollider.enabled = false;
-            playerMachine.ChangeState(PlayerStateEnums.Dead);
-            spriteRenderer.enabled = (false);
-            GetComponent<CapsuleCollider2D>().enabled = false;
-            StartCoroutine(WaitRestart());
+            PlayerDeath();
             Debug.Log("CRUSH ENTER");
         }
 
@@ -128,14 +127,7 @@ public class PlayerController : InteractableObject
         //just a safety when unity sucks ya know
         if (Crushed() && spriteRenderer.enabled)
         {
-            groundCollider.enabled = false;
-            headCollider.enabled = false;
-            leftCollider.enabled = false;
-            rightCollider.enabled = false;
-            playerMachine.ChangeState(PlayerStateEnums.Dead);
-            spriteRenderer.enabled = (false);
-            GetComponent<CapsuleCollider2D>().enabled = false;
-            StartCoroutine(WaitRestart());
+            PlayerDeath();
         }
     }
 
@@ -194,12 +186,28 @@ public class PlayerController : InteractableObject
         externalVelocity += (knockback * distance);
         //DO A CAMERASHAKE
         playerMachine.ChangeState(PlayerStateEnums.Hurt);
-        if (HP < 0)
+        hurtSFX.PlayOneShot(0);
+        if (HP <= 0)
         {
-            //DO A GAME OVER
+            PlayerDeath();
         }
         SetHealthbar();
         return myTang;
+    }
+    private void PlayerDeath()
+    {
+        //Player Death Sound and vfx
+        deathSFX.PlayOneShot(0);
+
+        groundCollider.enabled = false;
+        headCollider.enabled = false;
+        leftCollider.enabled = false;
+        rightCollider.enabled = false;
+        playerMachine.ChangeState(PlayerStateEnums.Dead);
+        spriteRenderer.enabled = (false);
+        GetComponent<CapsuleCollider2D>().enabled = false;
+
+        StartCoroutine(WaitRestart());
     }
 
     public void SetFacingDir()
