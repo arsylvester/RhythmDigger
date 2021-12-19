@@ -245,7 +245,7 @@ public class PlayerController : InteractableObject
             if (hitObject.GetComponent<Block>())
             {
                 Debug.Log($"Checking {hitObject.gameObject.name}");
-                return hitObject.GetComponent<Block>().DamageBlock(0);
+                return !hitObject.TryGetComponent(out Block block);
 
             }
         }

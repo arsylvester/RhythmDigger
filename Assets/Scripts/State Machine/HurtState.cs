@@ -23,7 +23,7 @@ public class HurtState : PlayerState
         playerStateMachine.playerController.anim.SetFloat("xDir", playerStateMachine.playerController.externalVelocity.y);
         playerStateMachine.playerController.canBounce = true;
         //playerStateMachine.playerController.canJump = false;
-        playerStateMachine.playerController.audioSource.PlayOneShot(hurtSFX);
+        //playerStateMachine.playerController.audioSource.PlayOneShot(hurtSFX);
         playerStateMachine.playerController.anim.Play("Hurt");
     }
 
