@@ -32,11 +32,11 @@ public class BeatMover : MonoBehaviour
         
     }
 
-    public void StartMove(Vector3 endPos, float musicBPM){
+    public void StartMove(Vector3 endPos, float musicBPM, int beatsOnScreen){
         rectTransform = GetComponent<RectTransform>();
         startPosition = new Vector3(rectTransform.anchoredPosition.x,0,0);
         endPosition = endPos;
-        lerpDuration = 60f/musicBPM*4;
+        lerpDuration = 60f/musicBPM*beatsOnScreen;
         StartCoroutine(Move());
     }
 
@@ -56,8 +56,8 @@ public class BeatMover : MonoBehaviour
             yield return null;
         }
         rectTransform.anchoredPosition = endPosition;
-        Conductor.instance.heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
-        Conductor.instance.currentBeats.Remove(gameObject);
+        Conductor.Instance.heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
+        Conductor.Instance.currentBeats.Remove(gameObject);
         yield return new WaitForSeconds(0.05f);
 
         Destroy(gameObject);

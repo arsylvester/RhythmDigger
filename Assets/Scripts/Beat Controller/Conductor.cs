@@ -2,79 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class Conductor : MonoBehaviour
+public class Conductor : Singleton<Conductor>
 {
-    public GameObject beatIndicatorPrefab;
-    public GameObject UI_beatSpawnLeft, UI_beatSpawnRight, UI_beatGoal, UI_beatIndicatorController;
-    [SerializeField]
-    public List<GameObject> currentBeats = new List<GameObject>();
-    [SerializeField]
-    // public List<Sprite> heartbeatAnimation = new List<Sprite>();
-    public Animator heartbeatAnimator;
-
-    //This is determined by the song you're trying to sync up to
-    [SerializeField]
-    public float musicBPM = 60f;
+    [SerializeField] public MusicData currentMusicData;  
+    [SerializeField] public AudioSource audioSource; //an AudioSource attached to this GameObject that will play the music.
+    public float musicBPM = 60f, firstBeatOffset = 0f;
+    public int beatsOnScreen = 1;
     
-    //The offset to the first beat of the song in seconds
-    public float firstBeatOffset;
+    [SerializeField] public GameObject beatIndicatorPrefab;
+    [SerializeField] public GameObject UI_beatSpawnLeft, UI_beatSpawnRight, UI_beatGoal, UI_beatIndicatorController;
+    [SerializeField] public List<GameObject> currentBeats = new List<GameObject>();
+    [SerializeField]public Animator heartbeatAnimator;
 
-    //The number of seconds for each song beat
-    public float secPerBeat;
+    public float secPerBeat = 1f, beatsPerLoop = 1f, musicLength = 0f;
 
-    //Current song position, in seconds
-    public float songPosition;
-
-    //Current song position, in beats
-    public float songPositionInBeats;
-
-    //How many seconds have passed since the song started
-    public float dspSongTime;
-
-    //an AudioSource attached to this GameObject that will play the music.
-    public AudioSource musicSource;
-
-    //Conductor instance
-    public static Conductor instance;
-
-    //the number of beats in each loop
-    public float beatsPerLoop;
+    public float songPosition,songPositionInBeats,dspSongTime,
+        loopPositionInBeats,//The current position of the song within the loop in beats.
+        loopPositionInAnalog,//The current relative position of the song within the loop measured between 0 and 1.
+        beatElapsed;
 
     //the total number of loops completed since the looping clip first started
     public int completedLoops = 0;
-
-    //The current position of the song within the loop in beats.
-    public float loopPositionInBeats;
-    //The current relative position of the song within the loop measured between 0 and 1.
-    public float loopPositionInAnalog;
-    public float songLength = 0f;
-
-    public float beatElapsed;
     public Vector2 beatRange;
     public bool validBeat;
-
-    void Awake()
-    {
-        instance = this;
-    }
 
     void Start()
     {
         //Load the AudioSource attached to the Conductor GameObject
-        musicSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();  
 
-        //Calculate the number of seconds in each beat
-        secPerBeat = 60f / musicBPM;
+        LoadMusicFromData();     
 
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
 
         //Start the music
-        musicSource.Play();
+        audioSource.Play();
         InvokeRepeating("CreateBeats",0.1f,secPerBeat);
         heartbeatAnimator.GetComponent<Image>().SetNativeSize();
         GetComponent<Image>().SetNativeSize();
         UI_beatGoal.GetComponent<RectTransform>().sizeDelta = heartbeatAnimator.GetComponent<RectTransform>().sizeDelta;
+    }
+
+    public void LoadMusicFromData(){LoadMusicFromData(currentMusicData);}
+    public void LoadMusicFromData(MusicData newData)
+    {
+        audioSource.clip = newData.audioClip;
+        musicBPM = newData.musicBPM;
+        firstBeatOffset = newData.firstBeatOffset;
+        beatsOnScreen = newData.beatsOnScreen;
+
+        secPerBeat = 60f / musicBPM;
+        musicLength = newData.audioClip.length;
+        beatsPerLoop = (musicBPM)*(musicLength/60f);
     }
 
     // Update is called once per frame
@@ -85,9 +65,7 @@ public class Conductor : MonoBehaviour
 
         //determine how many beats since the song started
         songPositionInBeats = songPosition / secPerBeat;
-
-        songLength = musicSource.clip.length;
-        beatsPerLoop = (musicBPM)*(songLength/60f);
+  
         loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
         if (songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
             completedLoops++;
@@ -145,7 +123,7 @@ public class Conductor : MonoBehaviour
         GameObject goLeft = Instantiate(beatIndicatorPrefab, spawnPos, Quaternion.identity, parent) as GameObject;
         goLeft.GetComponent<RectTransform>().anchoredPosition = spawnPos;
         BeatMover mover = goLeft.GetComponent<BeatMover>();  
-        mover.StartMove(targetPos, musicBPM);
+        mover.StartMove(targetPos, musicBPM, beatsOnScreen);
         currentBeats.Add(goLeft);
 
         // Create Right beat indicator
@@ -156,6 +134,6 @@ public class Conductor : MonoBehaviour
         goRight.GetComponent<RectTransform>().anchoredPosition = spawnPos;
         currentBeats.Add(goRight);
         mover = goRight.GetComponent<BeatMover>();  
-        mover.StartMove(targetPos, musicBPM);      
+        mover.StartMove(targetPos, musicBPM, beatsOnScreen);      
     }
 }

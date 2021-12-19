@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4b16737749efce45bbfec47c7a5d34e, type: 3}
-  m_Name: SongData - Dig Me Some Synth
+  m_Name: MusicData - test
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 8300000, guid: 18502d5b511f73143aa175aaa21d2632, type: 3}
-  musicBPM: 132
+  audioClip: {fileID: 8300000, guid: 09641cca85d3a1543b3164ea590d59be, type: 3}
+  musicBPM: 60
   firstBeatOffset: 0
-  beatsOnScreen: 4
+  beatsOnScreen: 7

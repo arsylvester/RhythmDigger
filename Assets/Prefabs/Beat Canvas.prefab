@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 79.7021, y: 80}
+  m_SizeDelta: {x: 15, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3362036782701738705
 CanvasRenderer:
@@ -113,7 +113,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 110, y: 110}
+  m_SizeDelta: {x: 22, y: 22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3362036782779642671
 CanvasRenderer:
@@ -237,10 +237,10 @@ RectTransform:
   m_Father: {fileID: 3362036784273910508}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 15}
-  m_SizeDelta: {x: -30, y: 80}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 10}
+  m_SizeDelta: {x: 260, y: 48}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &3362036782872091549
 CanvasRenderer:
@@ -257,20 +257,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3362036782872091546}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5894089332363764918, guid: 958d74554efc1fc4eacefe5a39a91fb7, type: 3}
+  m_Sprite: {fileID: -100155869943392493, guid: 29ca242d05d9935498321ce2149c4f64, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -292,6 +292,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983737e2583c77244ad7f599a84f6e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentMusicData: {fileID: 11400000, guid: f45b19b524764eb46bca434f60367879, type: 2}
+  audioSource: {fileID: 3362036782872091551}
+  musicBPM: 138
+  firstBeatOffset: 0
+  beatsOnScreen: 1
   beatIndicatorPrefab: {fileID: 3049108444933520114, guid: ea169b01fcdf14f4788496f874bdf1b5, type: 3}
   UI_beatSpawnLeft: {fileID: 3362036784071356044}
   UI_beatSpawnRight: {fileID: 3362036783895014554}
@@ -299,18 +304,18 @@ MonoBehaviour:
   UI_beatIndicatorController: {fileID: 3362036784052345544}
   currentBeats: []
   heartbeatAnimator: {fileID: 3362036782779642657}
-  musicBPM: 138
-  firstBeatOffset: 0
   secPerBeat: 0
+  beatsPerLoop: 0
+  musicLength: 0
   songPosition: 0
   songPositionInBeats: 0
   dspSongTime: 0
-  musicSource: {fileID: 3362036782872091551}
-  beatsPerLoop: 0
-  completedLoops: 0
   loopPositionInBeats: 0
   loopPositionInAnalog: 0
-  songLength: 0
+  beatElapsed: 0
+  completedLoops: 0
+  beatRange: {x: 0.35, y: 0.75}
+  validBeat: 0
 --- !u!82 &3362036782872091551
 AudioSource:
   m_ObjectHideFlags: 0
@@ -320,10 +325,10 @@ AudioSource:
   m_GameObject: {fileID: 3362036782872091546}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 18502d5b511f73143aa175aaa21d2632, type: 3}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 053534ff62d658a4c9c5304454e80997, type: 2}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -638,14 +643,14 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &3362036784273910506
 MonoBehaviour:
@@ -659,15 +664,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 120, y: 180}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
+  m_FallbackScreenDPI: 100
+  m_DefaultSpriteDPI: 100
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
 --- !u!114 &3362036784273910505

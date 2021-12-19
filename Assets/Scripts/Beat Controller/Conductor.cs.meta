@@ -3,7 +3,15 @@ guid: 983737e2583c77244ad7f599a84f6e55
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - currentMusicData: {fileID: 11400000, guid: f45b19b524764eb46bca434f60367879, type: 2}
+  - beatIndicatorPrefab: {instanceID: 0}
+  - UI_beatSpawnLeft: {instanceID: 0}
+  - UI_beatSpawnRight: {instanceID: 0}
+  - UI_beatGoal: {instanceID: 0}
+  - UI_beatIndicatorController: {instanceID: 0}
+  - heartbeatAnimator: {instanceID: 0}
+  - musicSource: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
