@@ -38,7 +38,7 @@ public class Conductor : Singleton<Conductor>
 
         //Start the music
         audioSource.Play();
-        InvokeRepeating("CreateBeats",0.1f,secPerBeat);
+        InvokeRepeating("CreateBeats",0,secPerBeat);
         heartbeatAnimator.GetComponent<Image>().SetNativeSize();
         GetComponent<Image>().SetNativeSize();
         UI_beatGoal.GetComponent<RectTransform>().sizeDelta = heartbeatAnimator.GetComponent<RectTransform>().sizeDelta;
