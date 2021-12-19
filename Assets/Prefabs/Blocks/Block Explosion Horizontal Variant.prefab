@@ -72,6 +72,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8565037575720459991, guid: 24a8bd7ba392bf0498413c80cf43dbc5, type: 3}
     - target: {fileID: 3166457889492288117, guid: c2eb58e64501e2b4ba619b9d77faa87a, type: 3}
+      propertyPath: hittable.m_Bits
+      value: 385
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166457889492288117, guid: c2eb58e64501e2b4ba619b9d77faa87a, type: 3}
       propertyPath: destructionIntensity
       value: 1.5
       objectReference: {fileID: 0}

@@ -86,6 +86,19 @@ public class IdleState : PlayerState
                 playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
 			}
         }
+        if (playerStateMachine.playerController.button1Buffer > 0 && playerStateMachine.playerController.button1Hold)
+        {
+			if (Conductor.Instance.CheckValidBeat() || !requireBeat)
+			{
+                    playerStateMachine.ChangeState(PlayerStateEnums.Charge);
+
+            }
+            else if (!Conductor.Instance.CheckValidBeat())
+            {
+                playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
+            }
+
+        }
         {
         //    if (playerStateMachine.playerController.button2Buffer > 0)
         //    {

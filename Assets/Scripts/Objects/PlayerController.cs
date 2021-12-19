@@ -39,9 +39,9 @@ public class PlayerController : InteractableObject
     [Header("   Input")]
     [Space(10)]
     public bool canRotate = true;
-    public Vector2 _inputDir;
+    public Vector2 _inputDir = Vector2.down;
     public Vector2 facingDir = new Vector2(1, 0);
-    public Vector2 storedDir;
+    public Vector2 storedDir = Vector2.down;
 
     public int inputBuffer;
     public int moveBuffer;

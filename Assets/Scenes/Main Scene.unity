@@ -676,8 +676,24 @@ PrefabInstance:
       value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 5641058688064493569, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: _inputDir.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641058688064493569, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: _inputDir.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641058688064493569, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
       propertyPath: airFriction
       value: 0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641058688064493569, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: storedDir.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641058688064493569, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: storedDir.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5641058688064493569, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
       propertyPath: bounceFriction
@@ -688,8 +704,20 @@ PrefabInstance:
       value: -1000
       objectReference: {fileID: 0}
     - target: {fileID: 5641058688064493569, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: hittable.m_Bits
+      value: 129
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641058688064493569, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: crushLayers.m_Bits
+      value: 129
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641058688064493569, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
       propertyPath: bounceLayers.m_Bits
-      value: 1073741879
+      value: 1073742007
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641058688064493569, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: groundLayers.m_Bits
+      value: 129
       objectReference: {fileID: 0}
     - target: {fileID: 8325515743459368551, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
       propertyPath: m_Name

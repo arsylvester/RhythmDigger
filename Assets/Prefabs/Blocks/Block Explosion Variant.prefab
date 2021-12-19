@@ -32,6 +32,9 @@ MonoBehaviour:
   - {x: 1, y: 0}
   - {x: 1, y: -1}
   damageDealt: 50
+  hittable:
+    serializedVersion: 2
+    m_Bits: 385
   explosionFX: {fileID: 8565037575720459991, guid: 24a8bd7ba392bf0498413c80cf43dbc5, type: 3}
 --- !u!1001 &7963716522985782417
 PrefabInstance:

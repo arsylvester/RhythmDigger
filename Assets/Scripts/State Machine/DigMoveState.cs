@@ -20,8 +20,8 @@ public class DigMoveState : PlayerState
         playerController.anim.Play("AttackMove");
         if (playerController.storedDir.x != 0)
         {
-            float Xpos = playerController.InputDir.x < 0 ? Mathf.CeilToInt(playerController.transform.position.x) : Mathf.FloorToInt(playerController.transform.position.x);
-            playerController.desiredPosition = new Vector3(Xpos + distance * (1.5f * playerController.InputDir.x), playerController.transform.position.y, playerController.transform.position.z);
+            float Xpos = playerController.storedDir.x < 0 ? Mathf.CeilToInt(playerController.transform.position.x) : Mathf.FloorToInt(playerController.transform.position.x);
+            playerController.desiredPosition = new Vector3(Xpos + distance * (1.5f * playerController.storedDir.x), playerController.transform.position.y, playerController.transform.position.z);
         }
         playerController.moveBuffer = 0;
         playerStateMachine.playerController.canRotate = false;

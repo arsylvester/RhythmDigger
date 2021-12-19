@@ -7,7 +7,7 @@ public class ExplosionBlock : Block
 {
     [SerializeField] Vector2[] blocksToDestroy;
     [SerializeField] int damageDealt = 50;
-
+    public LayerMask hittable;
     public GameObject explosionFX;
     [Button]
     protected override void OnBlockDestroy()
@@ -32,7 +32,7 @@ public class ExplosionBlock : Block
         //Loop through all circle casts and damage block if needed
         for (int i = 0; i < blocksToDestroy.Length; i++)
         {
-            if (Physics2D.OverlapCircle(currentPos + blocksToDestroy[i], .1f, filter, results) > 0)
+           results = Physics2D.OverlapCircleAll(currentPos + blocksToDestroy[i], .1f, hittable);
             {
                 foreach(Collider2D result in results)
                 {
