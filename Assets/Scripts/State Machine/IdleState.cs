@@ -24,6 +24,7 @@ public class IdleState : PlayerState
         //playerStateMachine.playerController.airJumpCount = playerStateMachine.playerController.maxAirJumps;
         //playerStateMachine.playerController.airDodgeCount = playerStateMachine.playerController.maxAirDodges;
         //playerStateMachine.playerController.canJump = true;
+        //playerStateMachine.playerController.GetComponent<Rigidbody2D>().sharedMaterial.bounciness = -100;
         playerController.canRotate = true;
         playerController.canBounce = false;
     }

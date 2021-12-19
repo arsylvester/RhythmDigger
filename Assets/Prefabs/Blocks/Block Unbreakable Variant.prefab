@@ -76,6 +76,14 @@ PrefabInstance:
       value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 5792909823721403276, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
+      propertyPath: blockHitSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: 20228c716ff799c4a893f0d3e52b0883, type: 2}
+    - target: {fileID: 5792909823721403276, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
+      propertyPath: destructionIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792909823721403276, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
       propertyPath: possibleSprites.Array.size
       value: 1
       objectReference: {fileID: 0}

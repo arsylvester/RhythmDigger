@@ -295,7 +295,7 @@ public abstract class InteractableObject : MonoBehaviour
         Collider2D[] collisions = Physics2D.OverlapBoxAll(headCollider.transform.position, headCollider.size, 0, groundLayers);
         foreach (Collider2D hitObject in collisions)//anything hit
         {
-            if (hitObject.gameObject != this && hitObject.gameObject != null && hitObject.gameObject != groundCollider.gameObject)
+            if (hitObject.gameObject != this && hitObject.gameObject != null && hitObject.gameObject != groundCollider.gameObject && !hitObject.GetComponent<GoldReward>())
             {
                 return true;
             }

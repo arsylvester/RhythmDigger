@@ -48,6 +48,7 @@ public class Block : MonoBehaviour
         }
         else
         {
+            impulseSource.GenerateImpulse(destructionIntensity);
             print("Damage block but not destroyed");
             blockHitSFX.PlayOneShot(0);
             return false;

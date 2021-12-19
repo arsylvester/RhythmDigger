@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerStates/Dead")]
 public class DeadState : PlayerState
 {
+    public PhysicsMaterial2D bounceMat;
 
     public AudioClip deadSFX;
 
@@ -24,10 +25,12 @@ public class DeadState : PlayerState
         playerStateMachine.playerController.audioSource.PlayOneShot(deadSFX);
         playerStateMachine.playerController.canBounce = true;
         //playerStateMachine.playerController.isDead = true;
+        playerStateMachine.playerController.GetComponent<Rigidbody2D>().sharedMaterial = bounceMat;
     }
 
     public override void OnExit()
     {
+        playerStateMachine.playerController.GetComponent<Rigidbody2D>().sharedMaterial = null;
     }
 
     public override void OnFixedUpdate()

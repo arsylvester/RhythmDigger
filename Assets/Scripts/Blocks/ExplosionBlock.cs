@@ -50,7 +50,7 @@ public class ExplosionBlock : Block
                         PlayerController player = result.GetComponent<PlayerController>();
                         if(player)
                         {
-                            player.TakeDamage(1, 200, (((player.transform.position - transform.position).normalized) + Vector3.up).normalized, 0, false, false);
+                            player.TakeDamage(1, 200, ((((player.transform.position - transform.position).normalized) + new Vector3(Random.Range(-1.1f, 1f), 0,  0))+ Vector3.up).normalized, 0, false, false);
                         }
                     }
                 }

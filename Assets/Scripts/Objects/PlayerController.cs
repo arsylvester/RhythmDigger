@@ -250,7 +250,6 @@ public class PlayerController : InteractableObject
             {
                 Debug.Log($"Checking {hitObject.gameObject.name}");
                 return !hitObject.TryGetComponent(out Block block);
-
             }
         }
         return true;

@@ -9,6 +9,7 @@ public class CameraTarget : MonoBehaviour
 	public bool resetting;
 	public float speed = .01f;
 	public float acceleration = .01f;
+    public float maxSpeed = 10;
 	public bool waiting;
     public GameObject vignette;
     public int expandVignetteFrameCount = 60;
@@ -49,9 +50,10 @@ public class CameraTarget : MonoBehaviour
         }
         else if (!waiting)
         {
-            speed += acceleration;
+            if(speed < maxSpeed)
+                speed += acceleration;
             transform.position += new Vector3(0, speed, 0);
-            vignette.transform.localPosition = Vector3.Lerp(vignette.transform.localPosition, new Vector3(0.5f, vignette.transform.localPosition.y, vignette.transform.localPosition.z), 0.01f);
+            vignette.transform.localPosition = Vector3.Lerp(vignette.transform.localPosition, new Vector3(0.5f, 0, 0), 0.01f);
             if (transform.position.y > 4.5f)
                 waiting = true;
         }
