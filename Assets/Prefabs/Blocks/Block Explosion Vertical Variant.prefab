@@ -63,6 +63,10 @@ PrefabInstance:
       propertyPath: blocksToDestroy.Array.data[6].y
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 3381852040723899957, guid: 9f4d6bde627bfb944aa9aa2595fde610, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2445883823613288998, guid: 7a6ca7d25b5cbc24c8c5691522237f2a, type: 3}
     - target: {fileID: 3406671632515420889, guid: 9f4d6bde627bfb944aa9aa2595fde610, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -113,7 +117,7 @@ PrefabInstance:
       objectReference: {fileID: -2445883823613288998, guid: 7a6ca7d25b5cbc24c8c5691522237f2a, type: 3}
     - target: {fileID: 3406671632515420895, guid: 9f4d6bde627bfb944aa9aa2595fde610, type: 3}
       propertyPath: m_Name
-      value: Block Explosion Vertical
+      value: Block Explosion Vertical Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f4d6bde627bfb944aa9aa2595fde610, type: 3}

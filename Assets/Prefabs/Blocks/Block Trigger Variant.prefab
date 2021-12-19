@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockHealth: 1
   falls: 0
+  rotates: 0
   possibleSprites:
   - {fileID: -2230640015494873224, guid: 7a6ca7d25b5cbc24c8c5691522237f2a, type: 3}
   blocksToTrigger:
@@ -21,7 +22,6 @@ MonoBehaviour:
   - {x: 0, y: -1}
   - {x: 1, y: 0}
   - {x: -1, y: 0}
-  damageDealt: 50
 --- !u!1001 &2217958939690892085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29,6 +29,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4641537177392437924, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2230640015494873224, guid: 7a6ca7d25b5cbc24c8c5691522237f2a, type: 3}
     - target: {fileID: 4738385178643312200, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -75,7 +79,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4738385178643312206, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
       propertyPath: m_Name
-      value: Block Trigger
+      value: Block Trigger Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4738385178643312207, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
       propertyPath: m_Sprite
