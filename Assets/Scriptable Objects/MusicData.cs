@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SongData", menuName = "ScriptableObjects/SongDataObject", order = 1)]
-public class SongData : ScriptableObject
+[CreateAssetMenu(fileName = "MusicData", menuName = "ScriptableObjects/MusicDataObject", order = 1)]
+public class MusicData : ScriptableObject
 {
-    public AudioClip musicSource;
+    public AudioClip audioClip;
     public float musicBPM = 60f;
     public float firstBeatOffset = 0f;
     [Range(1, 10)]
