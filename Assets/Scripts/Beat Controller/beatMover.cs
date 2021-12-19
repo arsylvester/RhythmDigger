@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class beatMover : MonoBehaviour
+public class BeatMover : MonoBehaviour
 {
     private Vector3 startLocation;
     [SerializeField]
