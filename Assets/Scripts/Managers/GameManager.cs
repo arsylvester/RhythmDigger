@@ -28,4 +28,9 @@ public class GameManager : MonoBehaviour
         gold += goldAdded;
         OnGoldGained(gold);
     }
+
+    public int GetGold()
+    {
+        return gold;
+    }
 }

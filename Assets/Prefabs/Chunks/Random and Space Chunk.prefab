@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   height: 11
-  distanceToDespawn: 30
+  distanceToDespawn: 3000
 --- !u!1001 &129845880809872255
 PrefabInstance:
   m_ObjectHideFlags: 0
