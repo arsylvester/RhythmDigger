@@ -122,7 +122,7 @@ public class Conductor : Singleton<Conductor>
         RectTransform parent = UI_beatIndicatorController.GetComponent<RectTransform>();
         GameObject goLeft = Instantiate(beatIndicatorPrefab, spawnPos, Quaternion.identity, parent) as GameObject;
         goLeft.GetComponent<RectTransform>().anchoredPosition = spawnPos;
-        BeatMover mover = goLeft.GetComponent<BeatMover>();  
+        beatMover mover = goLeft.GetComponent<beatMover>();  
         mover.StartMove(targetPos, musicBPM, beatsOnScreen);
         currentBeats.Add(goLeft);
 
@@ -133,7 +133,7 @@ public class Conductor : Singleton<Conductor>
         GameObject goRight = Instantiate(beatIndicatorPrefab, spawnPos, Quaternion.identity, parent) as GameObject;
         goRight.GetComponent<RectTransform>().anchoredPosition = spawnPos;
         currentBeats.Add(goRight);
-        mover = goRight.GetComponent<BeatMover>();  
+        mover = goRight.GetComponent<beatMover>();  
         mover.StartMove(targetPos, musicBPM, beatsOnScreen);      
     }
 }

@@ -8,6 +8,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2304260267146230223, guid: 9f4d6bde627bfb944aa9aa2595fde610, type: 3}
+      propertyPath: DestroyFX
+      value: 
+      objectReference: {fileID: 1309123209376534164, guid: fff46d2cc19fc374eb7178fd8f4d9756, type: 3}
+    - target: {fileID: 2304260267146230223, guid: 9f4d6bde627bfb944aa9aa2595fde610, type: 3}
+      propertyPath: explosionFX
+      value: 
+      objectReference: {fileID: 8565037575720459991, guid: 24a8bd7ba392bf0498413c80cf43dbc5, type: 3}
+    - target: {fileID: 2304260267146230223, guid: 9f4d6bde627bfb944aa9aa2595fde610, type: 3}
+      propertyPath: destructionIntensity
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304260267146230223, guid: 9f4d6bde627bfb944aa9aa2595fde610, type: 3}
       propertyPath: blocksToDestroy.Array.size
       value: 4
       objectReference: {fileID: 0}
