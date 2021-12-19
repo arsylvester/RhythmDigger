@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b16737749efce45bbfec47c7a5d34e, type: 3}
   m_Name: MusicData - Dig Me Some Synth
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 18502d5b511f73143aa175aaa21d2632, type: 3}
+  audioClip: {fileID: 8300000, guid: 026a177fbfc44ad40a2d66b6188494e0, type: 3}
   musicBPM: 138
-  firstBeatOffset: 0
-  beatsOnScreen: 4
+  firstBeatOffset: 0.15
+  beatsOnScreen: 5
