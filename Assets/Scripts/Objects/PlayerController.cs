@@ -387,9 +387,9 @@ public class PlayerController : InteractableObject
     IEnumerator WaitRestart()
     {
         // Time.timeScale = 0.5f;
-        CameraTarget.instance.resetting = true;
+        CameraTarget.instance.ResetToTop();
         yield return new WaitUntil(() => CameraTarget.instance.waiting == true);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        UIManager._instance.ShowEndUI(GameManager._instance.GetGold(), (int)transform.position.y);
     }
 
     private void OnDrawGizmos()
