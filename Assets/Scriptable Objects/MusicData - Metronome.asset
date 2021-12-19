@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dafcf198ece05d84885d3d28c78230ce, type: 3}
-  m_Name: Idle State
+  m_Script: {fileID: 11500000, guid: f4b16737749efce45bbfec47c7a5d34e, type: 3}
+  m_Name: MusicData - Metronome
   m_EditorClassIdentifier: 
-  playerStateMachine: {fileID: 0}
-  playerController: {fileID: 0}
-  maxTime: 60
-  loop: 1
-  iasa: 0
-  requireBeat: 1
+  audioClip: {fileID: 8300000, guid: 0586c8bfb0c016d4abe74a24f4a93fde, type: 3}
+  musicBPM: 130
+  firstBeatOffset: 0
+  beatsOnScreen: 7
