@@ -21,7 +21,7 @@ public class HurtState : PlayerState
         base.OnEnter();
         playerStateMachine.playerController.anim.SetFloat("xDir", playerStateMachine.playerController.externalVelocity.x);
         playerStateMachine.playerController.anim.SetFloat("xDir", playerStateMachine.playerController.externalVelocity.y);
-        playerStateMachine.playerController.canBounce = true;
+       // playerStateMachine.playerController.canBounce = true;
         //playerStateMachine.playerController.canJump = false;
         //playerStateMachine.playerController.audioSource.PlayOneShot(hurtSFX);
         playerStateMachine.playerController.anim.Play("Hurt");
@@ -30,7 +30,7 @@ public class HurtState : PlayerState
     public override void OnExit()
     {
         playerStateMachine.playerController.myTang = ObjectTangibility.Normal;
-        playerStateMachine.playerController.canBounce = false;
+       // playerStateMachine.playerController.canBounce = false;
         //playerStateMachine.playerController.canJump = true;
     }
 

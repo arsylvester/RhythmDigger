@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using Cinemachine;
 
 public class Block : MonoBehaviour
 {
@@ -12,7 +13,10 @@ public class Block : MonoBehaviour
     [SerializeField] protected SoundSystem.SoundEvent blockBreakSFX;
     [SerializeField] protected SoundSystem.SoundEvent blockHitSFX;
     SpriteRenderer spriteRenderer => GetComponentInChildren<SpriteRenderer>();
-
+    public GameObject DestroyFX;
+    public bool exploding = false;
+    public float destructionIntensity;
+    public CinemachineImpulseSource impulseSource => GetComponent<CinemachineImpulseSource>();
     private void Start()
     {
         //Randomize sprite if more then 1 possible sprite;
@@ -54,8 +58,10 @@ public class Block : MonoBehaviour
     protected virtual void OnBlockDestroy()
     {
         //Play destroy block vfx and sfx here
+        if(!exploding)
+            Instantiate(DestroyFX, transform.position, transform.rotation);
         blockBreakSFX.PlayOneShot(0);
-
+        impulseSource.GenerateImpulse(destructionIntensity);
         Destroy(gameObject);
     }
 

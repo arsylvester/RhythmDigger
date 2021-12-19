@@ -64,6 +64,18 @@ PrefabInstance:
       value: Block Explosion Horizontal Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3166457889492288117, guid: c2eb58e64501e2b4ba619b9d77faa87a, type: 3}
+      propertyPath: DestroyFX
+      value: 
+      objectReference: {fileID: 1309123209376534164, guid: fff46d2cc19fc374eb7178fd8f4d9756, type: 3}
+    - target: {fileID: 3166457889492288117, guid: c2eb58e64501e2b4ba619b9d77faa87a, type: 3}
+      propertyPath: explosionFX
+      value: 
+      objectReference: {fileID: 8565037575720459991, guid: 24a8bd7ba392bf0498413c80cf43dbc5, type: 3}
+    - target: {fileID: 3166457889492288117, guid: c2eb58e64501e2b4ba619b9d77faa87a, type: 3}
+      propertyPath: destructionIntensity
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166457889492288117, guid: c2eb58e64501e2b4ba619b9d77faa87a, type: 3}
       propertyPath: possibleSprites.Array.data[0]
       value: 
       objectReference: {fileID: 6373870660395215810, guid: 7a6ca7d25b5cbc24c8c5691522237f2a, type: 3}

@@ -7,8 +7,8 @@ public class ExplosionBlock : Block
 {
     [SerializeField] Vector2[] blocksToDestroy;
     [SerializeField] int damageDealt = 50;
-    bool exploding = false;
 
+    public GameObject explosionFX;
     [Button]
     protected override void OnBlockDestroy()
     {
@@ -21,13 +21,14 @@ public class ExplosionBlock : Block
     public override void Activate()
     {
         //Play explosion vfx and sfx here
+        impulseSource.GenerateImpulse(destructionIntensity);
         blockBreakSFX.PlayOneShot(0);
 
         exploding = true;
         Vector2 currentPos = transform.position;
         ContactFilter2D filter = new ContactFilter2D();
         Collider2D[] results = new Collider2D[5];
-
+        Instantiate(explosionFX, transform.position, transform.rotation);
         //Loop through all circle casts and damage block if needed
         for (int i = 0; i < blocksToDestroy.Length; i++)
         {
@@ -40,14 +41,16 @@ public class ExplosionBlock : Block
                     Block block = result?.GetComponent<Block>();
                     if(block && block != this)
                     {
+                        block.exploding = true;
                         block.DamageBlock(damageDealt);
+                        Instantiate(explosionFX, block.transform.position, block.transform.rotation);
                     }
                     else
                     {
                         PlayerController player = result.GetComponent<PlayerController>();
                         if(player)
                         {
-                            player.TakeDamage(1, 0, Vector2.zero, 0, false, false);
+                            player.TakeDamage(1, 200, (((player.transform.position - transform.position).normalized) + Vector3.up).normalized, 0, false, false);
                         }
                     }
                 }

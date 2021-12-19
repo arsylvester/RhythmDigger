@@ -51,7 +51,7 @@ public class CameraTarget : MonoBehaviour
         {
             speed += acceleration;
             transform.position += new Vector3(0, speed, 0);
-            vignette.transform.localPosition = Vector3.Lerp(vignette.transform.localPosition, new Vector3(0.5f, vignette.transform.localPosition.y, vignette.transform.localPosition.z), 0.04f);
+            vignette.transform.localPosition = Vector3.Lerp(vignette.transform.localPosition, new Vector3(0.5f, vignette.transform.localPosition.y, vignette.transform.localPosition.z), 0.01f);
             if (transform.position.y > 4.5f)
                 waiting = true;
         }
