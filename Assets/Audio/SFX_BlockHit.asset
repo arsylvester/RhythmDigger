@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SFX_BlockHit
   m_EditorClassIdentifier: 
   soundClips:
-  - {fileID: 8300000, guid: 5677e900b28eda84cac0971a1dfe0642, type: 3}
+  - {fileID: 8300000, guid: 0dee0396f0e9cd044ab559de8ff98a11, type: 3}
   volume: 0.25
-  minPitch: 0.9
-  maxPitch: 1.1
+  minPitch: 0.95
+  maxPitch: 1.05
   mixer: {fileID: 24300002, guid: 053534ff62d658a4c9c5304454e80997, type: 2}
