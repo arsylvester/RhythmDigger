@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1937995547690458511, guid: c2eb58e64501e2b4ba619b9d77faa87a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6373870660395215810, guid: 7a6ca7d25b5cbc24c8c5691522237f2a, type: 3}
     - target: {fileID: 1967239475484207459, guid: c2eb58e64501e2b4ba619b9d77faa87a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -57,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 6373870660395215810, guid: 7a6ca7d25b5cbc24c8c5691522237f2a, type: 3}
     - target: {fileID: 1967239475484207461, guid: c2eb58e64501e2b4ba619b9d77faa87a, type: 3}
       propertyPath: m_Name
-      value: Block Explosion Horizontal
+      value: Block Explosion Horizontal Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3166457889492288117, guid: c2eb58e64501e2b4ba619b9d77faa87a, type: 3}
       propertyPath: possibleSprites.Array.data[0]
