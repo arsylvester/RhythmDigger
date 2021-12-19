@@ -6,7 +6,8 @@ public class Conductor : Singleton<Conductor>
 {
     [SerializeField] public MusicData currentMusicData;  
     [SerializeField] public AudioSource audioSource; //an AudioSource attached to this GameObject that will play the music.
-    public float musicBPM = 60f, firstBeatOffset = 0f;
+    public float musicBPM = 60f, firstBeatOffset = 0f, //First beat offset is in seconds
+        beatBufferTime = 0.1f;
     public int beatsOnScreen = 1;
     
     [SerializeField] public GameObject beatIndicatorPrefab;
@@ -24,7 +25,7 @@ public class Conductor : Singleton<Conductor>
     //the total number of loops completed since the looping clip first started
     public int completedLoops = 0;
     public Vector2 beatRange;
-    public bool validBeat;
+    public bool validBeat, musicPlaying;
 
     void Start()
     {
@@ -37,8 +38,8 @@ public class Conductor : Singleton<Conductor>
         dspSongTime = (float)AudioSettings.dspTime;
 
         //Start the music
-        audioSource.Play();
-        InvokeRepeating("CreateBeats",0,secPerBeat);
+        // audioSource.Play();
+        StartCoroutine(StartBeatWithDelay(firstBeatOffset));
         heartbeatAnimator.GetComponent<Image>().SetNativeSize();
         GetComponent<Image>().SetNativeSize();
         UI_beatGoal.GetComponent<RectTransform>().sizeDelta = heartbeatAnimator.GetComponent<RectTransform>().sizeDelta;
@@ -60,20 +61,42 @@ public class Conductor : Singleton<Conductor>
     // Update is called once per frame
     void Update()
     {
-        // determine how many seconds since the song started
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
+        if(musicPlaying)
+        {
+            // determine how many seconds since the song started
+            songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
 
-        //determine how many beats since the song started
-        songPositionInBeats = songPosition / secPerBeat;
-  
-        loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
-        if (songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
-            completedLoops++;
-        loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
+            //determine how many beats since the song started
+            songPositionInBeats = songPosition / secPerBeat;
+    
+            loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
+            if (songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
+            {
+                completedLoops++;
+                musicPlaying = false;
+                CancelInvoke();
+                StartCoroutine(StartBeatWithDelay(firstBeatOffset));
+            }
+                
+            loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
 
 
-        beatElapsed += Time.deltaTime;
-        validBeat = (beatElapsed < (secPerBeat * beatRange.x) || (beatElapsed > (secPerBeat * beatRange.y)));
+            beatElapsed += Time.deltaTime;
+            // pressTime += Time.deltaTime;
+            validBeat = (beatElapsed < (secPerBeat * beatRange.x) || (beatElapsed > (secPerBeat * beatRange.y)));
+            // validBeat = (beatElapsed > (secPerBeat * beatRange.x) || (beatElapsed < (secPerBeat * beatRange.y)));
+            // validBeat = (beatElapsed < (secPerBeat * beatRange.x + secPerBeat * beatRange.y));
+        }
+        
+    }
+
+    IEnumerator StartBeatWithDelay(float delayTime)
+    {
+        yield return new WaitForSeconds(0.1f);
+        audioSource.Play();
+        musicPlaying = true;
+        yield return new WaitForSeconds(delayTime); //0.206
+        InvokeRepeating("CreateBeats",0,secPerBeat);
     }
 
     public void AnimateHeart()
@@ -81,8 +104,14 @@ public class Conductor : Singleton<Conductor>
 
     }
 
+    // float pressTime = 0f;
     public bool CheckValidBeat()
     {
+        // Debug.Log("Time between presses: "+(pressTime));
+        // pressTime = 0f;
+        validBeat = (beatElapsed < (secPerBeat * beatRange.x) || (beatElapsed > (secPerBeat * beatRange.y)));
+        Debug.Log("beatElapsed: "+beatElapsed+" (secPerBeat * beatRange.y): "+(secPerBeat * beatRange.y)+ " (secPerBeat * beatRange.x): "+(secPerBeat * beatRange.x));
+        // validBeat = (beatElapsed > (secPerBeat * beatRange.x) || (beatElapsed < (secPerBeat * beatRange.y)));
         float goalWidth = UI_beatGoal.GetComponent<RectTransform>().sizeDelta.x;
         GameObject topBeat1 = currentBeats[0];
         GameObject topBeat2 = currentBeats[1];
@@ -96,6 +125,7 @@ public class Conductor : Singleton<Conductor>
         }
         else
         {
+            
             heartbeatAnimator.Play("heartBeat_Bad",0,0);
             return false;
         }
@@ -114,7 +144,7 @@ public class Conductor : Singleton<Conductor>
     void CreateBeats()
     {
         beatElapsed = 0;
-        heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
+        // heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
 
         // Create left beat indicator
         Vector3 spawnPos = new Vector3(UI_beatSpawnLeft.GetComponent<RectTransform>().localPosition.x,0,0);
@@ -122,8 +152,8 @@ public class Conductor : Singleton<Conductor>
         RectTransform parent = UI_beatIndicatorController.GetComponent<RectTransform>();
         GameObject goLeft = Instantiate(beatIndicatorPrefab, spawnPos, Quaternion.identity, parent) as GameObject;
         goLeft.GetComponent<RectTransform>().anchoredPosition = spawnPos;
-        beatMover mover = goLeft.GetComponent<beatMover>();  
-        mover.StartMove(targetPos, musicBPM, beatsOnScreen);
+        BeatMover mover = goLeft.GetComponent<BeatMover>();  
+        mover.StartMove(targetPos, musicBPM, beatsOnScreen, beatBufferTime);
         currentBeats.Add(goLeft);
 
         // Create Right beat indicator
@@ -133,7 +163,9 @@ public class Conductor : Singleton<Conductor>
         GameObject goRight = Instantiate(beatIndicatorPrefab, spawnPos, Quaternion.identity, parent) as GameObject;
         goRight.GetComponent<RectTransform>().anchoredPosition = spawnPos;
         currentBeats.Add(goRight);
-        mover = goRight.GetComponent<beatMover>();  
-        mover.StartMove(targetPos, musicBPM, beatsOnScreen);      
+        mover = goRight.GetComponent<BeatMover>();  
+        mover.StartMove(targetPos, musicBPM, beatsOnScreen, beatBufferTime);  
+
+        heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);    
     }
 }

@@ -2535,11 +2535,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3362036782872091550, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: beatRange.x
-      value: 0.2
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 3362036782872091550, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: beatRange.y
-      value: 0.8
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036782872091550, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: beatBufferTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036782872091550, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: currentMusicData
+      value: 
+      objectReference: {fileID: 11400000, guid: f45b19b524764eb46bca434f60367879, type: 2}
+    - target: {fileID: 3362036782872091551, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036782872091551, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3362036784273910504, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: m_Name

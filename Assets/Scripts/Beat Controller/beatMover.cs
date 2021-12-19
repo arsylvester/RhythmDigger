@@ -17,6 +17,7 @@ public class beatMover : MonoBehaviour
 
     [SerializeField]
     float speedModifier = 5f;
+    float bufferTime = 0.1f;
 
     float timeOfTravel=5; //time after object reach a target place 
     float currentTime=0; // actual floting time 
@@ -32,7 +33,7 @@ public class beatMover : MonoBehaviour
         
     }
 
-    public void StartMove(Vector3 endPos, float musicBPM, int beatsOnScreen){
+    public void StartMove(Vector3 endPos, float musicBPM, int beatsOnScreen, float beatBufferTime){
         rectTransform = GetComponent<RectTransform>();
         startPosition = new Vector3(rectTransform.anchoredPosition.x,0,0);
         endPosition = endPos;
@@ -58,7 +59,7 @@ public class beatMover : MonoBehaviour
         rectTransform.anchoredPosition = endPosition;
         Conductor.Instance.heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
         Conductor.Instance.currentBeats.Remove(gameObject);
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(bufferTime);
 
         Destroy(gameObject);
     } 
