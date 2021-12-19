@@ -26,8 +26,8 @@ public class CameraTarget : MonoBehaviour
 
         IEnumerator ScaleVignette()
         {
-            Vector3 goal = new Vector3(5, 6, 0);
-            Vector3 start = vignette.transform.localScale;
+            Vector3 goal = new Vector3(1.75f, 1.75f, 1);
+            Vector3 start = vignette.transform.lossyScale;
             int elapsedFrames = 0;
             while (elapsedFrames < expandVignetteFrameCount)
             {
@@ -42,15 +42,18 @@ public class CameraTarget : MonoBehaviour
 
 	void LateUpdate()
     {
-		if (!resetting && !waiting)
-			transform.position = new Vector3(0.5f, target.transform.position.y, 0);
-		else if (!waiting)
-		{
+        if (!resetting && !waiting)
+        {
+            transform.position = new Vector3(0.5f, target.transform.position.y, 0);
+            vignette.transform.position = new Vector3(target.transform.position.x, transform.position.y, transform.position.z);
+        }
+        else if (!waiting)
+        {
             speed += acceleration;
-			transform.position += new Vector3(0, speed, 0);
-			if (transform.position.y > 4.5f)
-				waiting = true;
-		}
-		transform.GetChild(0).transform.position = new Vector3(target.transform.position.x, transform.position.y, transform.position.z);
+            transform.position += new Vector3(0, speed, 0);
+            vignette.transform.localPosition = Vector3.Lerp(vignette.transform.localPosition, new Vector3(0.5f, vignette.transform.localPosition.y, vignette.transform.localPosition.z), 0.04f);
+            if (transform.position.y > 4.5f)
+                waiting = true;
+        }
     }
 }
