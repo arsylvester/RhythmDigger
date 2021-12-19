@@ -24,6 +24,7 @@ public class IdleState : PlayerState
         //playerStateMachine.playerController.airJumpCount = playerStateMachine.playerController.maxAirJumps;
         //playerStateMachine.playerController.airDodgeCount = playerStateMachine.playerController.maxAirDodges;
         //playerStateMachine.playerController.canJump = true;
+        playerController.canRotate = true;
     }
 
 
@@ -66,7 +67,7 @@ public class IdleState : PlayerState
                 }
                 else
                 {
-                    if (!playerController.CheckBlock(playerController.storedDir, 1))
+                    if (!playerController.CheckBlock(playerController.storedDir, 1) && (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right))
                     {
                         Debug.Log("Move Dig");
                         playerStateMachine.ChangeState(PlayerStateEnums.AttackMove);

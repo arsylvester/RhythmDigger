@@ -51,7 +51,7 @@ public class FallState : PlayerState
 
         if (playerStateMachine.playerController.isGrounded)
         {
-            playerStateMachine.ChangeState(PlayerStateEnums.Idle);
+            playerStateMachine.ChangeState(PlayerStateEnums.Land);
         }
         {
             //if (playerStateMachine.playerController.button3Buffer > 0

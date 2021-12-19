@@ -18,9 +18,9 @@ public class LandState : PlayerState
         playerStateMachine.playerController.anim.SetFloat("xDir", playerStateMachine.playerController.facingDir.x);
         playerStateMachine.playerController.anim.SetFloat("yDir", playerStateMachine.playerController.facingDir.y);
         playerStateMachine.playerController.anim.Play("Land");
-        playerStateMachine.playerController.airJumpCount = playerStateMachine.playerController.maxAirJumps;
-        playerStateMachine.playerController.airDodgeCount = playerStateMachine.playerController.maxAirDodges;
-        playerStateMachine.playerController.canJump = true;
+        //playerStateMachine.playerController.airJumpCount = playerStateMachine.playerController.maxAirJumps;
+        //playerStateMachine.playerController.airDodgeCount = playerStateMachine.playerController.maxAirDodges;
+        //playerStateMachine.playerController.canJump = true;
     }
 
 

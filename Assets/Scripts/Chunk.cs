@@ -5,7 +5,7 @@ using UnityEngine;
 public class Chunk : MonoBehaviour
 {
     public int height = 0;
-    [SerializeField] int distanceToDespawn = 30;
+    [SerializeField] int distanceToDespawn = 3000;
     private PlayerController player;
 
     public void SetPlayer(PlayerController newPlayer)

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStateMachine: {fileID: 0}
   playerController: {fileID: 0}
-  maxTime: 6
+  maxTime: 10
   loop: 0
   iasa: 0

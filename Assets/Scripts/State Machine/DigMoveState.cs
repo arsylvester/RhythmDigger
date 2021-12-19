@@ -17,13 +17,14 @@ public class DigMoveState : PlayerState
         base.OnEnter();
         playerController.anim.SetFloat("xDir", playerStateMachine.playerController.facingDir.x * playerController.anim.GetFloat("moveSpeed"));
         playerController.anim.SetFloat("yDir", playerStateMachine.playerController.facingDir.y * playerController.anim.GetFloat("moveSpeed"));
-        playerController.anim.Play("Attack");
+        playerController.anim.Play("AttackMove");
         if (playerController.storedDir.x != 0)
         {
             float Xpos = playerController.InputDir.x < 0 ? Mathf.CeilToInt(playerController.transform.position.x) : Mathf.FloorToInt(playerController.transform.position.x);
             playerController.desiredPosition = new Vector3(Xpos + distance * (1.5f * playerController.InputDir.x), playerController.transform.position.y, playerController.transform.position.z);
         }
         playerController.moveBuffer = 0;
+        playerStateMachine.playerController.canRotate = false;
     }
 
     public override void OnUpdate()
@@ -52,6 +53,7 @@ public class DigMoveState : PlayerState
             playerController.transform.position = new Vector3(playerController.desiredPosition.x, playerController.transform.position.y, playerController.transform.position.z);
         }
         playerController.internalVelocity.x *= 0;
+        playerStateMachine.playerController.canRotate = true;
     }
 
     public override void HandleState()

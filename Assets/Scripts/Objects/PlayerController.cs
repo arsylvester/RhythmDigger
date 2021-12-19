@@ -105,7 +105,14 @@ public class PlayerController : InteractableObject
     {
         if (Crushed())
         {
-            //gameObject.SetActive(false);
+            groundCollider.enabled = false;
+            headCollider.enabled = false;
+            leftCollider.enabled = false;
+            rightCollider.enabled = false;
+            playerMachine.ChangeState(PlayerStateEnums.Dead);
+            spriteRenderer.enabled = (false);
+            GetComponent<CapsuleCollider2D>().enabled = false;
+            StartCoroutine(WaitRestart());
             Debug.Log("CRUSH ENTER");
         }
 
@@ -119,9 +126,16 @@ public class PlayerController : InteractableObject
     public override void OnCollisionStay2D(Collision2D collision)
     {
         //just a safety when unity sucks ya know
-        if (Crushed())
+        if (Crushed() && spriteRenderer.enabled)
         {
-            //gameObject.SetActive(false);
+            groundCollider.enabled = false;
+            headCollider.enabled = false;
+            leftCollider.enabled = false;
+            rightCollider.enabled = false;
+            playerMachine.ChangeState(PlayerStateEnums.Dead);
+            spriteRenderer.enabled = (false);
+            GetComponent<CapsuleCollider2D>().enabled = false;
+            StartCoroutine(WaitRestart());
         }
     }
 
@@ -139,9 +153,10 @@ public class PlayerController : InteractableObject
                 attackPivot.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(InputDir.y, InputDir.x) * Mathf.Rad2Deg - 90f); //set InputDir to 0 to lock a direction,
                 if (InputDir == Vector2.left || InputDir == Vector2.right || InputDir == Vector2.down)
                     storedDir = InputDir;
-                SetFacingDir();
+
             }
         }
+        SetFacingDir();
         if (Mathf.Round(externalVelocity.sqrMagnitude * 100) * 0.01f == 0)
         {
             externalVelocity = Vector2.zero;
@@ -363,8 +378,9 @@ public class PlayerController : InteractableObject
 
     IEnumerator WaitRestart()
     {
-        //Time.timeScale = 0.5f;
-        yield return new WaitForSecondsRealtime(1f);
+        // Time.timeScale = 0.5f;
+        CameraTarget.instance.resetting = true;
+        yield return new WaitUntil(() => CameraTarget.instance.waiting == true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

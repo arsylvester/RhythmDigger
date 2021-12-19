@@ -715,6 +715,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8325515743901659083, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2273262987894464175, guid: 1b01b986c84fd594cbc2c23c65101f71, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
 --- !u!4 &437322659 stripped
@@ -928,7 +932,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
