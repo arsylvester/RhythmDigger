@@ -110,7 +110,7 @@ public class Conductor : Singleton<Conductor>
         // Debug.Log("Time between presses: "+(pressTime));
         // pressTime = 0f;
         validBeat = (beatElapsed < (secPerBeat * beatRange.x) || (beatElapsed > (secPerBeat * beatRange.y)));
-        Debug.Log("beatElapsed: "+beatElapsed+" (secPerBeat * beatRange.y): "+(secPerBeat * beatRange.y)+ " (secPerBeat * beatRange.x): "+(secPerBeat * beatRange.x));
+        // Debug.Log("beatElapsed: "+beatElapsed+" (secPerBeat * beatRange.y): "+(secPerBeat * beatRange.y)+ " (secPerBeat * beatRange.x): "+(secPerBeat * beatRange.x));
         // validBeat = (beatElapsed > (secPerBeat * beatRange.x) || (beatElapsed < (secPerBeat * beatRange.y)));
         float goalWidth = UI_beatGoal.GetComponent<RectTransform>().sizeDelta.x;
         GameObject topBeat1 = currentBeats[0];
