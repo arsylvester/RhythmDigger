@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b16737749efce45bbfec47c7a5d34e, type: 3}
   m_Name: MusicData - Metronome
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 09641cca85d3a1543b3164ea590d59be, type: 3}
-  musicBPM: 140
+  audioClip: {fileID: 8300000, guid: 0586c8bfb0c016d4abe74a24f4a93fde, type: 3}
+  musicBPM: 130
   firstBeatOffset: 0
   beatsOnScreen: 7
