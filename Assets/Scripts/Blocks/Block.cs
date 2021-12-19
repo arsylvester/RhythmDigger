@@ -9,6 +9,8 @@ public class Block : MonoBehaviour
     [SerializeField] bool falls = false;
     [SerializeField] bool rotates = false;
     [SerializeField] Sprite[] possibleSprites;
+    [SerializeField] protected SoundSystem.SoundEvent blockBreakSFX;
+    [SerializeField] protected SoundSystem.SoundEvent blockHitSFX;
     SpriteRenderer spriteRenderer => GetComponentInChildren<SpriteRenderer>();
 
     private void Start()
@@ -40,6 +42,7 @@ public class Block : MonoBehaviour
         }
         else
         {
+            blockHitSFX.PlayOneShot(0);
             return false;
         }
     }
@@ -48,6 +51,8 @@ public class Block : MonoBehaviour
     protected virtual void OnBlockDestroy()
     {
         //Play destroy block vfx and sfx here
+        blockBreakSFX.PlayOneShot(0);
+
         Destroy(gameObject);
     }
 

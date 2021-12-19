@@ -14,6 +14,7 @@ public class PointBlock : Block
     public override void Activate()
     {
         //Play Points vfx and sfx here
+        blockBreakSFX.PlayOneShot(0);
 
         GameManager._instance.AddGold(pointsToAdd);
     }

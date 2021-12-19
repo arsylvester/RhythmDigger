@@ -21,6 +21,7 @@ public class ExplosionBlock : Block
     public override void Activate()
     {
         //Play explosion vfx and sfx here
+        blockBreakSFX.PlayOneShot(0);
 
         exploding = true;
         Vector2 currentPos = transform.position;

@@ -1977,6 +1977,14 @@ PrefabInstance:
       propertyPath: beatRange.y
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 3362036782872091551, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_Volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036782872091551, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 053534ff62d658a4c9c5304454e80997, type: 2}
     - target: {fileID: 3362036784273910504, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: m_Name
       value: Beat Canvas
