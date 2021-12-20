@@ -38,18 +38,18 @@ public class Block : MonoBehaviour
 
     public bool DamageBlock(int damage)
     {
-        print("Damage block");
+        //print("Damage block");
         blockHealth -= damage;
         if(blockHealth <= 0)
         {
-            print("Damage block destroyed");
+            //print("Damage block destroyed");
             OnBlockDestroy();
             return true;
         }
         else
         {
             impulseSource.GenerateImpulse(destructionIntensity);
-            print("Damage block but not destroyed");
+            //print("Damage block but not destroyed");
             blockHitSFX.PlayOneShot(0);
             return false;
         }

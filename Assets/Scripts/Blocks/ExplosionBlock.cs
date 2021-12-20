@@ -44,7 +44,7 @@ public class ExplosionBlock : Block
                         if(block as ExplosionBlock == null)
 						{
                             block.exploding = true;
-                            Debug.Log("good to set to explode");
+                            //Debug.Log("good to set to explode");
 						}
     
                         block.DamageBlock(damageDealt);
@@ -53,7 +53,7 @@ public class ExplosionBlock : Block
                     else
                     {
                         PlayerController player = result.GetComponent<PlayerController>();
-                        if(player)
+                        if (player || result.GetComponentInParent<PlayerController>())
                         {
                             player.TakeDamage(1, 200, ((((player.transform.position - transform.position).normalized) + new Vector3(Random.Range(-1.1f, 1f), 0,  0))+ Vector3.up).normalized, 0, false, false);
                         }

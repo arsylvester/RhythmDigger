@@ -161,7 +161,7 @@ public class Conductor : Singleton<Conductor>
     private IEnumerator killBeat(GameObject beat)
     {
         //beat.GetComponent<beatMover>().StopMove(); //removed for gamefeel reasons - CB feel free to override if its causing you trouble!
-        beat.GetComponent<Animator>().Play("beatIndicator_hit",0,0);
+        //beat.GetComponent<Animator>().Play("beatIndicator_hit",0,0);
         // currentBeats.Remove(beat);
         yield return new WaitForSeconds(0.1f);
 

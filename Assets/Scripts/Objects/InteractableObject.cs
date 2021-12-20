@@ -361,7 +361,7 @@ public abstract class InteractableObject : MonoBehaviour
     {
         if (bounceTime <= 0)
         {
-            Debug.Log("try Bounce");
+            //Debug.Log("try Bounce");
             if (collision.gameObject.GetComponent<InteractableObject>())
             {
                 externalVelocity *= bounceFriction;

@@ -54,19 +54,19 @@ public class ChargeState : PlayerState
                 {
                     playerController.CheckBlock(playerController.storedDir * 2, 3);
                     playerStateMachine.ChangeState(PlayerStateEnums.ChargeAttackMove);
-                    Debug.Log("Normal Move");
+                    //Debug.Log("Normal Move");
                 }
                 else
                 {
                     if (!playerController.CheckBlock(playerController.storedDir, 3) && (playerController.storedDir == Vector2.left || playerController.storedDir == Vector2.right))
                     {
-                        Debug.Log("Move Dig");
+                       // Debug.Log("Move Dig");
                         playerController.CheckBlock(playerController.storedDir * 2, 3);
                         playerStateMachine.ChangeState(PlayerStateEnums.ChargeAttackMove);
                     }
                     else
                     {
-                        Debug.Log("Dig");
+                       // Debug.Log("Dig");
                         playerStateMachine.ChangeState(PlayerStateEnums.ChargeAttack);
                         playerController.CheckBlock(playerController.storedDir * 2, 3);
 

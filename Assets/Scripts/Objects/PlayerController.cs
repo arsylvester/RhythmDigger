@@ -249,7 +249,7 @@ public class PlayerController : InteractableObject
         {
             if (hitObject.GetComponent<Block>())
             {
-                Debug.Log($"Checking {hitObject.gameObject.name}");
+                //Debug.Log($"Checking {hitObject.gameObject.name}");
                 return !hitObject.TryGetComponent(out Block block);
             }
         }
@@ -263,7 +263,7 @@ public class PlayerController : InteractableObject
         {
             if (hitObject.GetComponent<Block>())
             {
-                Debug.Log($"Mining {hitObject.gameObject.name}");
+                //Debug.Log($"Mining {hitObject.gameObject.name}");
                 return !hitObject.GetComponent<Block>().DamageBlock(damage);
             }
         }
