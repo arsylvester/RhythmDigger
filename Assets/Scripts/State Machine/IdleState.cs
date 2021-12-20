@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerStates/Idle")]
 public class IdleState : PlayerState
 {
-    public bool requireBeat;
+    public bool requireBeat = true;
 
     //IF IDLE STATE FOR LONGER THAN 10 FRAMES AND KILLED ENEMY  DO RELOAD //THIS WAY COMBOS AREN'T INTERRUPTED
     public override void Init(PlayerStateMachine playerMachine)

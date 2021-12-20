@@ -60,7 +60,7 @@ public class beatMover : MonoBehaviour
         Conductor.Instance.heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
         Conductor.Instance.currentBeats.Remove(gameObject);
         yield return new WaitForSeconds(bufferTime);
-
+        Conductor.Instance.ResetChain();
         Destroy(gameObject);
     } 
 }

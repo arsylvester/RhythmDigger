@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     public void AddGold(int goldAdded)
     {
-        gold += goldAdded;
+        gold += goldAdded * Conductor.Instance.goldMultiplier;
         OnGoldGained(gold);
     }
 
