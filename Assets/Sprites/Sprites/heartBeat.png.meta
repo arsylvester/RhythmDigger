@@ -26,6 +26,15 @@ TextureImporter:
   - first:
       213: 8775965953150046594
     second: heartBeat 5
+  - first:
+      213: 6452467789532774971
+    second: heartBeat_2
+  - first:
+      213: -919978992846662454
+    second: heartBeat_3
+  - first:
+      213: 5279248401429429613
+    second: heartBeat_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -89,7 +98,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 54
+    maxTextureSize: 66
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -115,7 +124,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: heartBeat 0
+      name: heartBeat_0
       rect:
         serializedVersion: 2
         x: 0
@@ -123,20 +132,20 @@ TextureImporter:
         width: 22
         height: 22
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 86a3c706b747d6480800000000000000
-      internalID: -8904332814993048984
+      spriteID: 49270e86e55f8fa60800000000000000
+      internalID: 7708180548079874708
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heartBeat 1
+      name: heartBeat_1
       rect:
         serializedVersion: 2
         x: 22
@@ -144,41 +153,41 @@ TextureImporter:
         width: 22
         height: 22
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7701c3e5f34ccda10800000000000000
-      internalID: 1935637716305449079
+      spriteID: 3647631970d59c3e0800000000000000
+      internalID: -2032991469698648989
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heartBeat 2
+      name: heartBeat_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 27
+        x: 44
+        y: 29
         width: 22
-        height: 27
+        height: 22
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 70b59fff04e886570800000000000000
-      internalID: 8460168309839059719
+      spriteID: b3240c79445cb8950800000000000000
+      internalID: 6452467789532774971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heartBeat 3
+      name: heartBeat_3
       rect:
         serializedVersion: 2
         x: 0
@@ -186,41 +195,20 @@ TextureImporter:
         width: 22
         height: 22
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e9943f4af14351470800000000000000
-      internalID: 8364649193426602398
+      spriteID: ac49d82faf39b33f0800000000000000
+      internalID: -919978992846662454
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heartBeat 4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 27
-        width: 22
-        height: 27
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ffb463dd4f0eb0c00800000000000000
-      internalID: 868034695486917631
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heartBeat 5
+      name: heartBeat_4
       rect:
         serializedVersion: 2
         x: 22
@@ -228,14 +216,14 @@ TextureImporter:
         width: 22
         height: 22
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2815e6e898e7ac970800000000000000
-      internalID: 8775965953150046594
+      spriteID: d6dff305378a34940800000000000000
+      internalID: 5279248401429429613
       vertices: []
       indices: 
       edges: []

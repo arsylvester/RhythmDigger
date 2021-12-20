@@ -24,6 +24,8 @@ public class Conductor : Singleton<Conductor>
 
     //the total number of loops completed since the looping clip first started
     public int completedLoops = 0;
+    public int chainSize = 0, highestChain = 0, goldMultiplier = 1, missedBeats = 0;
+    [SerializeField] public int MAXMISSEDBEATS = 3;
     public Vector2 beatRange;
     public bool validBeat, musicPlaying;
 
@@ -41,7 +43,7 @@ public class Conductor : Singleton<Conductor>
         // audioSource.Play();
         StartCoroutine(StartBeatWithDelay(firstBeatOffset));
         heartbeatAnimator.GetComponent<Image>().SetNativeSize();
-        GetComponent<Image>().SetNativeSize();
+        // GetComponent<Image>().SetNativeSize();
         UI_beatGoal.GetComponent<RectTransform>().sizeDelta = heartbeatAnimator.GetComponent<RectTransform>().sizeDelta;
     }
 
@@ -63,6 +65,7 @@ public class Conductor : Singleton<Conductor>
     {
         if(musicPlaying)
         {
+            UIManager._instance.UpdateChainCount(chainSize);
             // determine how many seconds since the song started
             songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
 
@@ -84,6 +87,10 @@ public class Conductor : Singleton<Conductor>
             beatElapsed += Time.deltaTime;
             // pressTime += Time.deltaTime;
             validBeat = (beatElapsed < (secPerBeat * beatRange.x) || (beatElapsed > (secPerBeat * beatRange.y)));
+            if(missedBeats>=MAXMISSEDBEATS)
+            {
+                ResetChain();
+            }
             // validBeat = (beatElapsed > (secPerBeat * beatRange.x) || (beatElapsed < (secPerBeat * beatRange.y)));
             // validBeat = (beatElapsed < (secPerBeat * beatRange.x + secPerBeat * beatRange.y));
         }
@@ -104,6 +111,11 @@ public class Conductor : Singleton<Conductor>
 
     }
 
+    public void ResetChain()
+    {
+        chainSize = 0;
+        goldMultiplier = 1;
+    }
     // float pressTime = 0f;
     public bool CheckValidBeat()
     {
@@ -118,33 +130,48 @@ public class Conductor : Singleton<Conductor>
         float curPos = topBeat1.GetComponent<RectTransform>().anchoredPosition.x;
         if(validBeat)
         {
-            heartbeatAnimator.Play("heartBeat_Good",0,0);
+            // heartbeatAnimator.Play("heartBeat_Good",0,0);
+            // heartbeatAnimator.SetTrigger("good");
             StartCoroutine(killBeat(topBeat1));
             StartCoroutine(killBeat(topBeat2));
+            chainSize++;
+            missedBeats = 0;
+            goldMultiplier = (int)Mathf.Ceil((float)chainSize/10f);
+            if (chainSize > highestChain){
+                highestChain = chainSize;
+            }
+               
             return true;
         }
         else
         {
             
-            heartbeatAnimator.Play("heartBeat_Bad",0,0);
+            // heartbeatAnimator.Play("heartBeat_Bad",0,0);
+            // heartbeatAnimator.SetTrigger("bad");
+            ResetChain();
             return false;
         }
+    }
+
+    public void HideBeatUI()
+    {
+
     }
 
     private IEnumerator killBeat(GameObject beat)
     {
         //beat.GetComponent<beatMover>().StopMove(); //removed for gamefeel reasons - CB feel free to override if its causing you trouble!
         beat.GetComponent<Animator>().Play("beatIndicator_hit",0,0);
-        //currentBeats.Remove(beat);
-        yield return new WaitForSeconds(1f);
+        // currentBeats.Remove(beat);
+        yield return new WaitForSeconds(0.1f);
 
-        //Destroy(beat);
+        // Destroy(beat);
     }
 
     void CreateBeats()
     {
         beatElapsed = 0;
-        // heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
+        heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
 
         // Create left beat indicator
         Vector3 spawnPos = new Vector3(UI_beatSpawnLeft.GetComponent<RectTransform>().localPosition.x,0,0);
@@ -166,6 +193,7 @@ public class Conductor : Singleton<Conductor>
         mover = goRight.GetComponent<beatMover>();  
         mover.StartMove(targetPos, musicBPM, beatsOnScreen, beatBufferTime);  
 
-        heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);    
+        // heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);    
+        // heartbeatAnimator.Play("heartBeat_Good", 0, 0);  
     }
 }
