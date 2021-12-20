@@ -48,13 +48,17 @@ public class UIManager : MonoBehaviour
         multText.text = "Multiplier x" + Conductor.Instance.goldMultiplier.ToString().PadLeft(5);
     }
 
-    public void ShowEndUI(int gold, int depth, int highestChain)
+    public void HideUI()
     {
         goldText.gameObject.SetActive(false);
         chainText.gameObject.SetActive(false);
         multText.gameObject.SetActive(false);
         goldTextLabel.gameObject.SetActive(false);
         chainTextLabel.gameObject.SetActive(false);
+    }
+
+    public void ShowEndUI(int gold, int depth, int highestChain)
+    {   
         goldTextEnd.text = "Gold found: " + gold;
         longestChainTextEnd.text = "Longest chain: " + highestChain; 
         depthCounter.text = "Depth Reached: " + depth;

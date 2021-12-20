@@ -57,10 +57,11 @@ public class beatMover : MonoBehaviour
             yield return null;
         }
         rectTransform.anchoredPosition = endPosition;
-        Conductor.Instance.heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
-        Conductor.Instance.currentBeats.Remove(gameObject);
+        // Conductor.Instance.heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
         yield return new WaitForSeconds(bufferTime);
-        Conductor.Instance.ResetChain();
+        Conductor.Instance.currentBeats.Remove(gameObject);
+        // Conductor.Instance.ResetChain();
+        Conductor.Instance.missedBeats++;
         Destroy(gameObject);
     } 
 }
