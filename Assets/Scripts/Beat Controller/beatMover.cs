@@ -5,21 +5,8 @@ using UnityEngine.UI;
 
 public class beatMover : MonoBehaviour
 {
-    private Vector3 startLocation;
-    [SerializeField]
-    float lerpDuration = 3; 
-    [SerializeField]
-    float startValue = 0; 
-    [SerializeField]
-    float endValue = 10; 
-    [SerializeField]
-    float valueToLerp;
-
-    [SerializeField]
-    float speedModifier = 5f;
+    [SerializeField] float lerpDuration = 3; 
     float bufferTime = 0.1f;
-
-    float timeOfTravel=5; //time after object reach a target place 
     float currentTime=0; // actual floting time 
     float normalizedValue;
     public Vector3 startPosition, endPosition;
