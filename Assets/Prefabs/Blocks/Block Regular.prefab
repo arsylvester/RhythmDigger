@@ -138,6 +138,9 @@ MonoBehaviour:
   - {fileID: 1489830567317918739, guid: 7a6ca7d25b5cbc24c8c5691522237f2a, type: 3}
   blockBreakSFX: {fileID: 11400000, guid: ee06ffb8d0abc3d49ac696d91b8a9d61, type: 2}
   blockHitSFX: {fileID: 11400000, guid: 1697c461e23ce0a41938b4625ddcbe3e, type: 2}
+  physicsLayers:
+    serializedVersion: 2
+    m_Bits: 1073741953
   DestroyFX: {fileID: 1309123209376534164, guid: fff46d2cc19fc374eb7178fd8f4d9756, type: 3}
   exploding: 0
   destructionIntensity: 0.65
@@ -182,7 +185,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 2e4a69376d7cae4469f457a593494250, type: 2}
   m_Interpolate: 2
   m_SleepingMode: 1

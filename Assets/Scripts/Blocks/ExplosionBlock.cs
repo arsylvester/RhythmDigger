@@ -23,7 +23,7 @@ public class ExplosionBlock : Block
         //Play explosion vfx and sfx here
         impulseSource.GenerateImpulse(destructionIntensity);
         blockBreakSFX.PlayOneShot(0);
-
+        GetComponent<Collider2D>().enabled = false;
         exploding = true;
         Vector2 currentPos = transform.position;
         //ContactFilter2D filter = new ContactFilter2D();
