@@ -3316,6 +3316,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3362036782872091550, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: MAXMISSEDBEATS
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3362036784273910504, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: m_Name
       value: Beat Canvas

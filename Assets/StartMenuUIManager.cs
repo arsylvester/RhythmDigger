@@ -19,11 +19,7 @@ public class StartMenuUIManager : MonoBehaviour
     void Start()
     {
         titleRectTransform = go_Title.GetComponent<RectTransform>();
-        //startPosition = titleRectTransform.anchoredPosition;
-        StartCoroutine(FadeTextToFullAlpha(lerpDuration*2,go_Title.GetComponent<TextMeshProUGUI>()));
-        currentTime=0;
-        // StartCoroutine(LoadMainMenu());
-        StartCoroutine(TurnOnLayoutText(go_MainLayoutGroup, true));
+        LoadMainMenu();
     }
 
     // Update is called once per frame
@@ -61,7 +57,7 @@ public class StartMenuUIManager : MonoBehaviour
         go_ReturnBT.SetActive(false);
         go_CreditsLayoutGroup.SetActive(false);
         currentTime=0;
-        // StartCoroutine(ReturnToMainMenuSimple());
+        // StartCoroutine(ReturnToMainMenu());
         go_MainLayoutGroup.SetActive(true);
     }
 
@@ -73,45 +69,61 @@ public class StartMenuUIManager : MonoBehaviour
     }
 
     
-    // public IEnumerator LoadMainMenu()
-    // {
-    //     // while (currentTime <= lerpDuration)
-    //     // {
-    //     //     currentTime += Time.deltaTime;
-    //     //     normalizedValue = currentTime / lerpDuration; 
+    public void LoadMainMenu()
+    {
+        // while (currentTime <= lerpDuration)
+        // {
+        //     currentTime += Time.deltaTime;
+        //     normalizedValue = currentTime / lerpDuration; 
 
-    //     //     titleRectTransform.anchoredPosition = Vector3.Lerp(startPosition, creditsPosition, normalizedValue);
-    //     //     yield return null;
-    //     // }
-    //     // titleRectTransform.anchoredPosition = creditsPosition;
-    //     // StartCoroutine(TurnOnMainButtons());
-    //     StartCoroutine(TurnOnLayoutText(go_MainLayoutGroup, true));
-    // }
+        //     titleRectTransform.anchoredPosition = Vector3.Lerp(startPosition, creditsPosition, normalizedValue);
+        //     yield return null;
+        // }
+        // titleRectTransform.anchoredPosition = creditsPosition;
+        // StartCoroutine(TurnOnMainButtons());
+        // StartCoroutine(TurnOnLayoutText(go_MainLayoutGroup, true));
+        TextMeshProUGUI titleText = go_Title.GetComponent<TextMeshProUGUI>();
+        titleText.color = new Color(titleText.color.r, titleText.color.g, titleText.color.b, 0);
+        foreach(Transform trans in go_MainLayoutGroup.transform)
+        {
+            GameObject childGo = trans.gameObject;
+            TextMeshProUGUI childText = childGo.GetComponentInChildren<TextMeshProUGUI>();
+            childText.color = new Color(childText.color.r, childText.color.g, childText.color.b, 0);
+        } 
+        
+        //startPosition = titleRectTransform.anchoredPosition;
+        StartCoroutine(LerpObjByRect(go_Title, startPosition, endPosition, lerpDuration));
+        StartCoroutine(FadeTextToFullAlpha(lerpDuration*2,go_Title.GetComponent<TextMeshProUGUI>()));
+        currentTime=0;
+        // StartCoroutine(LoadMainMenu());
+        StartCoroutine(TurnOnLayoutText(go_MainLayoutGroup, true));
+    }
 
     IEnumerator TurnOnLayoutText(GameObject layoutGroup, bool inChildren)
     {
         layoutGroup.SetActive(true);
-        if(!inChildren){
-            StartCoroutine(FadeTextToFullAlpha(lerpDuration,layoutGroup.transform.GetComponentInChildren<TextMeshProUGUI>()));
-        }
-        else
-        {        
-            GameObject childGo;
-            foreach(Transform trans in layoutGroup.transform)
-            {
-                childGo = trans.gameObject;
-                childGo.SetActive(true);
-            } 
-            foreach(Transform trans in layoutGroup.transform)
-            {
-                childGo = trans.gameObject;
-                if(inChildren)
-                    StartCoroutine(FadeTextToFullAlpha(lerpDuration,childGo.GetComponentInChildren<TextMeshProUGUI>()));
-                else
-                    StartCoroutine(FadeTextToFullAlpha(lerpDuration,childGo.GetComponent<TextMeshProUGUI>()));
-                yield return new WaitForSeconds(delayBetweenWords);
-            } 
-        }
+        // if(!inChildren){
+        //     StartCoroutine(FadeTextToFullAlpha(lerpDuration,layoutGroup.transform.GetComponentInChildren<TextMeshProUGUI>()));
+        // }
+        // else
+        // {        
+        GameObject childGo;
+        foreach(Transform trans in layoutGroup.transform)
+        {
+            childGo = trans.gameObject;
+            childGo.SetActive(true);
+        } 
+        yield return new WaitForSeconds(delayBetweenWords*2);
+        foreach(Transform trans in layoutGroup.transform)
+        {
+            childGo = trans.gameObject;
+            if(inChildren)
+                StartCoroutine(FadeTextToFullAlpha(lerpDuration,childGo.GetComponentInChildren<TextMeshProUGUI>()));
+            else
+                StartCoroutine(FadeTextToFullAlpha(lerpDuration,childGo.GetComponent<TextMeshProUGUI>()));
+            yield return new WaitForSeconds(delayBetweenWords);
+        } 
+        // }
            
         
     }
@@ -143,6 +155,20 @@ public class StartMenuUIManager : MonoBehaviour
         layoutGroup.SetActive(false);
     }
 
+    public IEnumerator LerpObjByRect(GameObject obj, Vector3 start, Vector3 end, float duration)
+    {
+        RectTransform rect = obj.GetComponent<RectTransform>();
+        currentTime=0;
+        while (currentTime <= duration)
+        {
+            currentTime += Time.deltaTime;
+            normalizedValue = currentTime / duration; // we normalize our time 
+
+            rect.anchoredPosition = Vector3.Lerp(start, end, normalizedValue);
+            yield return null;
+        }
+        rect.anchoredPosition = end;
+    }
     public IEnumerator FadeTextToFullAlpha(float t, TextMeshProUGUI i)
     {
         i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
