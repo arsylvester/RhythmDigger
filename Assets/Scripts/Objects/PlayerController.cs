@@ -205,6 +205,7 @@ public class PlayerController : InteractableObject
         isDead = true;
         //Player Death Sound and vfx
         deathSFX.PlayOneShot(0);
+        UIManager._instance.HideUI();
         Instantiate(deathVFX, transform.position, deathVFX.transform.rotation);
 
         groundCollider.enabled = false;
