@@ -26,22 +26,26 @@ public class ExplosionBlock : Block
 
         exploding = true;
         Vector2 currentPos = transform.position;
-        ContactFilter2D filter = new ContactFilter2D();
-        Collider2D[] results = new Collider2D[5];
+        //ContactFilter2D filter = new ContactFilter2D();
         Instantiate(explosionFX, transform.position, transform.rotation);
         //Loop through all circle casts and damage block if needed
         for (int i = 0; i < blocksToDestroy.Length; i++)
         {
-           results = Physics2D.OverlapCircleAll(currentPos + blocksToDestroy[i], .1f, hittable);
+            Collider2D[] results = Physics2D.OverlapCircleAll(currentPos + blocksToDestroy[i], .1f, hittable);
             {
                 foreach(Collider2D result in results)
                 {
-                    
-                    if (result == null) break;
+
+                    if (result == null) { Debug.LogError("bad block"); break; }
                     Block block = result?.GetComponent<Block>();
                     if(block && block != this)
                     {
-                        block.exploding = true;
+                        if(block as ExplosionBlock == null)
+						{
+                            block.exploding = true;
+                            Debug.Log("good to set to explode");
+						}
+    
                         block.DamageBlock(damageDealt);
                         Instantiate(explosionFX, block.transform.position, block.transform.rotation);
                     }
@@ -57,6 +61,6 @@ public class ExplosionBlock : Block
             }
         }
 
-        Destroy(gameObject);
+        Destroy(gameObject, 0.05f);
     }
 }
