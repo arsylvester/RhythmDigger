@@ -31,6 +31,7 @@ public class ExplosionBlock : Block
         //Loop through all circle casts and damage block if needed
         for (int i = 0; i < blocksToDestroy.Length; i++)
         {
+            Instantiate(explosionFX, currentPos + blocksToDestroy[i], transform.rotation);
             Collider2D[] results = Physics2D.OverlapCircleAll(currentPos + blocksToDestroy[i], .1f, hittable);
             {
                 foreach(Collider2D result in results)
@@ -47,7 +48,7 @@ public class ExplosionBlock : Block
 						}
     
                         block.DamageBlock(damageDealt);
-                        Instantiate(explosionFX, block.transform.position, block.transform.rotation);
+                        //Instantiate(explosionFX, block.transform.position, block.transform.rotation);
                     }
                     else
                     {

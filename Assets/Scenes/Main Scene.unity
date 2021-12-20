@@ -1742,6 +1742,74 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.size
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[12]
+      value: 
+      objectReference: {fileID: 3727889295648372899, guid: cc1030e39f254354eb77f05e295e5015, type: 3}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[13]
+      value: 
+      objectReference: {fileID: 1846853695837665927, guid: 8ae4b96b75dcee94aa68114130fa42d7, type: 3}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[14]
+      value: 
+      objectReference: {fileID: 1538187899802490902, guid: 3d3d17f9e1446e84ba51aceb242ad709, type: 3}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[15]
+      value: 
+      objectReference: {fileID: 2395616793865351994, guid: 6b516b8807ea440419e11b89ff96abdf, type: 3}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[16]
+      value: 
+      objectReference: {fileID: 3727889295648372899, guid: 078a379b3cba8aa47968cd1a19fc4430, type: 3}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[17]
+      value: 
+      objectReference: {fileID: 3727889295648372899, guid: d4655c2b22bb05e4dbf36ce38359a960, type: 3}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[18]
+      value: 
+      objectReference: {fileID: 3727889295648372899, guid: 74a982a3836c61f4b8be7ad1d87d5d58, type: 3}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[19]
+      value: 
+      objectReference: {fileID: 3727889295648372899, guid: 078a379b3cba8aa47968cd1a19fc4430, type: 3}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[20]
+      value: 
+      objectReference: {fileID: 3727889295648372899, guid: d4655c2b22bb05e4dbf36ce38359a960, type: 3}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[21]
+      value: 
+      objectReference: {fileID: 3727889295648372899, guid: 74a982a3836c61f4b8be7ad1d87d5d58, type: 3}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[22]
+      value: 
+      objectReference: {fileID: 1846853695837665927, guid: 95409b12000d8ac46838cadbce35636d, type: 3}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[23]
+      value: 
+      objectReference: {fileID: 1846853695837665927, guid: 95409b12000d8ac46838cadbce35636d, type: 3}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[24]
+      value: 
+      objectReference: {fileID: 1846853695837665927, guid: 95409b12000d8ac46838cadbce35636d, type: 3}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[25]
+      value: 
+      objectReference: {fileID: 3727889295648372899, guid: 74a982a3836c61f4b8be7ad1d87d5d58, type: 3}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[26]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2765082932630009417, guid: 23dae767531235e40b2fd5176b334637, type: 3}
+      propertyPath: possibleChunks.Array.data[27]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2765082932630009418, guid: 23dae767531235e40b2fd5176b334637, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1895,6 +1963,7 @@ GameObject:
   - component: {fileID: 890573781}
   - component: {fileID: 890573784}
   - component: {fileID: 890573785}
+  - component: {fileID: 890573786}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2021,6 +2090,18 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!114 &890573786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890573780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f56dbee9a6878140a9a0e75ef11b905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &983931289
 GameObject:
   m_ObjectHideFlags: 0

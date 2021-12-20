@@ -115,7 +115,7 @@ public class PlayerController : InteractableObject
         if (Crushed())
         {
             PlayerDeath();
-            Debug.Log("CRUSH ENTER");
+            Debug.Log($"CRUSH ENTER {collision.gameObject.name}");
         }
 
         if (((1 << collision.gameObject.layer) & bounceLayers) != 0 && canBounce)
