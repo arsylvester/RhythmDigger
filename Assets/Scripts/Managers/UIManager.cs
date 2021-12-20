@@ -48,6 +48,11 @@ public class UIManager : MonoBehaviour
         multText.text = "Multiplier x" + Conductor.Instance.goldMultiplier.ToString().PadLeft(5);
     }
 
+    public void QuitButton()
+    {
+        SceneManager.LoadScene("Start Screen");
+    }
+
     public void HideUI()
     {
         goldText.gameObject.SetActive(false);
