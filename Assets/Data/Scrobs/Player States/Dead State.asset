@@ -17,4 +17,5 @@ MonoBehaviour:
   maxTime: 60
   loop: 1
   iasa: 0
+  bounceMat: {fileID: 6200000, guid: d318ec44b353c9d4fbfacb98054b33af, type: 2}
   deadSFX: {fileID: 0}

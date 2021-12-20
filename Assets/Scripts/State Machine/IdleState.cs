@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerStates/Idle")]
 public class IdleState : PlayerState
 {
-    public bool requireBeat;
+    public bool requireBeat = true;
 
     //IF IDLE STATE FOR LONGER THAN 10 FRAMES AND KILLED ENEMY  DO RELOAD //THIS WAY COMBOS AREN'T INTERRUPTED
     public override void Init(PlayerStateMachine playerMachine)
@@ -24,7 +24,9 @@ public class IdleState : PlayerState
         //playerStateMachine.playerController.airJumpCount = playerStateMachine.playerController.maxAirJumps;
         //playerStateMachine.playerController.airDodgeCount = playerStateMachine.playerController.maxAirDodges;
         //playerStateMachine.playerController.canJump = true;
+        //playerStateMachine.playerController.GetComponent<Rigidbody2D>().sharedMaterial.bounciness = -100;
         playerController.canRotate = true;
+        playerController.canBounce = false;
     }
 
 
@@ -83,6 +85,19 @@ public class IdleState : PlayerState
 			{
                 playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
 			}
+        }
+        if (playerStateMachine.playerController.button1Buffer > 0 && playerStateMachine.playerController.button1Hold)
+        {
+			if (Conductor.Instance.CheckValidBeat() || !requireBeat)
+			{
+                    playerStateMachine.ChangeState(PlayerStateEnums.Charge);
+
+            }
+            else if (!Conductor.Instance.CheckValidBeat())
+            {
+                playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
+            }
+
         }
         {
         //    if (playerStateMachine.playerController.button2Buffer > 0)

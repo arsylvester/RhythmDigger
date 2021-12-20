@@ -17,3 +17,5 @@ MonoBehaviour:
   maxTime: 60
   loop: 1
   iasa: 0
+  minTime: 15
+  requireBeat: 1

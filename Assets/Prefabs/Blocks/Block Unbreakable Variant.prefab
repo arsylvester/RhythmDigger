@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2842098726182809601, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4641537177392437924, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -59,6 +63,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Block Unbreakable Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4738385178643312206, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4738385178643312207, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -76,6 +84,14 @@ PrefabInstance:
       value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 5792909823721403276, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
+      propertyPath: blockHitSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: 20228c716ff799c4a893f0d3e52b0883, type: 2}
+    - target: {fileID: 5792909823721403276, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
+      propertyPath: destructionIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792909823721403276, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
       propertyPath: possibleSprites.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -83,5 +99,9 @@ PrefabInstance:
       propertyPath: possibleSprites.Array.data[0]
       value: 
       objectReference: {fileID: -8506558392696655332, guid: 7a6ca7d25b5cbc24c8c5691522237f2a, type: 3}
+    - target: {fileID: 6740077196298299304, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BeatMover : MonoBehaviour
+public class beatMover : MonoBehaviour
 {
     private Vector3 startLocation;
     [SerializeField]
@@ -60,7 +60,7 @@ public class BeatMover : MonoBehaviour
         Conductor.Instance.heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
         Conductor.Instance.currentBeats.Remove(gameObject);
         yield return new WaitForSeconds(bufferTime);
-
+        Conductor.Instance.ResetChain();
         Destroy(gameObject);
     } 
 }

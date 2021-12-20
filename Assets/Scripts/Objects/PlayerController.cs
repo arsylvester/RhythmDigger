@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 public class PlayerController : InteractableObject
 {
     [Header("   Tangibility")]
@@ -38,9 +39,9 @@ public class PlayerController : InteractableObject
     [Header("   Input")]
     [Space(10)]
     public bool canRotate = true;
-    public Vector2 _inputDir;
+    public Vector2 _inputDir = Vector2.down;
     public Vector2 facingDir = new Vector2(1, 0);
-    public Vector2 storedDir;
+    public Vector2 storedDir = Vector2.down;
 
     public int inputBuffer;
     public int moveBuffer;
@@ -72,8 +73,7 @@ public class PlayerController : InteractableObject
     private SoundSystem.SoundEvent deathSFX;
     [SerializeField]
     private GameObject deathVFX;
-
-
+    public CinemachineImpulseSource impulseSource => GetComponent<CinemachineImpulseSource>();
     void Start()
     {
         HP = maxHP;
@@ -118,8 +118,9 @@ public class PlayerController : InteractableObject
             Debug.Log("CRUSH ENTER");
         }
 
-        if (((1 << collision.gameObject.layer) & bounceLayers) != 0)
+        if (((1 << collision.gameObject.layer) & bounceLayers) != 0 && canBounce)
         {
+            impulseSource.GenerateImpulse(0.75f);
             Bounce(collision);
         }
         if (Stomped() || Bonked() || isGrounded)
@@ -128,7 +129,7 @@ public class PlayerController : InteractableObject
     public override void OnCollisionStay2D(Collision2D collision)
     {
         //just a safety when unity sucks ya know
-        if (Crushed() && spriteRenderer.enabled)
+        if (Crushed() && !isDead)
         {
             PlayerDeath();
         }
@@ -188,17 +189,20 @@ public class PlayerController : InteractableObject
         HP -= damage;
         externalVelocity += (knockback * distance);
         //DO A CAMERASHAKE
-        playerMachine.ChangeState(PlayerStateEnums.Hurt);
+
         hurtSFX.PlayOneShot(0);
         if (HP <= 0)
         {
-            PlayerDeath();
+            playerMachine.ChangeState(PlayerStateEnums.Dead);
         }
+        else
+            playerMachine.ChangeState(PlayerStateEnums.Hurt);
         SetHealthbar();
         return myTang;
     }
-    private void PlayerDeath()
+    public void PlayerDeath()
     {
+        isDead = true;
         //Player Death Sound and vfx
         deathSFX.PlayOneShot(0);
         Instantiate(deathVFX, transform.position, deathVFX.transform.rotation);
@@ -207,7 +211,7 @@ public class PlayerController : InteractableObject
         headCollider.enabled = false;
         leftCollider.enabled = false;
         rightCollider.enabled = false;
-        playerMachine.ChangeState(PlayerStateEnums.Dead);
+
         spriteRenderer.enabled = (false);
         GetComponent<CapsuleCollider2D>().enabled = false;
 
@@ -245,8 +249,7 @@ public class PlayerController : InteractableObject
             if (hitObject.GetComponent<Block>())
             {
                 Debug.Log($"Checking {hitObject.gameObject.name}");
-                return hitObject.GetComponent<Block>().DamageBlock(0);
-
+                return !hitObject.TryGetComponent(out Block block);
             }
         }
         return true;
@@ -393,7 +396,7 @@ public class PlayerController : InteractableObject
         // Time.timeScale = 0.5f;
         CameraTarget.instance.ResetToTop();
         yield return new WaitUntil(() => CameraTarget.instance.waiting == true);
-        UIManager._instance.ShowEndUI(GameManager._instance.GetGold(), (int)transform.position.y);
+        UIManager._instance.ShowEndUI(GameManager._instance.GetGold(), (int)transform.position.y, Conductor.Instance.highestChain);
     }
 
     private void OnDrawGizmos()
