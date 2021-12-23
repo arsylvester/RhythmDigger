@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class CameraTarget : MonoBehaviour
 {
     public static CameraTarget instance;
@@ -27,6 +27,7 @@ public class CameraTarget : MonoBehaviour
 
         IEnumerator ScaleVignette()
         {
+            GetComponentInChildren<Animator>().Play("VignetteSpin", 0, 0);
             Vector3 goal = new Vector3(1.75f, 1.75f, 1);
             Vector3 start = vignette.transform.lossyScale;
             int elapsedFrames = 0;
@@ -50,12 +51,15 @@ public class CameraTarget : MonoBehaviour
         }
         else if (!waiting)
         {
-            if(speed < maxSpeed)
-                speed += acceleration;
+            //if(speed < maxSpeed)
+            //    speed += acceleration;
             transform.position += new Vector3(0, speed, 0);
-            vignette.transform.localPosition = Vector3.Lerp(vignette.transform.localPosition, new Vector3(0.5f, 0, 0), 0.01f);
+            vignette.transform.position = Vector3.Lerp(vignette.transform.position, new Vector3(0.5f, transform.position.y, transform.position.z), 0.01f);
             if (transform.position.y > 4.5f)
                 waiting = true;
+
+            if (Keyboard.current.anyKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame || Mouse.current.rightButton.wasPressedThisFrame || Mouse.current.backButton.wasPressedThisFrame)
+                transform.position = new Vector3(0.5f, 4.5f, 0);
         }
     }
 }

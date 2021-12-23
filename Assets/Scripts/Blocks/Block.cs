@@ -8,10 +8,12 @@ public class Block : MonoBehaviour
 {
     [SerializeField] int blockHealth = 1;
     [SerializeField] bool falls = false;
+    bool falling = false;   
     [SerializeField] bool rotates = false;
     [SerializeField] Sprite[] possibleSprites;
     [SerializeField] protected SoundSystem.SoundEvent blockBreakSFX;
     [SerializeField] protected SoundSystem.SoundEvent blockHitSFX;
+    public LayerMask physicsLayers;
     SpriteRenderer spriteRenderer => GetComponentInChildren<SpriteRenderer>();
     public GameObject DestroyFX;
     public bool exploding = false;
@@ -23,10 +25,7 @@ public class Block : MonoBehaviour
         if(possibleSprites.Length > 0)
             spriteRenderer.sprite = possibleSprites[Random.Range(0, possibleSprites.Length)];
 
-        if (falls)
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        else
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
 
         if (rotates)
         {
@@ -38,18 +37,18 @@ public class Block : MonoBehaviour
 
     public bool DamageBlock(int damage)
     {
-        print("Damage block");
+        //print("Damage block");
         blockHealth -= damage;
         if(blockHealth <= 0)
         {
-            print("Damage block destroyed");
+            //print("Damage block destroyed");
             OnBlockDestroy();
             return true;
         }
         else
         {
             impulseSource.GenerateImpulse(destructionIntensity);
-            print("Damage block but not destroyed");
+            //print("Damage block but not destroyed");
             blockHitSFX.PlayOneShot(0);
             return false;
         }
@@ -73,12 +72,21 @@ public class Block : MonoBehaviour
 
     private void Update()
     {
+
         if(falls)
         {
-            /*if(Physics2D.OverlapCircle(transform.position + Vector3.down, 1))
+            if (!falling)
             {
-
-            }*/
+                Collider2D[] hitObjects = (Physics2D.OverlapCircleAll(transform.position + Vector3.down, 0.35f, physicsLayers));
+                foreach (Collider2D obj in hitObjects)
+                    if (obj.gameObject != this)
+                    {
+                        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+                        falling = true;
+                    }
+            }
+            else 
+                GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
     }
 }

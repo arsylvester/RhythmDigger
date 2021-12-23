@@ -65,18 +65,18 @@ public class IdleState : PlayerState
                 if (canMove )
                 {
                     playerStateMachine.ChangeState(PlayerStateEnums.Move);
-                    Debug.Log("Normal Move");
+                    //Debug.Log("Normal Move");
                 }
                 else
                 {
                     if (!playerController.CheckBlock(playerController.storedDir, 1) && (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right))
                     {
-                        Debug.Log("Move Dig");
+                        //Debug.Log("Move Dig");
                         playerStateMachine.ChangeState(PlayerStateEnums.AttackMove);
                     }
                     else
                     {
-                        Debug.Log("Dig");
+                        //Debug.Log("Dig");
                         playerStateMachine.ChangeState(PlayerStateEnums.Attack);
                     }
                 }
