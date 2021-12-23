@@ -660,6 +660,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b516b8807ea440419e11b89ff96abdf, type: 3}
+--- !u!95 &188484972 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 188484972, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+  m_PrefabInstance: {fileID: 1964326156}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &191698024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3287,26 +3292,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1001150570667805776, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3362036782779642669, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+    - target: {fileID: 188484972, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 27da757f8248ff0469a87c484ec1cef7, type: 2}
+    - target: {fileID: 3362036782701738719, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 22
+      value: -8
       objectReference: {fileID: 0}
-    - target: {fileID: 3362036782779642669, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+    - target: {fileID: 3362036782701738719, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3362036782872091547, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3362036782872091550, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
-      propertyPath: MAXMISSEDBEATS
-      value: 6
+      propertyPath: beatRange.x
+      value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 3362036782872091550, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: beatRange.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036782872091550, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: comboAnimator
+      value: 
+      objectReference: {fileID: 188484972}
     - target: {fileID: 3362036784273910504, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: m_Name
       value: Beat Canvas
@@ -3395,28 +3404,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4490451752563691494, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4490451752563691494, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
-      propertyPath: m_ShowMaskGraphic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7647792948917241123, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -80
-      objectReference: {fileID: 0}
-    - target: {fileID: 7647792948917241123, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 7966640198368820194, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
-      propertyPath: m_Color.a
-      value: 0.92941177
-      objectReference: {fileID: 0}
-    - target: {fileID: 7966640198368820194, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 9213123971562536305, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
