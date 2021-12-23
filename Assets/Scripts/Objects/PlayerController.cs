@@ -73,6 +73,8 @@ public class PlayerController : InteractableObject
     private SoundSystem.SoundEvent deathSFX;
     [SerializeField]
     private GameObject deathVFX;
+
+    public int floatTime;
     public CinemachineImpulseSource impulseSource => GetComponent<CinemachineImpulseSource>();
     void Start()
     {
@@ -279,9 +281,9 @@ public class PlayerController : InteractableObject
             isGrounded = Grounded(groundLayers);
         }
 
-        if (!isGrounded)
+        if (!isGrounded && currentTime > floatTime)
         {
-            internalVelocity.y += -gravity * gravityMod;
+            internalVelocity.y += -gravity;
         }
         else
             coyoteTime = 10;

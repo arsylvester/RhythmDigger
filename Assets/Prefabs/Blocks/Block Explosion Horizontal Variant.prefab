@@ -7,6 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 506296146550595715, guid: c2eb58e64501e2b4ba619b9d77faa87a, type: 3}
+      propertyPath: m_Mass
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 506296146550595715, guid: c2eb58e64501e2b4ba619b9d77faa87a, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 506296146550595715, guid: c2eb58e64501e2b4ba619b9d77faa87a, type: 3}
+      propertyPath: m_GravityScale
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1937995547690458511, guid: c2eb58e64501e2b4ba619b9d77faa87a, type: 3}
       propertyPath: m_Sprite
       value: 

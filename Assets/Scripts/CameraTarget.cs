@@ -50,8 +50,8 @@ public class CameraTarget : MonoBehaviour
         }
         else if (!waiting)
         {
-            if(speed < maxSpeed)
-                speed += acceleration;
+            //if(speed < maxSpeed)
+            //    speed += acceleration;
             transform.position += new Vector3(0, speed, 0);
             vignette.transform.position = Vector3.Lerp(vignette.transform.position, new Vector3(0.5f, transform.position.y, transform.position.z), 0.01f);
             if (transform.position.y > 4.5f)
