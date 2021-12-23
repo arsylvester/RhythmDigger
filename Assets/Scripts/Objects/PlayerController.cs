@@ -82,7 +82,6 @@ public class PlayerController : InteractableObject
 
     private void Awake()
     {
-        Application.targetFrameRate = 60;
         inputAction = new PlayerInputActions();
         inputAction.PlayerControls.Move.performed += ctx => _inputDir = ctx.ReadValue<Vector2>();
         inputAction.Enable();
@@ -382,12 +381,12 @@ public class PlayerController : InteractableObject
         if (fallBuffer > 0 || targetVelocity.y > 0)
         {
             fallBuffer--;
-            gameObject.layer = 30; //LAYER FOR FALLING THROUGH PASS THROUGH OBJECTS
+            //gameObject.layer = 30; //LAYER FOR FALLING THROUGH PASS THROUGH OBJECTS
 
         }
         else
         {
-            gameObject.layer = 8; //STANDARD LAYER
+            //gameObject.layer = 8; //STANDARD LAYER
         }
     }
 

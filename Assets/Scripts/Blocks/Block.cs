@@ -25,7 +25,7 @@ public class Block : MonoBehaviour
         if(possibleSprites.Length > 0)
             spriteRenderer.sprite = possibleSprites[Random.Range(0, possibleSprites.Length)];
 
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
 
         if (rotates)
         {
@@ -81,7 +81,7 @@ public class Block : MonoBehaviour
                 foreach (Collider2D obj in hitObjects)
                     if (obj.gameObject != this)
                     {
-                        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
                         falling = true;
                     }
             }

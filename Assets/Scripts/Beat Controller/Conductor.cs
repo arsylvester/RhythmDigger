@@ -38,7 +38,8 @@ public class Conductor : Singleton<Conductor>
 
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
-
+        Application.targetFrameRate = 60;
+        Screen.SetResolution(360, 540, false);
         //Start the music
         // audioSource.Play();
         StartCoroutine(StartBeatWithDelay(firstBeatOffset));
