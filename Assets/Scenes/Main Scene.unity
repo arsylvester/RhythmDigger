@@ -2489,7 +2489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1010055097
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3512,11 +3512,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3362036782872091550, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: beatRange.x
-      value: 0.15
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3362036782872091550, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: beatRange.y
-      value: 0.85
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 3362036782872091550, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: comboAnimator

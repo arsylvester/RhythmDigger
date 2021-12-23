@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStateMachine: {fileID: 0}
   playerController: {fileID: 0}
-  maxTime: 60
+  maxTime: 120
   loop: 1
   iasa: 0
   bounceMat: {fileID: 6200000, guid: d318ec44b353c9d4fbfacb98054b33af, type: 2}

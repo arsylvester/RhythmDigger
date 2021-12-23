@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class CameraTarget : MonoBehaviour
 {
     public static CameraTarget instance;
@@ -57,6 +57,9 @@ public class CameraTarget : MonoBehaviour
             vignette.transform.position = Vector3.Lerp(vignette.transform.position, new Vector3(0.5f, transform.position.y, transform.position.z), 0.01f);
             if (transform.position.y > 4.5f)
                 waiting = true;
+
+            if (Keyboard.current.anyKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame || Mouse.current.rightButton.wasPressedThisFrame || Mouse.current.backButton.wasPressedThisFrame)
+                transform.position = new Vector3(0.5f, 4.5f, 0);
         }
     }
 }
