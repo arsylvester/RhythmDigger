@@ -27,6 +27,7 @@ public class CameraTarget : MonoBehaviour
 
         IEnumerator ScaleVignette()
         {
+            GetComponentInChildren<Animator>().Play("VignetteSpin", 0, 0);
             Vector3 goal = new Vector3(1.75f, 1.75f, 1);
             Vector3 start = vignette.transform.lossyScale;
             int elapsedFrames = 0;

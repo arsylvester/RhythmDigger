@@ -105,7 +105,19 @@ public class Conductor : Singleton<Conductor>
         musicPlaying = true;
         yield return new WaitForSeconds(delayTime); //0.206
         InvokeRepeating("CreateBeats",0,secPerBeat);
+        InvokeRepeating("FlashAllBeats", 0, secPerBeat);
+        InvokeRepeating("FlashVignette", 0, secPerBeat);
     }
+    void FlashAllBeats()
+	{
+        foreach (GameObject beatMover in currentBeats)
+            beatMover.GetComponent<Animator>().Play("hit", 0, 0);
+	}
+
+    void FlashVignette()
+	{
+        CameraTarget.instance.vignette.GetComponent<Animator>().Play("VignetteBeat", 0, 0);
+	}
 
     public void AnimateHeart()
     {
@@ -200,7 +212,7 @@ public class Conductor : Singleton<Conductor>
         goRight.GetComponent<RectTransform>().anchoredPosition = spawnPos;
         currentBeats.Add(goRight);
         mover = goRight.GetComponent<beatMover>();  
-        mover.StartMove(targetPos, musicBPM, beatsOnScreen, beatBufferTime);  
+        mover.StartMove(targetPos, musicBPM, beatsOnScreen, beatBufferTime);
 
         // heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);    
         // heartbeatAnimator.Play("heartBeat_Good", 0, 0);  
