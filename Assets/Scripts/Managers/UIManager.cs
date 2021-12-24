@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject notifTextPrefab;
     [SerializeField] RectTransform notifStartPost, notifEndPos, notifParentUI;
     [SerializeField] float notifDuration = 1f;
+    private Queue<Sequence> NotificationQueue = new Queue<Sequence>();
+
 
     public static UIManager _instance;
 
@@ -86,12 +88,15 @@ public class UIManager : MonoBehaviour
         textGo.GetComponent<TextMeshProUGUI>().text = notification;
         textGo.GetComponent<RectTransform>().anchoredPosition = notifStartPost.anchoredPosition;
 
-        textGo.GetComponent<RectTransform>().DOMove(notifEndPos.anchoredPosition,notifDuration);
+        textGo.GetComponent<RectTransform>().DOAnchorPos(notifEndPos.anchoredPosition,notifDuration);
  
         textGo.GetComponent<TMP_Text>().DOFade(0,notifDuration).OnComplete(() => Destroy(textGo));
         // textGo.GetComponent<TextMeshProUGUI>().DOfade(0,1);
         // textGo.GetComponent<TextMeshProUGUI>().color.DOfade(0,1);
         // DG.dof
-
+        // Add sequence to queue
+        // Check
     }
+
+    
 }

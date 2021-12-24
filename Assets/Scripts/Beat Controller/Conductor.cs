@@ -7,6 +7,7 @@ public class Conductor : Singleton<Conductor>
     [SerializeField] public MusicData currentMusicData;  
     [SerializeField] public AudioSource audioSource; //an AudioSource attached to this GameObject that will play the music.
     public float musicBPM = 60f, firstBeatOffset = 0f, //First beat offset is in seconds
+        validBeatOffset = 0.25f,
         beatBufferTime = 0.1f;
     public int beatsOnScreen = 1;
     
@@ -27,7 +28,7 @@ public class Conductor : Singleton<Conductor>
     public int chainSize = 0, highestChain = 0, goldMultiplier = 1, missedBeats = 0;
     [SerializeField] public int MAXMISSEDBEATS = 3;
     public Vector2 beatRange;
-    public bool validBeat, musicPlaying;
+    public bool validBeat, musicPlaying, killChainOnMissedBeats;
 
     void Start()
     {
@@ -87,8 +88,9 @@ public class Conductor : Singleton<Conductor>
 
             beatElapsed += Time.deltaTime;
             // pressTime += Time.deltaTime;
-            validBeat = (beatElapsed < (secPerBeat * beatRange.x) || (beatElapsed > (secPerBeat * beatRange.y)));
-            if(missedBeats>=MAXMISSEDBEATS)
+            validBeat = (beatElapsed < (secPerBeat * beatRange.x) || 
+                        (beatElapsed > (secPerBeat * beatRange.y)));
+            if(killChainOnMissedBeats & missedBeats>=MAXMISSEDBEATS)
             {
                 ResetChain();
             }
@@ -191,7 +193,8 @@ public class Conductor : Singleton<Conductor>
 
     void CreateBeats()
     {
-        beatElapsed = 0;
+        // beatElapsed = 0;
+        beatElapsed = validBeatOffset;
         heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
 
         // Create left beat indicator
