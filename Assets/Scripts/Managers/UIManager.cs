@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
     public void UpdateGoldCount(int gold)
     {
         goldText.text = gold.ToString().PadLeft(5);
-        NotificationText("+"+gold+" gold!");
+        // NotificationText("+"+gold+" gold!");
         // goldText.text = "Gold:" + gold.ToString().PadLeft(4);
     }
 
