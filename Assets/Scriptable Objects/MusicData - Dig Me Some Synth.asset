@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 919f4f37e2c38fd4596870d2717ec928, type: 3}
   musicBPM: 138
-  firstBeatOffset: 0.05
+  firstBeatOffset: 0.22
   beatsOnScreen: 5

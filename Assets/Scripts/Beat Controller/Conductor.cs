@@ -105,7 +105,7 @@ public class Conductor : Singleton<Conductor>
         musicPlaying = true;
         yield return new WaitForSeconds(delayTime); //0.206
         InvokeRepeating("CreateBeats",0,secPerBeat);
-        InvokeRepeating("FlashAllBeats", 0, secPerBeat);
+        // InvokeRepeating("FlashAllBeats", 0, secPerBeat);
         InvokeRepeating("FlashVignette", 0, secPerBeat);
     }
     void FlashAllBeats()
