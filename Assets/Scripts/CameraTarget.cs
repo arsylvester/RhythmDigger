@@ -13,6 +13,7 @@ public class CameraTarget : MonoBehaviour
 	public bool waiting;
     public GameObject vignette;
     public int expandVignetteFrameCount = 60;
+    public float vignetteExpandedRadius = 1.75f;
 	private void Start()
 	{
 		if (instance != null && instance != this)
@@ -23,18 +24,21 @@ public class CameraTarget : MonoBehaviour
 
     public void ResetToTop()
     {
+        GameManager._instance.SetGameOver();
         StartCoroutine(ScaleVignette());
 
         IEnumerator ScaleVignette()
         {
+            //GetComponentInChildren<Animator>().StopPlayback();
             GetComponentInChildren<Animator>().Play("VignetteSpin", 0, 0);
-            Vector3 goal = new Vector3(1.75f, 1.75f, 1);
-            Vector3 start = vignette.transform.lossyScale;
+
+            Vector3 goal = new Vector3(vignetteExpandedRadius, vignetteExpandedRadius, 1);
+            Vector3 start = transform.lossyScale;
             int elapsedFrames = 0;
             while (elapsedFrames < expandVignetteFrameCount)
             {
                 float i = (float)++elapsedFrames / expandVignetteFrameCount;
-                vignette.transform.localScale = Vector3.Lerp(start, goal, i);
+                transform.localScale = Vector3.Lerp(start, goal, i);
                 yield return new WaitForEndOfFrame();
             }
 
@@ -51,8 +55,8 @@ public class CameraTarget : MonoBehaviour
         }
         else if (!waiting)
         {
-            //if(speed < maxSpeed)
-            //    speed += acceleration;
+            if(speed < maxSpeed)
+                speed += acceleration;
             transform.position += new Vector3(0, speed, 0);
             vignette.transform.position = Vector3.Lerp(vignette.transform.position, new Vector3(0.5f, transform.position.y, transform.position.z), 0.01f);
             if (transform.position.y > 4.5f)
