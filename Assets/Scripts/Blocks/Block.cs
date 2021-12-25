@@ -19,6 +19,7 @@ public class Block : MonoBehaviour
     public bool exploding = false;
     public float destructionIntensity;
     public CinemachineImpulseSource impulseSource => GetComponent<CinemachineImpulseSource>();
+    private Rigidbody2D rb;
     private void Start()
     {
         //Randomize sprite if more then 1 possible sprite;
@@ -33,6 +34,8 @@ public class Block : MonoBehaviour
             spriteRenderer.flipX = (Random.Range(0,2) == 1);
             spriteRenderer.flipY = (Random.Range(0,2) == 1);
         }
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public bool DamageBlock(int damage)
@@ -78,15 +81,24 @@ public class Block : MonoBehaviour
             if (!falling)
             {
                 Collider2D[] hitObjects = (Physics2D.OverlapCircleAll(transform.position + Vector3.down, 0.35f, physicsLayers));
+                if (hitObjects.Length == 0 || (hitObjects.Length == 1 && hitObjects[0] == this))
+                {
+                    rb.bodyType = RigidbodyType2D.Dynamic;
+                    falling = true;
+                }
+            }
+            else if(rb.velocity.magnitude <= .01f)
+            {
+                Collider2D[] hitObjects = (Physics2D.OverlapCircleAll(transform.position + Vector3.down, 0.35f, physicsLayers));
                 foreach (Collider2D obj in hitObjects)
+                {
                     if (obj.gameObject != this)
                     {
-                        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-                        falling = true;
+                        rb.bodyType = RigidbodyType2D.Kinematic;
+                        falling = false;
                     }
+                }
             }
-            else 
-                GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
     }
 }

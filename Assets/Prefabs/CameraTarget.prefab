@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3128948464951825470}
   - component: {fileID: 3128948464951825471}
+  - component: {fileID: 1621526388}
   m_Layer: 8
   m_Name: Vignette
   m_TagString: Untagged
@@ -82,6 +83,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1621526388
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3128948464951825469}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7c2a5406e13043c4db8492c3038e5a51, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3128948465607145499
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,9 +148,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   resetting: 0
-  speed: 0.01
-  acceleration: 0.001
+  speed: 0.1
+  acceleration: 0.0001
   maxSpeed: 10
   waiting: 0
   vignette: {fileID: 3128948464951825469}
   expandVignetteFrameCount: 200
+  vignetteExpandedRadius: 1.5

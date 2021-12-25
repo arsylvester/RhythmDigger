@@ -528,7 +528,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2055539918}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StartMenuUIManager, Assembly-CSharp
         m_MethodName: QuitButton
         m_Mode: 1
@@ -1379,7 +1379,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2055539918}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StartMenuUIManager, Assembly-CSharp
         m_MethodName: QuitButton
         m_Mode: 1
@@ -3207,18 +3207,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 2055539916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1095414dc0a57504386f80b68131d76d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4738b9c9112b4014aa0e492d9be63ade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   go_Title: {fileID: 1628363890}
   go_ReturnBT: {fileID: 1492998163}
   go_MainLayoutGroup: {fileID: 981107721}
-  go_CreditsLayoutGroup: {fileID: 165695941}
-  delayBetweenWords: 0.3
-  startPosition: {x: 0, y: 10, z: 0}
-  endPosition: {x: 0, y: -10, z: 0}
-  creditsPosition: {x: 0, y: -20, z: 0}
-  lerpDuration: 1
+  go_CreditsLayoutGroup: {fileID: 656986366}
+  delayBetweenWords: 0.75
+  startPosition: {x: 0, y: 0, z: 0}
+  endPosition: {x: 0, y: 0, z: 0}
+  creditsPosition: {x: 0, y: 0, z: 0}
+  lerpDuration: 3
 --- !u!1 &2078009960
 GameObject:
   m_ObjectHideFlags: 0

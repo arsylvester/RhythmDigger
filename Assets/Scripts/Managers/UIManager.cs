@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI longestChainTextEnd;
     [SerializeField] TextMeshProUGUI depthCounter;
     [SerializeField] GameObject endUI;
+    [SerializeField] GameObject notifTextPrefab;
+    [SerializeField] RectTransform notifStartPost, notifEndPos, notifParentUI;
+    [SerializeField] float notifDuration = 1f;
+    private Queue<Sequence> NotificationQueue = new Queue<Sequence>();
+
 
     public static UIManager _instance;
 
@@ -38,6 +44,7 @@ public class UIManager : MonoBehaviour
     public void UpdateGoldCount(int gold)
     {
         goldText.text = gold.ToString().PadLeft(5);
+        // NotificationText("+"+gold+" gold!");
         // goldText.text = "Gold:" + gold.ToString().PadLeft(4);
     }
 
@@ -74,4 +81,22 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void NotificationText(string notification)
+    {
+        GameObject textGo = Instantiate(notifTextPrefab, notifStartPost.anchoredPosition, Quaternion.identity, notifParentUI) as GameObject;
+        textGo.GetComponent<TextMeshProUGUI>().text = notification;
+        textGo.GetComponent<RectTransform>().anchoredPosition = notifStartPost.anchoredPosition;
+
+        textGo.GetComponent<RectTransform>().DOAnchorPos(notifEndPos.anchoredPosition,notifDuration);
+ 
+        textGo.GetComponent<TMP_Text>().DOFade(0,notifDuration).OnComplete(() => Destroy(textGo));
+        // textGo.GetComponent<TextMeshProUGUI>().DOfade(0,1);
+        // textGo.GetComponent<TextMeshProUGUI>().color.DOfade(0,1);
+        // DG.dof
+        // Add sequence to queue
+        // Check
+    }
+
+    
 }

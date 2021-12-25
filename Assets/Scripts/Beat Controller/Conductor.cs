@@ -7,6 +7,7 @@ public class Conductor : Singleton<Conductor>
     [SerializeField] public MusicData currentMusicData;  
     [SerializeField] public AudioSource audioSource; //an AudioSource attached to this GameObject that will play the music.
     public float musicBPM = 60f, firstBeatOffset = 0f, //First beat offset is in seconds
+        validBeatOffset = 0.25f,
         beatBufferTime = 0.1f;
     public int beatsOnScreen = 1;
     
@@ -27,7 +28,8 @@ public class Conductor : Singleton<Conductor>
     public int chainSize = 0, highestChain = 0, goldMultiplier = 1, missedBeats = 0;
     [SerializeField] public int MAXMISSEDBEATS = 3;
     public Vector2 beatRange;
-    public bool validBeat, musicPlaying;
+    public bool validBeat, musicPlaying, killChainOnMissedBeats;
+    private bool gameIsOver = false;
 
     void Start()
     {
@@ -46,6 +48,21 @@ public class Conductor : Singleton<Conductor>
         heartbeatAnimator.GetComponent<Image>().SetNativeSize();
         // GetComponent<Image>().SetNativeSize();
         UI_beatGoal.GetComponent<RectTransform>().sizeDelta = heartbeatAnimator.GetComponent<RectTransform>().sizeDelta;
+    }
+
+    private void OnEnable()
+    {
+        GameManager.OnGameOver += GameOver;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnGameOver -= GameOver;
+    }
+
+    private void GameOver()
+    {
+        gameIsOver = true;
     }
 
     public void LoadMusicFromData(){LoadMusicFromData(currentMusicData);}
@@ -87,8 +104,9 @@ public class Conductor : Singleton<Conductor>
 
             beatElapsed += Time.deltaTime;
             // pressTime += Time.deltaTime;
-            validBeat = (beatElapsed < (secPerBeat * beatRange.x) || (beatElapsed > (secPerBeat * beatRange.y)));
-            if(missedBeats>=MAXMISSEDBEATS)
+            validBeat = (beatElapsed < (secPerBeat * beatRange.x) || 
+                        (beatElapsed > (secPerBeat * beatRange.y)));
+            if(killChainOnMissedBeats & missedBeats>=MAXMISSEDBEATS)
             {
                 ResetChain();
             }
@@ -105,7 +123,7 @@ public class Conductor : Singleton<Conductor>
         musicPlaying = true;
         yield return new WaitForSeconds(delayTime); //0.206
         InvokeRepeating("CreateBeats",0,secPerBeat);
-        InvokeRepeating("FlashAllBeats", 0, secPerBeat);
+        // InvokeRepeating("FlashAllBeats", 0, secPerBeat);
         InvokeRepeating("FlashVignette", 0, secPerBeat);
     }
     void FlashAllBeats()
@@ -116,7 +134,8 @@ public class Conductor : Singleton<Conductor>
 
     void FlashVignette()
 	{
-        CameraTarget.instance.vignette.GetComponent<Animator>().Play("VignetteBeat", 0, 0);
+        if(!gameIsOver)
+            CameraTarget.instance.vignette.GetComponent<Animator>().Play("VignetteBeat", 0, 0);
 	}
 
     public void AnimateHeart()
@@ -191,7 +210,8 @@ public class Conductor : Singleton<Conductor>
 
     void CreateBeats()
     {
-        beatElapsed = 0;
+        // beatElapsed = 0;
+        beatElapsed = validBeatOffset;
         heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
 
         // Create left beat indicator

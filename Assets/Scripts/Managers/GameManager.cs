@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public delegate void GoldGained(int num);
     public static event GoldGained OnGoldGained;
 
+    public delegate void GameOver();
+    public static event GameOver OnGameOver;
+
     public static GameManager _instance;
 
     private void Awake()
@@ -32,5 +35,10 @@ public class GameManager : MonoBehaviour
     public int GetGold()
     {
         return gold;
+    }
+
+    public void SetGameOver()
+    {
+        OnGameOver();
     }
 }
