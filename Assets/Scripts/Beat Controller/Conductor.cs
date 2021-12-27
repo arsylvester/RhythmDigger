@@ -29,6 +29,7 @@ public class Conductor : Singleton<Conductor>
     [SerializeField] public int MAXMISSEDBEATS = 3;
     public Vector2 beatRange;
     public bool validBeat, musicPlaying, killChainOnMissedBeats;
+    private bool gameIsOver = false;
 
     void Start()
     {
@@ -47,6 +48,21 @@ public class Conductor : Singleton<Conductor>
         heartbeatAnimator.GetComponent<Image>().SetNativeSize();
         // GetComponent<Image>().SetNativeSize();
         UI_beatGoal.GetComponent<RectTransform>().sizeDelta = heartbeatAnimator.GetComponent<RectTransform>().sizeDelta;
+    }
+
+    private void OnEnable()
+    {
+        GameManager.OnGameOver += GameOver;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnGameOver -= GameOver;
+    }
+
+    private void GameOver()
+    {
+        gameIsOver = true;
     }
 
     public void LoadMusicFromData(){LoadMusicFromData(currentMusicData);}
@@ -118,7 +134,8 @@ public class Conductor : Singleton<Conductor>
 
     void FlashVignette()
 	{
-        CameraTarget.instance.vignette.GetComponent<Animator>().Play("VignetteBeat", 0, 0);
+        if(!gameIsOver)
+            CameraTarget.instance.vignette.GetComponent<Animator>().Play("VignetteBeat", 0, 0);
 	}
 
     public void AnimateHeart()
