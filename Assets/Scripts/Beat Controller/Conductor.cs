@@ -29,7 +29,7 @@ public class Conductor : Singleton<Conductor>
     public int chainSize = 0, highestChain = 0, goldMultiplier = 1, missedBeats = 0;
     [SerializeField] public int MAXMISSEDBEATS = 3;
     public Vector2 beatRange;
-    public bool validBeat, musicPlaying, killChainOnMissedBeats;
+    public bool validBeat, early = false, musicPlaying, killChainOnMissedBeats;
     private bool gameIsOver = false;
 
     void Start()
@@ -110,6 +110,11 @@ public class Conductor : Singleton<Conductor>
             // pressTime += Time.deltaTime;
             validBeat = (beatElapsed < (secPerBeat * beatRange.x) || 
                         (beatElapsed > (secPerBeat * beatRange.y)));
+            if( beatElapsed < secPerBeat && beatElapsed > secPerBeat*0.5){
+                early = true;
+            } else {
+                early = false;
+            }
             if(killChainOnMissedBeats & missedBeats>=MAXMISSEDBEATS)
             {
                 ResetChain();
@@ -151,6 +156,10 @@ public class Conductor : Singleton<Conductor>
     {
         chainSize = 0;
         goldMultiplier = 1;
+        if(early)
+            UIManager._instance.NotificationText("Early!");
+        else
+            UIManager._instance.NotificationText("Late!");
         UpdateComboAnim();
     }
     // float pressTime = 0f;

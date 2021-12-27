@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateGoldCount(int gold)
     {
-        goldText.text = gold.ToString().PadLeft(5);
+        goldText.text = gold.ToString();//.PadLeft(5);
         // NotificationText("+"+gold+" gold!");
         // goldText.text = "Gold:" + gold.ToString().PadLeft(4);
     }
@@ -51,8 +51,8 @@ public class UIManager : MonoBehaviour
     public void UpdateChainCount(int chain)
     {
         // chainText.text = "Chain: " + chain.ToString().PadLeft(5);
-        chainText.text = chain.ToString().PadLeft(5);
-        multText.text = "Multiplier x" + Conductor.Instance.goldMultiplier.ToString().PadLeft(5);
+        chainText.text = chain.ToString();//.PadLeft(5);
+        multText.text = "Multiplier x" + Conductor.Instance.goldMultiplier.ToString();//.PadLeft(5);
     }
 
     public void QuitButton()
@@ -82,10 +82,12 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void NotificationText(string notification)
+    public void NotificationText(string notificationText)
     {
+        Notification newNotif = new Notification(notificationText);
+        
         GameObject textGo = Instantiate(notifTextPrefab, notifStartPost.anchoredPosition, Quaternion.identity, notifParentUI) as GameObject;
-        textGo.GetComponent<TextMeshProUGUI>().text = notification;
+        textGo.GetComponent<TextMeshProUGUI>().text = notificationText;
         textGo.GetComponent<RectTransform>().anchoredPosition = notifStartPost.anchoredPosition;
 
         textGo.GetComponent<RectTransform>().DOAnchorPos(notifEndPos.anchoredPosition,notifDuration);

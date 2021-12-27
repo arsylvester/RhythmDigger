@@ -141,6 +141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aac469f00f3a994fb80815e33d7df8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 3541106531326552924}
+  numAnims: 5
+  pauseTime: 1
+  randomRange: 0.3
 --- !u!1001 &1110945589045458308
 PrefabInstance:
   m_ObjectHideFlags: 0
