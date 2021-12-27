@@ -8,7 +8,8 @@ public class Conductor : Singleton<Conductor>
     [SerializeField] public AudioSource audioSource; //an AudioSource attached to this GameObject that will play the music.
     public float musicBPM = 60f, firstBeatOffset = 0f, //First beat offset is in seconds
         validBeatOffset = 0.25f,
-        beatBufferTime = 0.1f;
+        beatBufferTime = 0.1f,
+        pauseBetweenLoops = 0.1f;
     public int beatsOnScreen = 1;
     
     [SerializeField] public GameObject beatIndicatorPrefab;
@@ -71,7 +72,10 @@ public class Conductor : Singleton<Conductor>
         audioSource.clip = newData.audioClip;
         musicBPM = newData.musicBPM;
         firstBeatOffset = newData.firstBeatOffset;
+        validBeatOffset = newData.validBeatOffset;
+        pauseBetweenLoops = newData.pauseBetweenLoops;
         beatsOnScreen = newData.beatsOnScreen;
+        
 
         secPerBeat = 60f / musicBPM;
         musicLength = newData.audioClip.length;
@@ -118,7 +122,7 @@ public class Conductor : Singleton<Conductor>
 
     IEnumerator StartBeatWithDelay(float delayTime)
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(pauseBetweenLoops);
         audioSource.Play();
         musicPlaying = true;
         yield return new WaitForSeconds(delayTime); //0.206
