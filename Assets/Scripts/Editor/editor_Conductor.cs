@@ -15,7 +15,7 @@ public class editor_Conductor : Editor {
         //some small addition and don't feel like recreating the whole inspector.
         if(GUILayout.Button("Is beat valid?")) {
             //add everthing the button would do.
-            bool valid = Conductor.Instance.CheckValidBeat();
+            bool valid = Conductor._instance.CheckValidBeat();
             Debug.Log("Valid? "+valid);
         }
     }

@@ -46,7 +46,7 @@ public class ChargeState : PlayerState
             if (playerController.currentTime > minTime)
             {
                 playerController.moveBuffer = 0;
-                if (Conductor.Instance.CheckValidBeat() || !requireBeat)
+                if (Conductor._instance.CheckValidBeat() || !requireBeat)
                 {
                     if (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right || playerController.InputDir == Vector2.down)
                         playerController.storedDir = playerController.InputDir;
@@ -74,7 +74,7 @@ public class ChargeState : PlayerState
                         }
                     }
                 }
-                else if (!Conductor.Instance.CheckValidBeat())
+                else if (!Conductor._instance.CheckValidBeat())
                 {
                     playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
                 }

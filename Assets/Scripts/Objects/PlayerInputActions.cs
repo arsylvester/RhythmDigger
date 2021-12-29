@@ -72,7 +72,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""23cd072e-66a7-4be1-a899-eb9aae34c68c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": ""Hold""
                 },
                 {
                     ""name"": ""MovePressUp"",
