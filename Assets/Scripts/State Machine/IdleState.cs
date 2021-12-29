@@ -57,7 +57,7 @@ public class IdleState : PlayerState
         if ((playerStateMachine.playerController.InputDir.x !=0 || playerStateMachine.playerController.InputDir.y == -1) && playerController.moveBuffer > 0)
         {
             playerController.moveBuffer = 0;
-            if (Conductor.Instance.CheckValidBeat() || !requireBeat)
+            if (Conductor._instance.CheckValidBeat() || !requireBeat)
             {
                 if (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right || playerController.InputDir == Vector2.down)
                     playerController.storedDir = playerController.InputDir;
@@ -81,19 +81,19 @@ public class IdleState : PlayerState
                     }
                 }
             }
-			else if(!Conductor.Instance.CheckValidBeat())
+			else if(!Conductor._instance.CheckValidBeat())
 			{
                 playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
 			}
         }
         if (playerStateMachine.playerController.button1Buffer > 0 && playerStateMachine.playerController.button1Hold)
         {
-			if (Conductor.Instance.CheckValidBeat() || !requireBeat)
+			if (Conductor._instance.CheckValidBeat() || !requireBeat)
 			{
                     playerStateMachine.ChangeState(PlayerStateEnums.Charge);
 
             }
-            else if (!Conductor.Instance.CheckValidBeat())
+            else if (!Conductor._instance.CheckValidBeat())
             {
                 playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
             }

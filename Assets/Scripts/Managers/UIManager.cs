@@ -17,7 +17,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject endUI;
     [SerializeField] GameObject notifTextPrefab;
     [SerializeField] RectTransform notifStartPost, notifEndPos, notifParentUI;
+    [SerializeField] GameObject resetUIobj;
     [SerializeField] float notifDuration = 1f;
+    [SerializeField] float resetWaitTime = 3f, resetTransitionTime = 1f;
+    private float timeOfLastKey = 0f,  activeTime=0;
     private Queue<Sequence> NotificationQueue = new Queue<Sequence>();
 
 
@@ -35,10 +38,29 @@ public class UIManager : MonoBehaviour
         }
     }
 
+
+    private void FixedUpdate()
+    {
+        activeTime += Time.deltaTime;
+        // This will cause the "Press ESC to reset" ui to appear
+        if( Input.anyKeyDown)
+        {
+            timeOfLastKey = activeTime;
+            HideResetUI();
+        }
+        if (Mathf.Abs(activeTime - timeOfLastKey) > resetWaitTime & resetUIobj.activeSelf == false & !Conductor._instance.gameIsOver)
+        {
+            ShowResetUI();
+        }
+          
+    }
+    
+    private Vector2 resetUIinitalPos;
     void Start()
     {
         GameManager.OnGoldGained += UpdateGoldCount;
         UpdateGoldCount(0);
+        resetUIinitalPos = resetUIobj.GetComponent<RectTransform>().anchoredPosition;
     }
 
     public void UpdateGoldCount(int gold)
@@ -52,12 +74,27 @@ public class UIManager : MonoBehaviour
     {
         // chainText.text = "Chain: " + chain.ToString().PadLeft(5);
         chainText.text = chain.ToString();//.PadLeft(5);
-        multText.text = "Multiplier x" + Conductor.Instance.goldMultiplier.ToString();//.PadLeft(5);
+        multText.text = "Multiplier x" + Conductor._instance.goldMultiplier.ToString();//.PadLeft(5);
     }
 
     public void QuitButton()
     {
         SceneManager.LoadScene("Start Screen");
+    }
+
+    public void ShowResetUI()
+    {
+        resetUIobj.GetComponent<CanvasGroup>().alpha = 0;
+        resetUIobj.SetActive(true);
+        resetUIobj.GetComponent<CanvasGroup>().DOFade(1f,resetTransitionTime);
+        RectTransform rt = resetUIobj.GetComponent<RectTransform>();    
+        rt.anchoredPosition = rt.anchoredPosition + new Vector2(0,5);
+        rt.DOAnchorPos(resetUIinitalPos,resetTransitionTime*5);
+    }
+
+    public void HideResetUI()
+    {
+        resetUIobj.SetActive(false);
     }
 
     public void HideUI()
@@ -67,6 +104,7 @@ public class UIManager : MonoBehaviour
         multText.gameObject.SetActive(false);
         goldTextLabel.gameObject.SetActive(false);
         chainTextLabel.gameObject.SetActive(false);
+        resetUIobj.SetActive(false);
     }
 
     public void ShowEndUI(int gold, int depth, int highestChain)
@@ -74,6 +112,7 @@ public class UIManager : MonoBehaviour
         goldTextEnd.text = "Gold found: " + gold;
         longestChainTextEnd.text = "Longest chain: " + highestChain; 
         depthCounter.text = "Depth Reached: " + depth;
+        
         endUI.SetActive(true);
     }
 
@@ -90,9 +129,9 @@ public class UIManager : MonoBehaviour
         textGo.GetComponent<TextMeshProUGUI>().text = notificationText;
         textGo.GetComponent<RectTransform>().anchoredPosition = notifStartPost.anchoredPosition;
 
-        textGo.GetComponent<RectTransform>().DOAnchorPos(notifEndPos.anchoredPosition,notifDuration);
+        textGo.GetComponent<RectTransform>().DOAnchorPos(notifEndPos.anchoredPosition,notifDuration).OnComplete(() => Destroy(textGo));
  
-        textGo.GetComponent<TMP_Text>().DOFade(0,notifDuration).OnComplete(() => Destroy(textGo));
+        textGo.GetComponent<TMP_Text>().DOFade(0,notifDuration*0.5f);
         // textGo.GetComponent<TextMeshProUGUI>().DOfade(0,1);
         // textGo.GetComponent<TextMeshProUGUI>().color.DOfade(0,1);
         // DG.dof

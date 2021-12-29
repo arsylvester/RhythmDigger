@@ -8,7 +8,10 @@ public class SparkleRandomizer : MonoBehaviour
     // [SerializeField] public List<AnimationClip> animClips = new List<AnimationClip>();
     [SerializeField] public int numAnims = 5;
     [SerializeField] public float pauseTime = 1f, randomRange = 0.2f;
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        // Conductor.OnBeat += StartNewClip;
+    }
     void Start()
     {
         if (!animator)

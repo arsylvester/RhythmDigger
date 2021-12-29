@@ -79,13 +79,13 @@ public class PlayerController : InteractableObject
     void Start()
     {
         HP = maxHP;
-
     }
 
     private void Awake()
     {
         inputAction = new PlayerInputActions();
         inputAction.PlayerControls.Move.performed += ctx => _inputDir = ctx.ReadValue<Vector2>();
+        inputAction.PlayerControls.Reset.performed += ctx => PlayerDeath(); // This is for when the player gets stuck
         inputAction.Enable();
         isDead = false;
     }
@@ -159,11 +159,14 @@ public class PlayerController : InteractableObject
             externalVelocity = Vector2.zero;
         }
 
-        if (inputAction.PlayerControls.Quit.triggered)
-        {
-            StartCoroutine(WaitRestart());
-        }
+        // // if (inputAction.PlayerControls.Quit.triggered)
+        // {
+        //     // StartCoroutine(WaitRestart());
+        //     PlayerDeath();
+        // }
     }
+
+  
 
     private void FixedUpdate()
     {
@@ -206,7 +209,7 @@ public class PlayerController : InteractableObject
         isDead = true;
         //Player Death Sound and vfx
         deathSFX.PlayOneShot(0);
-        UIManager._instance.HideUI();
+        
         Instantiate(deathVFX, transform.position, deathVFX.transform.rotation);
 
         groundCollider.enabled = false;
@@ -396,9 +399,10 @@ public class PlayerController : InteractableObject
     IEnumerator WaitRestart()
     {
         // Time.timeScale = 0.5f;
+        UIManager._instance.HideUI();
         CameraTarget.instance.ResetToTop();
         yield return new WaitUntil(() => CameraTarget.instance.waiting == true);
-        UIManager._instance.ShowEndUI(GameManager._instance.GetGold(), (int)transform.position.y, Conductor.Instance.highestChain);
+        UIManager._instance.ShowEndUI(GameManager._instance.GetGold(), (int)transform.position.y, Conductor._instance.highestChain);
     }
 
     private void OnDrawGizmos()

@@ -15,6 +15,6 @@ MonoBehaviour:
   audioClip: {fileID: 8300000, guid: 919f4f37e2c38fd4596870d2717ec928, type: 3}
   musicBPM: 138
   firstBeatOffset: 0
-  validBeatOffset: 0.31
+  validBeatOffset: 0.22
   pauseBetweenLoops: 0.1
   beatsOnScreen: 3

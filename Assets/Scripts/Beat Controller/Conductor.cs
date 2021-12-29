@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Conductor : Singleton<Conductor>
 {
+    public delegate void Beat();
+    public static event Beat OnBeat = delegate {};
+    // public static event Action<> OnBeat = delegate {};
     [SerializeField] public MusicData currentMusicData;  
     [SerializeField] public AudioSource audioSource; //an AudioSource attached to this GameObject that will play the music.
     public float musicBPM = 60f, firstBeatOffset = 0f, //First beat offset is in seconds
@@ -30,7 +33,7 @@ public class Conductor : Singleton<Conductor>
     [SerializeField] public int MAXMISSEDBEATS = 3;
     public Vector2 beatRange;
     public bool validBeat, early = false, musicPlaying, killChainOnMissedBeats;
-    private bool gameIsOver = false;
+    public bool gameIsOver = false;
 
     void Start()
     {
@@ -108,8 +111,10 @@ public class Conductor : Singleton<Conductor>
 
             beatElapsed += Time.deltaTime;
             // pressTime += Time.deltaTime;
-            validBeat = (beatElapsed < (secPerBeat * beatRange.x) || 
-                        (beatElapsed > (secPerBeat * beatRange.y)));
+            validBeat = (beatElapsed + validBeatOffset < ((secPerBeat + validBeatOffset) * beatRange.x) || 
+                        (beatElapsed + validBeatOffset > ((secPerBeat + validBeatOffset) * beatRange.y)));
+            // validBeat = (beatElapsed + validBeatOffset < ((secPerBeat) * beatRange.x) || 
+            //             (beatElapsed + validBeatOffset > ((secPerBeat) * beatRange.y)));
             if( beatElapsed < secPerBeat && beatElapsed > secPerBeat*0.5){
                 early = true;
             } else {
@@ -167,8 +172,15 @@ public class Conductor : Singleton<Conductor>
     {
         // Debug.Log("Time between presses: "+(pressTime));
         // pressTime = 0f;
-        validBeat = (beatElapsed < (secPerBeat * beatRange.x) || (beatElapsed > (secPerBeat * beatRange.y)));
-        Debug.Log("beatElapsed: "+beatElapsed+" (secPerBeat * beatRange.y): "+(secPerBeat * beatRange.y)+ " (secPerBeat * beatRange.x): "+(secPerBeat * beatRange.x));
+        // validBeat = (beatElapsed < (secPerBeat * beatRange.x) || (beatElapsed > (secPerBeat * beatRange.y)));
+        // Debug.Log("beatElapsed+offset: "+(beatElapsed+validBeatOffset)+
+        //         " <(secPerBeat * beatRange.x): "+((secPerBeat) * beatRange.x) + 
+        //         " >(secPerBeat * beatRange.y): "+((secPerBeat) * beatRange.y) +
+        //         " early? "+ early);
+        Debug.Log("beatElapsed+offset: "+(beatElapsed+validBeatOffset)+
+                " <(secPerBeat * beatRange.x): "+((secPerBeat + validBeatOffset) * beatRange.x) + 
+                " >(secPerBeat * beatRange.y): "+((secPerBeat + validBeatOffset) * beatRange.y) +
+                " early? "+ early);
         // validBeat = (beatElapsed > (secPerBeat * beatRange.x) || (beatElapsed < (secPerBeat * beatRange.y)));
         float goalWidth = UI_beatGoal.GetComponent<RectTransform>().sizeDelta.x;
         GameObject topBeat1 = currentBeats[0];
@@ -223,8 +235,9 @@ public class Conductor : Singleton<Conductor>
 
     void CreateBeats()
     {
-        // beatElapsed = 0;
-        beatElapsed = validBeatOffset;
+        OnBeat();
+        beatElapsed = 0;
+        // beatElapsed = validBeatOffset;
         heartbeatAnimator.Play("heartBeat_heartBeat", 0, 0);
 
         // Create left beat indicator
