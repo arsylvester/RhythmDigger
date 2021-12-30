@@ -90,7 +90,7 @@ public class Conductor : Singleton<Conductor>
     {
         if(musicPlaying)
         {
-            UIManager._instance.UpdateChainCount(chainSize);
+            // UIManager._instance.UpdateChainCount(chainSize);
             // determine how many seconds since the song started
             songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
 
@@ -165,6 +165,7 @@ public class Conductor : Singleton<Conductor>
             UIManager._instance.NotificationText("Early!");
         else
             UIManager._instance.NotificationText("Late!");
+        // UIManager._instance.UpdateChainCount(chainSize);
         UpdateComboAnim();
     }
     // float pressTime = 0f;
@@ -192,9 +193,10 @@ public class Conductor : Singleton<Conductor>
             // heartbeatAnimator.SetTrigger("good");
             StartCoroutine(killBeat(topBeat1));
             StartCoroutine(killBeat(topBeat2));
-            chainSize++;
+            chainSize++; 
             missedBeats = 0;
             goldMultiplier = (int)Mathf.Ceil((float)chainSize/10f);
+            // UIManager._instance.UpdateChainCount(chainSize);
             // goldMultiplier = (int)Mathf.Ceil((float)chainSize/3f);
             UpdateComboAnim();
             if (chainSize > highestChain){
@@ -212,10 +214,11 @@ public class Conductor : Singleton<Conductor>
             return false;
         }
     }
-
+    
     void UpdateComboAnim()
     {
         comboAnimator.SetInteger("Multiplier",goldMultiplier);
+        UIManager._instance.UpdateChainCount(chainSize);
     }
 
     public void HideBeatUI()
