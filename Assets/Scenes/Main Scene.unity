@@ -2096,7 +2096,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Multiplier x99
+  m_text: Multiplier x1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01b94807b676431499c24b80527a8ad5, type: 2}
   m_sharedMaterial: {fileID: 3006596564720498347, guid: 01b94807b676431499c24b80527a8ad5, type: 2}
@@ -4589,6 +4589,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3362036782872091550, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: beatRange.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362036782872091550, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: beatRange.y
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 3362036784273910504, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: m_Name
       value: Beat Canvas

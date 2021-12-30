@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
 
     public static UIManager _instance;
 
+    private int prevGoldMult = 1;
     private void Awake()
     {
         if (_instance == null)
@@ -74,7 +75,13 @@ public class UIManager : MonoBehaviour
     {
         // chainText.text = "Chain: " + chain.ToString().PadLeft(5);
         chainText.text = chain.ToString();//.PadLeft(5);
-        multText.text = "Multiplier x" + Conductor._instance.goldMultiplier.ToString();//.PadLeft(5);
+        int newGoldMult = Conductor._instance.goldMultiplier;    
+        if(newGoldMult > prevGoldMult)
+        {
+            NotificationText("x"+newGoldMult+" multiplier!");
+        }
+        multText.text = "Multiplier x" + newGoldMult.ToString();//.PadLeft(5);
+        prevGoldMult = newGoldMult;
     }
 
     public void QuitButton()

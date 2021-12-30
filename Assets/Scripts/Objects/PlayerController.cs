@@ -158,7 +158,7 @@ public class PlayerController : InteractableObject
         {
             externalVelocity = Vector2.zero;
         }
-
+            
         // // if (inputAction.PlayerControls.Quit.triggered)
         // {
         //     // StartCoroutine(WaitRestart());
