@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaec50c9406c6884aadfb9bfd89d210d, type: 3}
+  m_Name: Difficulty 2
+  m_EditorClassIdentifier: 
+  depth: 50
+  possibleChunks:
+  - {fileID: 3496684344302913550, guid: 0488c5821ea45434caba0f45571c05a0, type: 3}
+  - {fileID: 3496684344302913550, guid: 857f2970401a9b5458e2c584d7970dd2, type: 3}
+  - {fileID: 3496684344302913550, guid: dccd4d18f64375c48a86b341089e0ca0, type: 3}
+  - {fileID: 3496684344302913550, guid: 7cc0f660f75799f4c8d46241c617cb21, type: 3}
+  - {fileID: 3496684344302913550, guid: b1f9ed4ca36aa124db46625fad0a3b6a, type: 3}
+  - {fileID: 3496684344302913550, guid: fd82258d10bc5dc428df32054e3ef3cf, type: 3}
+  - {fileID: 3496684344302913550, guid: 83a46754da076c146bb7bb0dc758f8f9, type: 3}
+  - {fileID: 3496684344302913550, guid: 8c328d568212c324fa1718541f10ac23, type: 3}
+  - {fileID: 3496684344302913550, guid: b00b2dfcb6c7c8f498b08236c30b2f62, type: 3}
+  - {fileID: 3496684344302913550, guid: e3f29b157780480429c8a38e02878aa7, type: 3}
+  - {fileID: 3496684344302913550, guid: cc093832809cb3f42b71ac0f1ee7fe7b, type: 3}
+  - {fileID: 3496684344302913550, guid: f9c3f315481b78b4aaea6b4c8c8208bb, type: 3}
+  - {fileID: 331491826063984667, guid: b194dda25ca1b6e47b9eb038af4c85c7, type: 3}
+  - {fileID: 3727889295648372899, guid: d4655c2b22bb05e4dbf36ce38359a960, type: 3}
+  - {fileID: 3727889295648372899, guid: 74a982a3836c61f4b8be7ad1d87d5d58, type: 3}
+  - {fileID: 3727889295648372899, guid: 078a379b3cba8aa47968cd1a19fc4430, type: 3}
+  - {fileID: 1846853695837665927, guid: 95409b12000d8ac46838cadbce35636d, type: 3}
+  - {fileID: 3727889295648372899, guid: cc1030e39f254354eb77f05e295e5015, type: 3}
+  - {fileID: 1846853695837665927, guid: 8ae4b96b75dcee94aa68114130fa42d7, type: 3}
+  - {fileID: 2395616793865351994, guid: 6b516b8807ea440419e11b89ff96abdf, type: 3}
+  musicData: {fileID: 11400000, guid: f45b19b524764eb46bca434f60367879, type: 2}

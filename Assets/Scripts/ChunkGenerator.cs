@@ -5,12 +5,10 @@ using UnityEngine;
 public class ChunkGenerator : MonoBehaviour
 {
     [SerializeField] Chunk startChunk;
-    [SerializeField] int[] difficultyIncreaseDepths;
     [SerializeField] DifficultyGroup[] difficultyGroups;
-    //[SerializeField] Chunk[] possibleChunks;
     [SerializeField] int minDepthToGenerate = 20;
     [SerializeField] int playerFromGeneratedDepth = 15;
-    int currentDepthGenerated = 0;
+    int currentDepthGenerated = 0, currentDifficultyGroup = 0;
     PlayerController player;
     Chunk lastChunk;
 
@@ -40,6 +38,11 @@ public class ChunkGenerator : MonoBehaviour
 
     void GenerateChunks()
     {
+        if (difficultyGroups.Length - 1 > currentDifficultyGroup && currentDepthGenerated >= difficultyGroups[currentDifficultyGroup + 1].depth)
+            currentDifficultyGroup++;
+
+        Chunk[] possibleChunks = difficultyGroups[currentDifficultyGroup].possibleChunks;
+
         int goalDepth = currentDepthGenerated + minDepthToGenerate;
         while(currentDepthGenerated < goalDepth)
         {
