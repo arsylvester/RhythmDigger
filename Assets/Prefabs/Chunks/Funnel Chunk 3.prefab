@@ -184,6 +184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 6
   distanceToDespawn: 3000
+  chunkBlackList:
+  - {fileID: 3496684344302913550, guid: cc093832809cb3f42b71ac0f1ee7fe7b, type: 3}
 --- !u!1001 &167115062306625032
 PrefabInstance:
   m_ObjectHideFlags: 0
