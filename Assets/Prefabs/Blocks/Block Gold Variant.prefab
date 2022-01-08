@@ -25,6 +25,7 @@ MonoBehaviour:
   DestroyFX: {fileID: 1309123209376534164, guid: fff46d2cc19fc374eb7178fd8f4d9756, type: 3}
   exploding: 0
   destructionIntensity: 0.5
+  waitTIme: 0.06
   goldReward: {fileID: 1484682351466747300, guid: f3ec0b1d8ccab164594ae942ff2a1aef, type: 3}
 --- !u!1 &7645864123318196646
 GameObject:

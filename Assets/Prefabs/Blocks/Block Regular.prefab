@@ -141,9 +141,14 @@ MonoBehaviour:
   physicsLayers:
     serializedVersion: 2
     m_Bits: 1073741953
+  playerLayers:
+    serializedVersion: 2
+    m_Bits: 256
   DestroyFX: {fileID: 1309123209376534164, guid: fff46d2cc19fc374eb7178fd8f4d9756, type: 3}
   exploding: 0
   destructionIntensity: 0.65
+  waitTIme: 0.06
+  hitPlayer: 0
 --- !u!61 &3151922224876022945
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -14,12 +14,16 @@ public class Block : MonoBehaviour
     [SerializeField] protected SoundSystem.SoundEvent blockBreakSFX;
     [SerializeField] protected SoundSystem.SoundEvent blockHitSFX;
     public LayerMask physicsLayers;
+    public LayerMask playerLayers;
     SpriteRenderer spriteRenderer => GetComponentInChildren<SpriteRenderer>();
     public GameObject DestroyFX;
     public bool exploding = false;
     public float destructionIntensity;
     public CinemachineImpulseSource impulseSource => GetComponent<CinemachineImpulseSource>();
     private Rigidbody2D rb;
+    private float fallTime;
+    public float waitTIme;
+    public bool hitPlayer;
     private void Start()
     {
         //Randomize sprite if more then 1 possible sprite;
@@ -78,13 +82,17 @@ public class Block : MonoBehaviour
 
         if(falls)
         {
+            if (hitPlayer)
+                fallTime += Time.deltaTime;
+
             if (!falling)
-            {
+            {                        
                 Collider2D[] hitObjects = (Physics2D.OverlapCircleAll(transform.position + Vector3.down, 0.35f, physicsLayers));
                 if (hitObjects.Length == 0 || (hitObjects.Length == 1 && hitObjects[0] == this))
                 {
-                    rb.bodyType = RigidbodyType2D.Dynamic;
-                    falling = true;
+
+
+                    StartCoroutine(StartFall());
                 }
             }
             else if(rb.velocity.magnitude <= .01f)
@@ -96,9 +104,28 @@ public class Block : MonoBehaviour
                     {
                         rb.bodyType = RigidbodyType2D.Kinematic;
                         falling = false;
+                        fallTime = 0;
+                        hitPlayer = false;
                     }
                 }
             }
         }
+    }
+
+    IEnumerator StartFall()
+    {
+        Collider2D[] playerObjects = (Physics2D.OverlapCircleAll(transform.position + Vector3.down, 1f, playerLayers));
+        foreach (Collider2D hitObject in playerObjects)
+        {
+            Debug.Log("polling for player");
+            if (hitObject.gameObject.GetComponent<PlayerController>())
+                hitPlayer = true;
+        }
+        yield return new WaitForEndOfFrame();
+
+        falling = true;
+        yield return new WaitUntil(() => ((hitPlayer && fallTime >= waitTIme) || !hitPlayer));
+        rb.bodyType = RigidbodyType2D.Dynamic;
+
     }
 }
