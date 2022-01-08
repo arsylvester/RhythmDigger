@@ -138,7 +138,7 @@ public class Conductor : Singleton<Conductor>
         yield return new WaitForSeconds(delayTime); //0.206
         InvokeRepeating("CreateBeats",0,secPerBeat);
         // InvokeRepeating("FlashAllBeats", 0, secPerBeat);
-        InvokeRepeating("FlashVignette", 0, secPerBeat);
+        // InvokeRepeating("FlashVignette", 0, secPerBeat);
     }
     void FlashAllBeats()
 	{
@@ -160,7 +160,7 @@ public class Conductor : Singleton<Conductor>
     public void ResetChain()
     {
         chainSize = 0;
-        goldMultiplier = 1;
+        GameManager._instance.goldMultiplier = 1;
         if(early)
             UIManager._instance.NotificationText("Early!");
         else
@@ -195,7 +195,7 @@ public class Conductor : Singleton<Conductor>
             StartCoroutine(killBeat(topBeat2));
             chainSize++; 
             missedBeats = 0;
-            goldMultiplier = (int)Mathf.Ceil((float)chainSize/10f);
+            GameManager._instance.goldMultiplier = (int)Mathf.Ceil((float)chainSize/10f);
             // UIManager._instance.UpdateChainCount(chainSize);
             // goldMultiplier = (int)Mathf.Ceil((float)chainSize/3f);
             UpdateComboAnim();
@@ -217,7 +217,7 @@ public class Conductor : Singleton<Conductor>
     
     void UpdateComboAnim()
     {
-        comboAnimator.SetInteger("Multiplier",goldMultiplier);
+        comboAnimator.SetInteger("Multiplier",GameManager._instance.goldMultiplier);
         UIManager._instance.UpdateChainCount(chainSize);
     }
 

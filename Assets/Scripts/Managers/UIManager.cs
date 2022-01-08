@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour
     {
         // chainText.text = "Chain: " + chain.ToString().PadLeft(5);
         chainText.text = chain.ToString();//.PadLeft(5);
-        int newGoldMult = Conductor._instance.goldMultiplier;    
+        int newGoldMult = GameManager._instance.goldMultiplier;    
         if(newGoldMult > prevGoldMult)
         {
             NotificationText("x"+newGoldMult+" multiplier!");

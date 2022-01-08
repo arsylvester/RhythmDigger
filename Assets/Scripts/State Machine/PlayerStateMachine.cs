@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerStateEnums { Idle, Move, Jump, Fall, Land, Attack, AttackMove, Charge, ChargeAttack, ChargeAttackMove, Blocked, Hurt, Dead }; //Idle, Move, Dodge, Jump, Fall, Land, Attack, Hurt, Dead 
+public enum PlayerStateEnums { Idle, Move, Jump, Fall, Land, Attack, AttackMove, Charge, ChargeAttack, ChargeAttackMove, Blocked, Hurt, Dead, TimelineIdle }; //Idle, Move, Dodge, Jump, Fall, Land, Attack, Hurt, Dead 
 
 public class PlayerStateMachine : MonoBehaviour
 {
+    [SerializeField] public bool timelineMode = false;
     public static PlayerStateMachine current;
     public PlayerState currentState;
     public PlayerState previousState;
@@ -63,6 +64,17 @@ public class PlayerStateMachine : MonoBehaviour
     {
         if (!busyChange)
         {
+            if(timelineMode)
+            {
+                // Instead of returning to idle, change to TimelineState
+                switch(newState)
+                {
+                    case PlayerStateEnums.Idle:
+                        newState = PlayerStateEnums.TimelineIdle;
+                        break;
+                }
+                
+            }
             StartCoroutine(ChangeStateWait(newState));
         }
     }

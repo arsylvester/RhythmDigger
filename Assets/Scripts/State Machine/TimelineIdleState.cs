@@ -1,12 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PlayerStates/Idle")]
-public class IdleState : PlayerState
+[CreateAssetMenu(menuName = "PlayerStates/Timeline Idle")]
+public class TimelineIdleState : PlayerState
 {
     public bool requireBeat = true;
-    [SerializeField] public bool timelineMode = false;
 
     //IF IDLE STATE FOR LONGER THAN 10 FRAMES AND KILLED ENEMY  DO RELOAD //THIS WAY COMBOS AREN'T INTERRUPTED
     public override void Init(PlayerStateMachine playerMachine)
@@ -85,20 +84,12 @@ public class IdleState : PlayerState
             playerStateMachine.ChangeState(PlayerStateEnums.Fall);
         }
         // If Player inputs to move character
-        Vector2 moveDir;
-        if(!timelineMode){
-            moveDir = playerController.InputDir;
-        } else {
-            moveDir = playerController.InputDir;
-        }
-        
-        // if ((moveDir.x !=0 || moveDir.y == -1) && playerController.moveBuffer > 0)
-        if ((moveDir.x !=0 || moveDir.y == -1) && playerController.moveBuffer > 0)
+        if ((playerController.InputDir.x !=0 || playerController.InputDir.y == -1) && playerController.moveBuffer > 0)
         {
             playerController.moveBuffer = 0;
             if (!requireBeat || Conductor._instance.CheckValidBeat())
             {
-                TryMoveInDir(moveDir);
+                TryMoveInDir(playerController.InputDir);
             }
 			else if(!Conductor._instance.CheckValidBeat())
 			{
