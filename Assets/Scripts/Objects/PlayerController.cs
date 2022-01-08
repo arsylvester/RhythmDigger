@@ -50,10 +50,11 @@ public class PlayerController : InteractableObject
 
     public int fallBuffer;
     public bool button1Hold;
+    public bool quitHold;
 
 
     public PlayerInputActions inputAction;
-    public Vector2 InputDir => _inputDir;
+    public Vector2 InputDir;
 
     [Header("   MovementVFX")]
     [Space(10)]
@@ -76,6 +77,9 @@ public class PlayerController : InteractableObject
 
     public int floatTime;
     public CinemachineImpulseSource impulseSource => GetComponent<CinemachineImpulseSource>();
+
+    public bool animatePlayer;
+
     void Start()
     {
         HP = maxHP;
@@ -85,7 +89,7 @@ public class PlayerController : InteractableObject
     {
         inputAction = new PlayerInputActions();
         inputAction.PlayerControls.Move.performed += ctx => _inputDir = ctx.ReadValue<Vector2>();
-        inputAction.PlayerControls.Reset.performed += ctx => PlayerDeath(); // This is for when the player gets stuck
+        //inputAction.PlayerControls.Reset.performed += ctx => PlayerDeath(); // This is for when the player gets stuck
         inputAction.Enable();
         isDead = false;
     }
@@ -143,6 +147,8 @@ public class PlayerController : InteractableObject
         playerMachine.OnUpdate();
         anim.SetFloat("scaledTime", scaledTime);
 
+        if (!animatePlayer)
+            InputDir = _inputDir;
         if (InputDir.sqrMagnitude != 0)
         {
             if (canRotate)
@@ -347,6 +353,13 @@ public class PlayerController : InteractableObject
 
     void BufferInputs()
     {
+
+        if (inputAction.PlayerControls.Quit.triggered)
+            quitHold = true;
+
+        if (inputAction.PlayerControls.QuitRelease.triggered)
+            quitHold = false;
+
         if (inputAction.PlayerControls.Button1.triggered)
         {
             button1Buffer = inputBuffer;
@@ -362,7 +375,7 @@ public class PlayerController : InteractableObject
         if (inputAction.PlayerControls.MovePressUp.triggered ||
             inputAction.PlayerControls.MovePressDown.triggered ||
             inputAction.PlayerControls.MovePressLeft.triggered ||
-            inputAction.PlayerControls.MovePressRight.triggered)
+            inputAction.PlayerControls.MovePressRight.triggered || animatePlayer)
             moveBuffer = inputBuffer;
 
         if (InputDir.y == -1)

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
-
+using UnityEngine.InputSystem;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI goldText, goldTextLabel;
@@ -44,12 +44,12 @@ public class UIManager : MonoBehaviour
     {
         activeTime += Time.deltaTime;
         // This will cause the "Press ESC to reset" ui to appear
-        if( Input.anyKeyDown)
+        if( Keyboard.current.anyKey.wasPressedThisFrame)
         {
             timeOfLastKey = activeTime;
             HideResetUI();
         }
-        if (Mathf.Abs(activeTime - timeOfLastKey) > resetWaitTime & resetUIobj.activeSelf == false & !Conductor._instance.gameIsOver)
+        if (Mathf.Abs(activeTime - timeOfLastKey) > resetWaitTime & resetUIobj.activeSelf == false & !Conductor._instance.gameIsOver) //is this supposed to be single &     -CB 1/8/21
         {
             ShowResetUI();
         }

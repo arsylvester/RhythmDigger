@@ -25,6 +25,7 @@ MonoBehaviour:
   DestroyFX: {fileID: 1309123209376534164, guid: fff46d2cc19fc374eb7178fd8f4d9756, type: 3}
   exploding: 0
   destructionIntensity: 1.5
+  waitTIme: 0.06
   blocksToDestroy:
   - {x: -1, y: -1}
   - {x: -1, y: 0}

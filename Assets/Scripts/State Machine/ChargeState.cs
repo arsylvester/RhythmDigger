@@ -7,7 +7,7 @@ public class ChargeState : PlayerState
 {
     public int minTime;
     public bool requireBeat;
-    [SerializeField] public bool timelineMode = false;
+    public GameObject chargeFX;
     public override void Init(PlayerStateMachine playerMachine)
     {
         playerStateMachine = playerMachine;
@@ -76,8 +76,35 @@ public class ChargeState : PlayerState
                 playerController.moveBuffer = 0;
                 if (Conductor._instance.CheckValidBeat() || !requireBeat)
                 {
-                    TryChargedMoveInDir(playerController.InputDir);
-                    
+                    if (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right || playerController.InputDir == Vector2.down)
+                        playerController.storedDir = playerController.InputDir;
+
+                    Instantiate(chargeFX, playerController.transform.position + new Vector3(playerController.storedDir.x, 0.5f + playerController.storedDir.y, 0), Quaternion.identity);
+                    Instantiate(chargeFX, playerController.transform.position + new Vector3(playerController.storedDir.x * 2, 0.5f + playerController.storedDir.y *2, 0), Quaternion.identity);
+                    bool canMove = playerController.CheckOpenBlock(playerController.storedDir);
+                    if (canMove)
+                    {
+                        playerController.CheckBlock(playerController.storedDir * 2, 3);
+
+                        playerStateMachine.ChangeState(PlayerStateEnums.ChargeAttackMove);
+                        //Debug.Log("Normal Move");
+                    }
+                    else
+                    {
+                        if (!playerController.CheckBlock(playerController.storedDir, 3) && (playerController.storedDir == Vector2.left || playerController.storedDir == Vector2.right))
+                        {
+                            // Debug.Log("Move Dig");
+                            playerController.CheckBlock(playerController.storedDir * 2, 3);
+                            playerStateMachine.ChangeState(PlayerStateEnums.ChargeAttackMove);
+                        }
+                        else
+                        {
+                            // Debug.Log("Dig");
+                            playerStateMachine.ChangeState(PlayerStateEnums.ChargeAttack);
+                            playerController.CheckBlock(playerController.storedDir * 2, 3);
+
+                        }
+                    }
                 }
                 else if (!Conductor._instance.CheckValidBeat())
                 {

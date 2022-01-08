@@ -80,6 +80,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5792909823721403276, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
+      propertyPath: waitTIme
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792909823721403276, guid: 6bd0e5d6e16e52c4c8eb24fa84f2ad03, type: 3}
       propertyPath: blockHealth
       value: 999
       objectReference: {fileID: 0}

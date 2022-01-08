@@ -18,3 +18,4 @@ MonoBehaviour:
   loop: 1
   iasa: 0
   requireBeat: 1
+  ResetState: {fileID: 11400000, guid: d428284aee3fbd040b615ded1be0ac9c, type: 2}

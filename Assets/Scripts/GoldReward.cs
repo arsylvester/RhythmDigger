@@ -10,7 +10,7 @@ public class GoldReward : MonoBehaviour
 	{
 		Value = Mathf.FloorToInt(Random.Range(0.2f, 1.5f)) * Random.Range(1, 6);
 		GetComponent<Rigidbody2D>().AddForce(Vector2.up + new Vector2(Random.Range(-1.1f, 1.1f), Random.Range(-1.1f, 1.1f)), ForceMode2D.Impulse);
-		GetComponent<Rigidbody2D>().AddTorque(Random.Range(-10, 10), ForceMode2D.Impulse);
+		GetComponent<Rigidbody2D>().AddTorque(Random.Range(-2, 2), ForceMode2D.Impulse);
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
