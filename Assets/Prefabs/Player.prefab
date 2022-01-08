@@ -275,7 +275,6 @@ GameObject:
   - component: {fileID: 8325515743459368555}
   - component: {fileID: 8325515743459368554}
   - component: {fileID: 7067131626584333949}
-  - component: {fileID: 1385160447}
   - component: {fileID: 4912641321060182782}
   m_Layer: 8
   m_Name: Player
@@ -332,7 +331,7 @@ MonoBehaviour:
   targetVelocity: {x: 0, y: 0}
   storeGroundVelocityTime: 0
   terminalYVelocity: -100
-  gravity: 5
+  gravity: 6
   gravityMod: 1
   isGrounded: 0
   groundLayers:
@@ -381,8 +380,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b818f9da1d0de9841b2dd9bb31179952, type: 2}
   - {fileID: 11400000, guid: 2d9fc5b55e0a7cb4b904e54facbd9892, type: 2}
   - {fileID: 11400000, guid: 67c6ec9800a6ab1489f3048e65f65d81, type: 2}
+  - {fileID: 11400000, guid: d428284aee3fbd040b615ded1be0ac9c, type: 2}
   canRotate: 1
-  _inputDir: {x: 1, y: 0}
+  _inputDir: {x: 0, y: 0}
   facingDir: {x: 1, y: 0}
   storedDir: {x: 1, y: 0}
   inputBuffer: 6
@@ -391,6 +391,8 @@ MonoBehaviour:
   button1ReleaseBuffer: 0
   fallBuffer: 0
   button1Hold: 0
+  quitHold: 0
+  InputDir: {x: 0, y: 0}
   dustTime: 0
   dustParticle: {fileID: 0}
   drawHitboxes: 0
@@ -399,6 +401,8 @@ MonoBehaviour:
   hurtSFX: {fileID: 11400000, guid: 0557edd5159c6f8469315703b4a86e28, type: 2}
   deathSFX: {fileID: 11400000, guid: 77ac053d4003c1643833efdcc1e10023, type: 2}
   deathVFX: {fileID: 1087585908502100152, guid: 99f8c6585cd5e304eabe653b810e49d8, type: 3}
+  floatTime: 0
+  animatePlayer: 0
 --- !u!114 &7861333442394197749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,48 +550,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1385160447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8325515743459368551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpulseDefinition:
-    m_ImpulseChannel: 1
-    m_RawSignal: {fileID: 11400000, guid: ceb779b00b368b24b8b82647627c4759, type: 2}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_RepeatMode: 0
-    m_Randomize: 1
-    m_TimeEnvelope:
-      m_AttackShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_DecayShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_AttackTime: 0
-      m_SustainTime: 0.2
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
-      m_HoldForever: 0
-    m_ImpactRadius: 100
-    m_DirectionMode: 0
-    m_DissipationMode: 2
-    m_DissipationDistance: 1000
-    m_PropagationSpeed: 1000
 --- !u!114 &4912641321060182782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,24 +572,78 @@ MonoBehaviour:
     m_TimeEnvelope:
       m_AttackShape:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0.0016174316
+          inSlope: 0.03950174
+          outSlope: 0.03950174
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.0072572837
+        - serializedVersion: 3
+          time: 0.75
+          value: 1
+          inSlope: 0.7158969
+          outSlope: 0.7158969
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: Infinity
+          outSlope: Infinity
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
       m_DecayShape:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: -140.51671
+          outSlope: -140.51671
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.0071165925
+          value: 0
+          inSlope: Infinity
+          outSlope: Infinity
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      m_AttackTime: 0
+      m_AttackTime: 0.5
       m_SustainTime: 0.2
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
+      m_DecayTime: 0.02
+      m_ScaleWithImpact: 0
       m_HoldForever: 0
     m_ImpactRadius: 100
     m_DirectionMode: 0
-    m_DissipationMode: 2
+    m_DissipationMode: 0
     m_DissipationDistance: 1000
     m_PropagationSpeed: 1000
 --- !u!1 &8325515743901659081
