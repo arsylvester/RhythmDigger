@@ -6,7 +6,6 @@ public enum PlayerStateEnums { Idle, Move, Jump, Fall, Land, Attack, AttackMove,
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    [SerializeField] public bool timelineMode = false;
     public static PlayerStateMachine current;
     public PlayerState currentState;
     public PlayerState previousState;
@@ -19,13 +18,13 @@ public class PlayerStateMachine : MonoBehaviour
     public void StartMachine(GameObject playerObject, List<PlayerState> states)
     {
         if(current == null)
-		{
+        {
             current = this;
-		}
-		else
-		{
+        }
+        else
+        {
             Destroy(this.gameObject);
-		}
+        }
         stateDictionary = new Dictionary<PlayerStateEnums, PlayerState>();
 
         for (int i = 0; i<states.Count; i++)
@@ -64,17 +63,6 @@ public class PlayerStateMachine : MonoBehaviour
     {
         if (!busyChange)
         {
-            if(timelineMode)
-            {
-                // Instead of returning to idle, change to TimelineState
-                switch(newState)
-                {
-                    case PlayerStateEnums.Idle:
-                        newState = PlayerStateEnums.TimelineIdle;
-                        break;
-                }
-                
-            }
             StartCoroutine(ChangeStateWait(newState));
         }
     }
@@ -88,5 +76,4 @@ public class PlayerStateMachine : MonoBehaviour
         yield return new WaitForEndOfFrame();
         busyChange = false;
     }
-
 }

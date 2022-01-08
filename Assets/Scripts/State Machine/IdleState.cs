@@ -6,8 +6,6 @@ using UnityEngine;
 public class IdleState : PlayerState
 {
     public bool requireBeat = true;
-    [SerializeField] public bool timelineMode = false;
-
 
     //IF IDLE STATE FOR LONGER THAN 10 FRAMES AND KILLED ENEMY  DO RELOAD //THIS WAY COMBOS AREN'T INTERRUPTED
     public override void Init(PlayerStateMachine playerMachine)
@@ -31,7 +29,6 @@ public class IdleState : PlayerState
         playerController.canBounce = false;
     }
 
-
     public override void OnUpdate()
     {
         base.OnUpdate();
@@ -46,42 +43,12 @@ public class IdleState : PlayerState
     {
 
     }
-    public void TryMoveRight(){TryMoveInDir(Vector2.right);} // Used in timeline control
-    public void TryMoveLeft(){TryMoveInDir(Vector2.left);}  // Used in timeline control
-    public void TryMoveDown(){TryMoveInDir(Vector2.down);}  // Used in timeline control
-    public void TryCharge(){playerStateMachine.ChangeState(PlayerStateEnums.Charge);}  // Used in timeline control
-
-    public void TryMoveInDir(Vector2 direction)
-    {
-        if (direction == Vector2.left || direction == Vector2.right || direction == Vector2.down)
-            playerController.storedDir = direction;
-        bool canMove = playerController.CheckOpenBlock(playerController.storedDir);
-        if (canMove )
-        {
-            playerStateMachine.ChangeState(PlayerStateEnums.Move);
-            //Debug.Log("Normal Move");
-        }
-        else
-        {
-            if (!playerController.CheckBlock(playerController.storedDir, 1) && (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right))
-            {
-                //Debug.Log("Move Dig");
-                playerStateMachine.ChangeState(PlayerStateEnums.AttackMove);
-            }
-            else
-            {
-                //Debug.Log("Dig");
-                playerStateMachine.ChangeState(PlayerStateEnums.Attack);
-            }
-        }
-    }
 
     public override void HandleState()
     {
         base.HandleState();
 
-
-        if (!playerController.isGrounded)
+        if (!playerStateMachine.playerController.isGrounded)
         {
             playerStateMachine.ChangeState(PlayerStateEnums.Fall);
         }
@@ -95,20 +62,40 @@ public class IdleState : PlayerState
         if ((playerStateMachine.playerController.InputDir.x !=0 || playerStateMachine.playerController.InputDir.y == -1) && playerController.moveBuffer > 0)
         {
             playerController.moveBuffer = 0;
-            if (!requireBeat || Conductor._instance.CheckValidBeat())
+            if (Conductor._instance.CheckValidBeat() || !requireBeat)
             {
-                TryMoveInDir(moveDir);
+                if (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right || playerController.InputDir == Vector2.down)
+                    playerController.storedDir = playerController.InputDir;
+                bool canMove = playerController.CheckOpenBlock(playerController.storedDir);
+                if (canMove )
+                {
+                    playerStateMachine.ChangeState(PlayerStateEnums.Move);
+                    //Debug.Log("Normal Move");
+                }
+                else
+                {
+                    if (!playerController.CheckBlock(playerController.storedDir, 1) && (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right))
+                    {
+                        //Debug.Log("Move Dig");
+                        playerStateMachine.ChangeState(PlayerStateEnums.AttackMove);
+                    }
+                    else
+                    {
+                        //Debug.Log("Dig");
+                        playerStateMachine.ChangeState(PlayerStateEnums.Attack);
+                    }
+                }
             }
-			else if(!Conductor._instance.CheckValidBeat())
-			{
+            else if(!Conductor._instance.CheckValidBeat())
+            {
                 playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
-			}
+            }
         }
         if (playerStateMachine.playerController.button1Buffer > 0 && playerStateMachine.playerController.button1Hold)
         {
-			if (Conductor._instance.CheckValidBeat() || !requireBeat)
-			{
-                playerStateMachine.ChangeState(PlayerStateEnums.Charge);
+            if (Conductor._instance.CheckValidBeat() || !requireBeat)
+            {
+                    playerStateMachine.ChangeState(PlayerStateEnums.Charge);
 
             }
             else if (!Conductor._instance.CheckValidBeat())
@@ -135,4 +122,3 @@ public class IdleState : PlayerState
         }
     }
 }
-

@@ -33,40 +33,11 @@ public class ChargeState : PlayerState
         playerStateMachine.playerController.anim.SetFloat("yDir", Mathf.Abs(playerStateMachine.playerController.storedDir.y));
     }
 
-
     public override void OnExit()
     {
 
-
     }
 
-    public void TryChargedMoveInDir(Vector2 direction)
-    {
-        if (direction == Vector2.left || direction == Vector2.right || direction == Vector2.down)
-            playerController.storedDir = direction;
-        bool canMove = playerController.CheckOpenBlock(playerController.storedDir);
-        if (canMove)
-        {
-            playerController.CheckBlock(playerController.storedDir * 2, 3);
-            playerStateMachine.ChangeState(PlayerStateEnums.ChargeAttackMove);
-            //Debug.Log("Normal Move");
-        }
-        else
-        {
-            if (!playerController.CheckBlock(playerController.storedDir, 3) && (playerController.storedDir == Vector2.left || playerController.storedDir == Vector2.right))
-            {
-                // Debug.Log("Move Dig");
-                playerController.CheckBlock(playerController.storedDir * 2, 3);
-                playerStateMachine.ChangeState(PlayerStateEnums.ChargeAttackMove);
-            }
-            else
-            {
-                // Debug.Log("Dig");
-                playerStateMachine.ChangeState(PlayerStateEnums.ChargeAttack);
-                playerController.CheckBlock(playerController.storedDir * 2, 3);
-            }
-        }
-    }
     public override void HandleState()
     {
         if ((!playerStateMachine.playerController.button1Hold || playerStateMachine.playerController.button1ReleaseBuffer > 0) )
@@ -111,7 +82,7 @@ public class ChargeState : PlayerState
                     playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
                 }
             }
-			else
+            else
             {
                 playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
             }
