@@ -32,7 +32,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""e38e2dc4-851f-4b25-9daf-efe55bde1157"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Button2"",
@@ -40,7 +40,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""e7b9ed61-e2db-46e5-a0b6-b6ee291090d1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Button3"",
@@ -128,7 +128,15 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""1f7fdd08-4063-41ff-8e4a-a309eb6174c3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""QuitRelease"",
+                    ""type"": ""Button"",
+                    ""id"": ""0ab6f71f-a9bd-4f33-8b31-20d09225c266"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
                 },
                 {
                     ""name"": ""Scroll"",
@@ -472,6 +480,17 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7d5e5712-7c66-428b-8f29-3fb5f3cd0fb8"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""0eaa9ea4-ed35-4545-b6b3-6c83c1566578"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
@@ -489,6 +508,28 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d10a9572-5444-4658-9693-29592b30c903"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuitRelease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef23361c-8010-4975-b147-f4ef2887e64a"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuitRelease"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -513,6 +554,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_PlayerControls_Test = m_PlayerControls.FindAction("Test", throwIfNotFound: true);
         m_PlayerControls_Any = m_PlayerControls.FindAction("Any", throwIfNotFound: true);
         m_PlayerControls_Quit = m_PlayerControls.FindAction("Quit", throwIfNotFound: true);
+        m_PlayerControls_QuitRelease = m_PlayerControls.FindAction("QuitRelease", throwIfNotFound: true);
         m_PlayerControls_Scroll = m_PlayerControls.FindAction("Scroll", throwIfNotFound: true);
     }
 
@@ -577,6 +619,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerControls_Test;
     private readonly InputAction m_PlayerControls_Any;
     private readonly InputAction m_PlayerControls_Quit;
+    private readonly InputAction m_PlayerControls_QuitRelease;
     private readonly InputAction m_PlayerControls_Scroll;
     public struct PlayerControlsActions
     {
@@ -596,6 +639,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Test => m_Wrapper.m_PlayerControls_Test;
         public InputAction @Any => m_Wrapper.m_PlayerControls_Any;
         public InputAction @Quit => m_Wrapper.m_PlayerControls_Quit;
+        public InputAction @QuitRelease => m_Wrapper.m_PlayerControls_QuitRelease;
         public InputAction @Scroll => m_Wrapper.m_PlayerControls_Scroll;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
@@ -648,6 +692,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Quit.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnQuit;
                 @Quit.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnQuit;
                 @Quit.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnQuit;
+                @QuitRelease.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnQuitRelease;
+                @QuitRelease.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnQuitRelease;
+                @QuitRelease.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnQuitRelease;
                 @Scroll.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnScroll;
                 @Scroll.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnScroll;
                 @Scroll.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnScroll;
@@ -697,6 +744,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Quit.started += instance.OnQuit;
                 @Quit.performed += instance.OnQuit;
                 @Quit.canceled += instance.OnQuit;
+                @QuitRelease.started += instance.OnQuitRelease;
+                @QuitRelease.performed += instance.OnQuitRelease;
+                @QuitRelease.canceled += instance.OnQuitRelease;
                 @Scroll.started += instance.OnScroll;
                 @Scroll.performed += instance.OnScroll;
                 @Scroll.canceled += instance.OnScroll;
@@ -720,6 +770,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnTest(InputAction.CallbackContext context);
         void OnAny(InputAction.CallbackContext context);
         void OnQuit(InputAction.CallbackContext context);
+        void OnQuitRelease(InputAction.CallbackContext context);
         void OnScroll(InputAction.CallbackContext context);
     }
 }

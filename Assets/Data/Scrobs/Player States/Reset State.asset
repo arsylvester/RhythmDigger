@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92840d1f3e15061438bc61f97d50ec1a, type: 3}
-  m_Name: Dead State
+  m_Script: {fileID: 11500000, guid: c8af7d95e65d9b94289707764b1bf7b0, type: 3}
+  m_Name: Reset State
   m_EditorClassIdentifier: 
   playerStateMachine: {fileID: 0}
   playerController: {fileID: 0}
-  maxTime: 120
-  loop: 1
+  maxTime: 60
+  loop: 0
   iasa: 0
-  bounceMat: {fileID: 6200000, guid: d318ec44b353c9d4fbfacb98054b33af, type: 2}
-  deadSFX: {fileID: 8300000, guid: 41c609bb13bba414bbde9ef6dc5311f1, type: 3}
+  impulseAmount: 0.25

@@ -37,7 +37,7 @@ public class DeadState : PlayerState
     {
         playerStateMachine.playerController.internalVelocity *= playerStateMachine.playerController.friction;
         if (playerStateMachine.playerController.currentTime > maxTime) 
-        if ((Mathf.RoundToInt(playerStateMachine.playerController.externalVelocity.sqrMagnitude * 100) / 100) <= 1 && !playerStateMachine.playerController.isDead && playerStateMachine.playerController.isGrounded)
+        if ((Mathf.RoundToInt(playerStateMachine.playerController.externalVelocity.sqrMagnitude * 100) / 100) <= 0.1f && !playerStateMachine.playerController.isDead && playerStateMachine.playerController.isGrounded)
             playerStateMachine.playerController.PlayerDeath();
     }
 

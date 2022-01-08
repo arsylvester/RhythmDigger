@@ -19,7 +19,7 @@
                     "id": "e38e2dc4-851f-4b25-9daf-efe55bde1157",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "Button2",
@@ -27,7 +27,7 @@
                     "id": "e7b9ed61-e2db-46e5-a0b6-b6ee291090d1",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "Button3",
@@ -115,7 +115,15 @@
                     "id": "1f7fdd08-4063-41ff-8e4a-a309eb6174c3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
+                },
+                {
+                    "name": "QuitRelease",
+                    "type": "Button",
+                    "id": "0ab6f71f-a9bd-4f33-8b31-20d09225c266",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)"
                 },
                 {
                     "name": "Scroll",
@@ -459,6 +467,17 @@
                 },
                 {
                     "name": "",
+                    "id": "7d5e5712-7c66-428b-8f29-3fb5f3cd0fb8",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "0eaa9ea4-ed35-4545-b6b3-6c83c1566578",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
@@ -476,6 +495,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d10a9572-5444-4658-9693-29592b30c903",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuitRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef23361c-8010-4975-b147-f4ef2887e64a",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuitRelease",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -801,10 +801,198 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_DissipationMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_DecayTime
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_ScaleWithImpact
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_DecayShape.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_DecayShape.m_Curve.Array.data[1].time
+      value: 0.0071165925
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_DecayShape.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[1].time
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[3].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[4].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_DecayShape.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[0].value
+      value: 0.0016174316
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[2].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[3].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[4].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_DecayShape.m_Curve.Array.data[0].inSlope
+      value: -140.51671
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_DecayShape.m_Curve.Array.data[1].inSlope
+      value: Infinity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[0].inSlope
+      value: 0.03950174
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[1].inSlope
+      value: 0.7158969
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[2].inSlope
+      value: Infinity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[3].inSlope
+      value: 0.032276057
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[4].inSlope
+      value: 0.032276057
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_DecayShape.m_Curve.Array.data[0].outSlope
+      value: -140.51671
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_DecayShape.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_DecayShape.m_Curve.Array.data[1].outSlope
+      value: Infinity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_DecayShape.m_Curve.Array.data[2].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[0].outSlope
+      value: 0.03950174
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[1].outSlope
+      value: 0.7158969
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[2].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[2].outSlope
+      value: Infinity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[3].inWeight
+      value: 0.093932725
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[3].outSlope
+      value: 0.032276057
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[4].inWeight
+      value: 0.093932725
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[4].outSlope
+      value: 0.032276057
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_DecayShape.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[0].outWeight
+      value: 0.0072572837
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[2].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.data[3].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_DecayShape.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912641321060182782, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: m_ImpulseDefinition.m_TimeEnvelope.m_DecayShape.m_Curve.Array.data[2].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
     - target: {fileID: 5641058688064493569, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
       propertyPath: gravity
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5641058688064493569, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: states.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5641058688064493569, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: states.Array.data[13]
+      value: 
+      objectReference: {fileID: 11400000, guid: d428284aee3fbd040b615ded1be0ac9c, type: 2}
     - target: {fileID: 8325515743459368551, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1388,7 +1576,7 @@ MonoBehaviour:
   notifParentUI: {fileID: 2102914379}
   resetUIobj: {fileID: 639445115}
   notifDuration: 3
-  resetWaitTime: 3
+  resetWaitTime: 5
   resetTransitionTime: 1
 --- !u!1 &307900508
 GameObject:
@@ -2209,7 +2397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -13.33, y: 55}
+  m_AnchoredPosition: {x: -13.329987, y: 55}
   m_SizeDelta: {x: -103, y: 14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &639445117
@@ -3007,7 +3195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ChannelMask: 1
+  m_ChannelMask: -1
   m_Gain: 1
   m_Use2DDistance: 1
 --- !u!1001 &997288903

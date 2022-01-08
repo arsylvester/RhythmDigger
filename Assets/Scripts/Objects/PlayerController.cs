@@ -50,6 +50,7 @@ public class PlayerController : InteractableObject
 
     public int fallBuffer;
     public bool button1Hold;
+    public bool quitHold;
 
 
     public PlayerInputActions inputAction;
@@ -85,7 +86,7 @@ public class PlayerController : InteractableObject
     {
         inputAction = new PlayerInputActions();
         inputAction.PlayerControls.Move.performed += ctx => _inputDir = ctx.ReadValue<Vector2>();
-        inputAction.PlayerControls.Reset.performed += ctx => PlayerDeath(); // This is for when the player gets stuck
+        //inputAction.PlayerControls.Reset.performed += ctx => PlayerDeath(); // This is for when the player gets stuck
         inputAction.Enable();
         isDead = false;
     }
@@ -347,6 +348,13 @@ public class PlayerController : InteractableObject
 
     void BufferInputs()
     {
+
+        if (inputAction.PlayerControls.Quit.triggered)
+            quitHold = true;
+
+        if (inputAction.PlayerControls.QuitRelease.triggered)
+            quitHold = false;
+
         if (inputAction.PlayerControls.Button1.triggered)
         {
             button1Buffer = inputBuffer;
