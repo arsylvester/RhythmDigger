@@ -130,7 +130,7 @@ public class AttackState : PlayerState
 
     public override void OnFixedUpdate()
     {
-        if (playerStateMachine.playerController._inputDir != Vector2.zero && playerStateMachine.playerController.currentTime < 4)
+        if (playerStateMachine.playerController.InputDir != Vector2.zero && playerStateMachine.playerController.currentTime < 4)
         {
             GetStats();
         }

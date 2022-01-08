@@ -54,7 +54,7 @@ public class PlayerController : InteractableObject
 
 
     public PlayerInputActions inputAction;
-    public Vector2 InputDir => _inputDir;
+    public Vector2 InputDir;
 
     [Header("   MovementVFX")]
     [Space(10)]
@@ -77,6 +77,9 @@ public class PlayerController : InteractableObject
 
     public int floatTime;
     public CinemachineImpulseSource impulseSource => GetComponent<CinemachineImpulseSource>();
+
+    public bool animatePlayer;
+
     void Start()
     {
         HP = maxHP;
@@ -144,6 +147,8 @@ public class PlayerController : InteractableObject
         playerMachine.OnUpdate();
         anim.SetFloat("scaledTime", scaledTime);
 
+        if (!animatePlayer)
+            InputDir = _inputDir;
         if (InputDir.sqrMagnitude != 0)
         {
             if (canRotate)
@@ -370,7 +375,7 @@ public class PlayerController : InteractableObject
         if (inputAction.PlayerControls.MovePressUp.triggered ||
             inputAction.PlayerControls.MovePressDown.triggered ||
             inputAction.PlayerControls.MovePressLeft.triggered ||
-            inputAction.PlayerControls.MovePressRight.triggered)
+            inputAction.PlayerControls.MovePressRight.triggered || animatePlayer)
             moveBuffer = inputBuffer;
 
         if (InputDir.y == -1)
