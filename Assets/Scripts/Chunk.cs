@@ -7,6 +7,8 @@ public class Chunk : MonoBehaviour
     public int height = 0;
     [SerializeField] int distanceToDespawn = 3000;
     private PlayerController player;
+    [Tooltip("Any chunks in the blacklist can not be spawned after this chunk.")]
+    public Chunk[] chunkBlackList;
 
     public void SetPlayer(PlayerController newPlayer)
     {
