@@ -44,6 +44,31 @@ public class IdleState : PlayerState
 
     }
 
+    public void TryMoveInDir(Vector2 direction)
+    {
+        if (direction == Vector2.left || direction == Vector2.right || direction == Vector2.down)
+            playerController.storedDir = direction;
+        bool canMove = playerController.CheckOpenBlock(playerController.storedDir);
+        if (canMove )
+        {
+            playerStateMachine.ChangeState(PlayerStateEnums.Move);
+            //Debug.Log("Normal Move");
+        }
+        else
+        {
+            if (!playerController.CheckBlock(playerController.storedDir, 1) && (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right))
+            {
+                //Debug.Log("Move Dig");
+                playerStateMachine.ChangeState(PlayerStateEnums.AttackMove);
+            }
+            else
+            {
+                //Debug.Log("Dig");
+                playerStateMachine.ChangeState(PlayerStateEnums.Attack);
+            }
+        }
+    }
+
     public override void HandleState()
     {
         base.HandleState();
@@ -62,29 +87,9 @@ public class IdleState : PlayerState
         if ((playerStateMachine.playerController.InputDir.x !=0 || playerStateMachine.playerController.InputDir.y == -1) && playerController.moveBuffer > 0)
         {
             playerController.moveBuffer = 0;
-            if (Conductor._instance.CheckValidBeat() || !requireBeat)
+            if (playerController.animatePlayer || Conductor._instance.CheckValidBeat() || !requireBeat)
             {
-                if (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right || playerController.InputDir == Vector2.down)
-                    playerController.storedDir = playerController.InputDir;
-                bool canMove = playerController.CheckOpenBlock(playerController.storedDir);
-                if (canMove )
-                {
-                    playerStateMachine.ChangeState(PlayerStateEnums.Move);
-                    //Debug.Log("Normal Move");
-                }
-                else
-                {
-                    if (!playerController.CheckBlock(playerController.storedDir, 1) && (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right))
-                    {
-                        //Debug.Log("Move Dig");
-                        playerStateMachine.ChangeState(PlayerStateEnums.AttackMove);
-                    }
-                    else
-                    {
-                        //Debug.Log("Dig");
-                        playerStateMachine.ChangeState(PlayerStateEnums.Attack);
-                    }
-                }
+                TryMoveInDir(playerController.InputDir);
             }
             else if(!Conductor._instance.CheckValidBeat())
             {
@@ -93,7 +98,7 @@ public class IdleState : PlayerState
         }
         if (playerStateMachine.playerController.button1Buffer > 0 && playerStateMachine.playerController.button1Hold)
         {
-            if (Conductor._instance.CheckValidBeat() || !requireBeat)
+            if (playerController.animatePlayer || Conductor._instance.CheckValidBeat() || !requireBeat)
             {
                     playerStateMachine.ChangeState(PlayerStateEnums.Charge);
 

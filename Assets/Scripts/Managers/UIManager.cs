@@ -57,9 +57,18 @@ public class UIManager : MonoBehaviour
     }
     
     private Vector2 resetUIinitalPos;
-    void Start()
+    void OnEnable()
     {
         GameManager.OnGoldGained += UpdateGoldCount;
+    }
+
+    void OnDisable()
+    {
+        GameManager.OnGoldGained -= UpdateGoldCount;
+    }
+    void Start()
+    {
+        
         UpdateGoldCount(0);
         resetUIinitalPos = resetUIobj.GetComponent<RectTransform>().anchoredPosition;
     }

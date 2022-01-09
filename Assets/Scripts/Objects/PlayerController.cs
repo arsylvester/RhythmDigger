@@ -170,6 +170,9 @@ public class PlayerController : InteractableObject
         //     // StartCoroutine(WaitRestart());
         //     PlayerDeath();
         // }
+        // This is to prevent infinite movement when animating the player
+        if(animatePlayer)
+            InputDir = new Vector2(0,0);
     }
 
   

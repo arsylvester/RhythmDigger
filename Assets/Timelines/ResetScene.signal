@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a69dccf1e3d25a14abd1543e89dfb83e, type: 3}
-  m_Name: Timeline Idle State
+  m_Script: {fileID: 11500000, guid: d6fa2d92fc1b3f34da284357edf89c3b, type: 3}
+  m_Name: ResetScene
   m_EditorClassIdentifier: 
-  playerStateMachine: {fileID: 0}
-  playerController: {fileID: 0}
-  maxTime: 60
-  loop: 1
-  iasa: 0
-  requireBeat: 0

@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class PlayerTimelineController : MonoBehaviour
 {
+    PlayerController playerController;
+    void Awake()
+    {
+        // playerController = PlayerController._instance();
+        if(!playerController)
+        {
+            TryGetComponent<PlayerController>(out playerController);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +27,13 @@ public class PlayerTimelineController : MonoBehaviour
 
     public void TryMoveRight()
     {
+        Debug.Log("TryMoveRight");
+        if(playerController)
+        {
+            playerController.InputDir = new Vector2(1,0);
+        }
+        // Player
+        // InputDir
         // TryMoveInDir(Vector2.right);
     } // Used in timeline control
     public void TryMoveLeft()
