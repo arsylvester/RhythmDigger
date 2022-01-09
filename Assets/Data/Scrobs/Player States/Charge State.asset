@@ -18,4 +18,5 @@ MonoBehaviour:
   loop: 1
   iasa: 0
   minTime: 15
-  requireBeat: 0
+  requireBeat: 1
+  chargeFX: {fileID: 8565037575720459991, guid: 24a8bd7ba392bf0498413c80cf43dbc5, type: 3}
