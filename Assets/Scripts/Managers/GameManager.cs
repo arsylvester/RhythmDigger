@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private int gold;
+    public int goldMultiplier = 1;
 
     public delegate void GoldGained(int num);
     public static event GoldGained OnGoldGained;
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     public void AddGold(int goldAdded)
     {
-        gold += goldAdded * Conductor._instance.goldMultiplier;
+        gold += goldAdded * goldMultiplier;
         OnGoldGained(gold);
     }
 

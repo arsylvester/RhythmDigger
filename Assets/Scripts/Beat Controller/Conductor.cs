@@ -29,7 +29,7 @@ public class Conductor : Singleton<Conductor>
 
     //the total number of loops completed since the looping clip first started
     public int completedLoops = 0;
-    public int chainSize = 0, highestChain = 0, goldMultiplier = 1, missedBeats = 0;
+    public int chainSize = 0, highestChain = 0, missedBeats = 0;
     [SerializeField] public int MAXMISSEDBEATS = 3;
     public Vector2 beatRange;
     public bool validBeat, early = false, musicPlaying, killChainOnMissedBeats;
@@ -160,7 +160,7 @@ public class Conductor : Singleton<Conductor>
     public void ResetChain()
     {
         chainSize = 0;
-        goldMultiplier = 1;
+        GameManager._instance.goldMultiplier = 1;
         if(early)
             UIManager._instance.NotificationText("Early!");
         else
@@ -194,7 +194,7 @@ public class Conductor : Singleton<Conductor>
             StartCoroutine(killBeat(topBeat2));
             chainSize++;
             missedBeats = 0;
-            goldMultiplier = (int)Mathf.Ceil((float)chainSize/10f);
+            GameManager._instance.goldMultiplier = (int)Mathf.Ceil((float)chainSize/10f);
             // goldMultiplier = (int)Mathf.Ceil((float)chainSize/3f);
             UpdateComboAnim();
             if (chainSize > highestChain){
@@ -215,7 +215,7 @@ public class Conductor : Singleton<Conductor>
 
     void UpdateComboAnim()
     {
-        comboAnimator.SetInteger("Multiplier",goldMultiplier);
+        comboAnimator.SetInteger("Multiplier",GameManager._instance.goldMultiplier);
     }
 
     public void HideBeatUI()

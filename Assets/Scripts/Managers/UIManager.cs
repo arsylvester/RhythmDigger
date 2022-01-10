@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour
     {
         // chainText.text = "Chain: " + chain.ToString().PadLeft(5);
         chainText.text = chain.ToString();//.PadLeft(5);
-        multText.text = "Multiplier x" + Conductor._instance.goldMultiplier.ToString();//.PadLeft(5);
+        multText.text = "Multiplier x" + GameManager._instance.goldMultiplier.ToString();//.PadLeft(5);
     }
 
     public void QuitButton()
