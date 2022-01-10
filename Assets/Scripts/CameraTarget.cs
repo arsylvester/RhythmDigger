@@ -14,12 +14,27 @@ public class CameraTarget : MonoBehaviour
     public GameObject vignette;
     public int expandVignetteFrameCount = 60;
     public float vignetteExpandedRadius = 1.75f;
-	private void Start()
+	
+    private void Awake()
+    {
+        Conductor.OnBeat += FlashVignette;
+    }
+    void OnDestroy()
+    {
+        Conductor.OnBeat -= FlashVignette;
+    }
+    private void Start()
 	{
 		if (instance != null && instance != this)
 		{ Destroy(this.gameObject); return; }
 		else
 			instance = this;
+	}
+
+    void FlashVignette()
+	{
+        if(!Conductor._instance.gameIsOver)
+            vignette.GetComponent<Animator>().Play("VignetteBeat", 0, 0);
 	}
 
     public void ResetToTop()

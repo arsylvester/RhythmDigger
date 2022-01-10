@@ -33,10 +33,8 @@ public class ChargeState : PlayerState
         playerStateMachine.playerController.anim.SetFloat("yDir", Mathf.Abs(playerStateMachine.playerController.storedDir.y));
     }
 
-
     public override void OnExit()
     {
-
 
     }
 
@@ -84,7 +82,7 @@ public class ChargeState : PlayerState
                     playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
                 }
             }
-			else
+            else
             {
                 playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
             }

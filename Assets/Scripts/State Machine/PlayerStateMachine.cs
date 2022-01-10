@@ -18,13 +18,13 @@ public class PlayerStateMachine : MonoBehaviour
     public void StartMachine(GameObject playerObject, List<PlayerState> states)
     {
         if(current == null)
-		{
+        {
             current = this;
-		}
-		else
-		{
+        }
+        else
+        {
             Destroy(this.gameObject);
-		}
+        }
         stateDictionary = new Dictionary<PlayerStateEnums, PlayerState>();
 
         for (int i = 0; i<states.Count; i++)
@@ -76,5 +76,4 @@ public class PlayerStateMachine : MonoBehaviour
         yield return new WaitForEndOfFrame();
         busyChange = false;
     }
-
 }

@@ -8,7 +8,7 @@ using DG.Tweening;
 
 public class StartMenuUIManager : MonoBehaviour
 {
-    [SerializeField] GameObject go_Title, go_ReturnBT, go_MainLayoutGroup, go_CreditsLayoutGroup;
+    [SerializeField] GameObject go_Title, go_MainLayoutGroup, go_CreditsPanel;
     [SerializeField] float delayBetweenWords = 0.75f;
     private RectTransform titleRectTransform;
     [SerializeField] float fadeDuration = 6f, swoopDuration = 3f;
@@ -36,15 +36,14 @@ public class StartMenuUIManager : MonoBehaviour
     public void CreditsButton()
     {
         go_MainLayoutGroup.SetActive(false);
-        go_CreditsLayoutGroup.SetActive(true);
-        go_ReturnBT.SetActive(true);
+        go_CreditsPanel.SetActive(true);
     }   
 
     public void ReturnButton()
     {
-        go_ReturnBT.SetActive(false);
-        go_CreditsLayoutGroup.SetActive(false);
-        StartCoroutine(TurnOnLayoutText(go_MainLayoutGroup, true));
+        go_CreditsPanel.SetActive(false);
+        go_MainLayoutGroup.SetActive(true);
+        // StartCoroutine(TurnOnLayoutText(go_MainLayoutGroup, true));
     }
 
     public void SettingsButton()
