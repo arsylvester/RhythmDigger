@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
-public class PlayerTimelineController : MonoBehaviour
+public class TimelineController : Singleton<TimelineController>
 {
     [SerializeField] PlayerController playerController;
     [SerializeField] GameObject startMenuChunkPrefab, playerGO;
     [SerializeField] Transform startMenuChunkCurrentTransform;
+    [SerializeField] PlayableDirector director_StartGame, director_Controls1, director_Controls2, director_Controls3;
     private Vector3 initialPlayerPosition;
     void Awake()
     {
@@ -35,6 +38,8 @@ public class PlayerTimelineController : MonoBehaviour
         Destroy(startMenuChunkCurrentTransform.gameObject);
         GameObject go = Instantiate(startMenuChunkPrefab,Vector3.zero,Quaternion.identity) as GameObject;
         startMenuChunkCurrentTransform = go.transform;
+        ChargeRelease();
+        QuitRelease();
         playerController.gameObject.transform.position = initialPlayerPosition;
     }
 
@@ -115,5 +120,16 @@ public class PlayerTimelineController : MonoBehaviour
         {
             playerController.quitHold = false;
         }
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Main Scene");
+    }
+
+    public void PlayTimeline_StartGame()
+    {
+        Debug.Log("PlayTimeline_StartGame");
+        director_StartGame.Play();
     }
 }

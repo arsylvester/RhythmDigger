@@ -14,6 +14,7 @@ public class StartMenuUIManager : MonoBehaviour
     [SerializeField] float fadeDuration = 6f, swoopDuration = 3f;
     private Vector2 titleIntialAnchoredPos;
     [SerializeField] public Vector2 titleSwoopInOffset;
+    [SerializeField] public TimelineController timelineController;
     
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,9 @@ public class StartMenuUIManager : MonoBehaviour
         titleRectTransform = go_Title.GetComponent<RectTransform>();
         titleIntialAnchoredPos = titleRectTransform.anchoredPosition;
         LoadMainMenu();
+        try{
+            timelineController = TimelineController._instance;
+        } catch {}
     }
 
     public void QuitButton()
@@ -30,7 +34,16 @@ public class StartMenuUIManager : MonoBehaviour
 
     public void StartButton()
     {
-        SceneManager.LoadScene("Main Scene");
+        Debug.Log("Starting game");
+        if(timelineController)
+        {
+            timelineController.PlayTimeline_StartGame();
+        }
+        else
+        {
+            SceneManager.LoadScene("Main Scene");
+        }
+        
     }
 
     public void CreditsButton()

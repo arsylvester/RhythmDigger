@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(PlayerTimelineController))]
-public class editor_PlayerTimelineController : Editor 
+[CustomEditor(typeof(TimelineController))]
+public class editor_TimelineController : Editor 
 {
     public override void OnInspectorGUI () 
     {
