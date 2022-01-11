@@ -36,7 +36,8 @@ public class ResetState : PlayerState
 
 		if (playerController.currentTime >= maxTime)
 		{
-			Conductor._instance.gameIsOver = true;
+			if(!playerController.animatePlayer) 
+				Conductor._instance.gameIsOver = true;
 			playerController.TakeDamage(1, 100, ((new Vector3(Random.Range(-1.1f, 1f), 1, 0)) + Vector3.up).normalized, 0, false, false);
 		}
 	}

@@ -170,9 +170,10 @@ public class PlayerController : InteractableObject
         //     // StartCoroutine(WaitRestart());
         //     PlayerDeath();
         // }
+        
         // This is to prevent infinite movement when animating the player
         if(animatePlayer)
-            InputDir = new Vector2(0,0);
+            InputDir = Vector2.zero;
     }
 
   
@@ -356,24 +357,26 @@ public class PlayerController : InteractableObject
 
     void BufferInputs()
     {
-
-        if (inputAction.PlayerControls.Quit.triggered)
+        if(!animatePlayer) // To prevent the player from using charged attacks on the start screens
+        {
+            if (inputAction.PlayerControls.Quit.triggered)
             quitHold = true;
 
-        if (inputAction.PlayerControls.QuitRelease.triggered)
-            quitHold = false;
+            if (inputAction.PlayerControls.QuitRelease.triggered)
+                quitHold = false;
 
-        if (inputAction.PlayerControls.Button1.triggered)
-        {
-            button1Buffer = inputBuffer;
-            button1Hold = true;
-        }
+            if (inputAction.PlayerControls.Button1.triggered)
+            {
+                button1Buffer = inputBuffer;
+                button1Hold = true;
+            }
 
-        if (inputAction.PlayerControls.Button1Release.triggered)
-        {
-            button1ReleaseBuffer = inputBuffer;
-            button1Hold = false;
-        }
+            if (inputAction.PlayerControls.Button1Release.triggered)
+            {
+                button1ReleaseBuffer = inputBuffer;
+                button1Hold = false;
+            }
+        }    
 
         if (inputAction.PlayerControls.MovePressUp.triggered ||
             inputAction.PlayerControls.MovePressDown.triggered ||

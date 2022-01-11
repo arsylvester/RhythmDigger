@@ -91,7 +91,7 @@ public class IdleState : PlayerState
             {
                 TryMoveInDir(playerController.InputDir);
             }
-            else if(!Conductor._instance.CheckValidBeat())
+            else //if(!Conductor._instance.CheckValidBeat()) // running into problems with this calling to conductor on the start screen since there is no instance of the conductor
             {
                 playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
             }
@@ -103,7 +103,7 @@ public class IdleState : PlayerState
                     playerStateMachine.ChangeState(PlayerStateEnums.Charge);
 
             }
-            else if (!Conductor._instance.CheckValidBeat())
+            else //if (!Conductor._instance.CheckValidBeat()) // running into problems with this calling to conductor on the start screen since there is no instance of the conductor
             {
                 playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
             }
