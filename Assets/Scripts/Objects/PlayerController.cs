@@ -418,10 +418,18 @@ public class PlayerController : InteractableObject
     IEnumerator WaitRestart()
     {
         // Time.timeScale = 0.5f;
-        UIManager._instance.HideUI();
+        if(!animatePlayer)
+        {
+            UIManager._instance.HideUI();
+        }
+        
         CameraTarget.instance.ResetToTop();
         yield return new WaitUntil(() => CameraTarget.instance.waiting == true);
-        UIManager._instance.ShowEndUI(GameManager._instance.GetGold(), (int)transform.position.y, Conductor._instance.highestChain);
+        if(!animatePlayer)
+        {
+            UIManager._instance.ShowEndUI(GameManager._instance.GetGold(), (int)transform.position.y, Conductor._instance.highestChain);
+        }
+        
     }
 
     private void OnDrawGizmos()

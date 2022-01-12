@@ -8,7 +8,9 @@ using DG.Tweening;
 
 public class StartMenuUIManager : MonoBehaviour
 {
-    [SerializeField] GameObject go_Title, go_MainLayoutGroup, go_CreditsPanel;
+    [SerializeField] GameObject go_Title, go_MainLayoutGroup, go_CreditsPanel, go_ControlsParent;
+    public int currentControlsPage;
+    [SerializeField] GameObject[] controlsPages;
     [SerializeField] float delayBetweenWords = 0.75f;
     private RectTransform titleRectTransform;
     [SerializeField] float fadeDuration = 6f, swoopDuration = 3f;
@@ -25,6 +27,12 @@ public class StartMenuUIManager : MonoBehaviour
         try{
             timelineController = TimelineController._instance;
         } catch {}
+    }
+
+    void Awake()
+    {
+        currentControlsPage = 0;
+        
     }
 
     public void QuitButton()
@@ -46,6 +54,34 @@ public class StartMenuUIManager : MonoBehaviour
         
     }
 
+    public void ButtonNextControls()
+    {
+        if(currentControlsPage < controlsPages.Length)
+        {
+            controlsPages[currentControlsPage].SetActive(false);
+            currentControlsPage++;
+            timelineController.ResetScene();
+            controlsPages[currentControlsPage].SetActive(true);
+        }
+    }
+
+    public void ButtonPreviousControls()
+    {
+        if(currentControlsPage > 1)
+        {
+            controlsPages[currentControlsPage].SetActive(false);
+            currentControlsPage--;
+            timelineController.ResetScene();
+            controlsPages[currentControlsPage].SetActive(true);
+        }
+    }
+
+    public void ControlsButton()
+    {
+        go_MainLayoutGroup.SetActive(false);
+        go_ControlsParent.SetActive(true);
+    }  
+
     public void CreditsButton()
     {
         go_MainLayoutGroup.SetActive(false);
@@ -55,6 +91,7 @@ public class StartMenuUIManager : MonoBehaviour
     public void ReturnButton()
     {
         go_CreditsPanel.SetActive(false);
+        go_ControlsParent.SetActive(false);
         go_MainLayoutGroup.SetActive(true);
         // StartCoroutine(TurnOnLayoutText(go_MainLayoutGroup, true));
     }

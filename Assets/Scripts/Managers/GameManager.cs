@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public static event GoldGained OnGoldGained = delegate {};
 
     public delegate void GameOver();
-    public static event GameOver OnGameOver;
+    public static event GameOver OnGameOver = delegate {};
 
     public static GameManager _instance;
 

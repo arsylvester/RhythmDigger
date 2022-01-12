@@ -7,9 +7,9 @@ using UnityEngine.Playables;
 public class TimelineController : Singleton<TimelineController>
 {
     [SerializeField] PlayerController playerController;
-    [SerializeField] GameObject startMenuChunkPrefab, playerGO;
+    [SerializeField] GameObject startMenuChunkPrefab, playerPrefab, playerCameraTarget;
     [SerializeField] Transform startMenuChunkCurrentTransform;
-    [SerializeField] PlayableDirector director_StartGame, director_Controls1, director_Controls2, director_Controls3;
+    [SerializeField] PlayableDirector director_StartGame;//, director_Controls1, director_Controls2, director_Controls3;
     private Vector3 initialPlayerPosition;
     void Awake()
     {
@@ -34,13 +34,36 @@ public class TimelineController : Singleton<TimelineController>
 
     public void ResetScene()
     {
+        GameObject oldPlayer = playerController.gameObject;
+        
         // DestroyImmediate(startMenuChunkInitialGO,true);
         Destroy(startMenuChunkCurrentTransform.gameObject);
         GameObject go = Instantiate(startMenuChunkPrefab,Vector3.zero,Quaternion.identity) as GameObject;
         startMenuChunkCurrentTransform = go.transform;
         ChargeRelease();
         QuitRelease();
-        playerController.gameObject.transform.position = initialPlayerPosition;
+        playerCameraTarget.GetComponent<CameraTarget>().enabled = false;
+        Destroy(oldPlayer);
+        
+        go = Instantiate(playerPrefab,initialPlayerPosition,Quaternion.identity) as GameObject;
+        
+        playerCameraTarget.GetComponent<CameraTarget>().target = go.transform;
+        playerCameraTarget.GetComponent<CameraTarget>().enabled = true;
+        
+        playerController = go.GetComponent<PlayerController>();
+
+        // Destroy(oldPlayer);
+        // if(playerController.isDead)
+        // {
+        //     Destroy(playerController.gameObject);
+        //     go = Instantiate(playerPrefab,initialPlayerPosition,Quaternion.identity) as GameObject;
+        //     playerController = go.GetComponent<PlayerController>();
+        // }
+        // else
+        // {
+        //     playerController.gameObject.transform.position = initialPlayerPosition;
+        // }
+        
     }
 
     public void TryMove(Vector2 input)
