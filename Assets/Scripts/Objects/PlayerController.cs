@@ -114,6 +114,24 @@ public class PlayerController : InteractableObject
         rbody.velocity *= 0;
     }
 
+    public void ResetPlayer()
+	{
+
+        HP = maxHP;
+        groundCollider.enabled = true;
+        headCollider.enabled = true;
+        leftCollider.enabled = true;
+        rightCollider.enabled = true;
+
+        spriteRenderer.enabled = (true);
+        playerMachine.ChangeState(PlayerStateEnums.Idle);
+    }
+
+    public void ResetPlayerAndPosition(Vector3 position)
+	{
+        ResetPlayer();
+        transform.position = position;
+	}
 
     public override void OnCollisionEnter2D(Collision2D collision)
     {
