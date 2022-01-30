@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 129845881813090213}
+  - component: {fileID: 3727889295648372899}
   - component: {fileID: 129845881813090215}
   - component: {fileID: 129845881813090212}
-  - component: {fileID: 3727889295648372899}
   m_Layer: 0
   m_Name: Random and Space Chunk 2
   m_TagString: Untagged
@@ -120,6 +120,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3727889295648372899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129845881813090210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2ccbd6fc9c66f4ab7534ea5948adcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  height: 11
+  distanceToDespawn: 3000
+  chunkBlackList: []
 --- !u!1839735485 &129845881813090215
 Tilemap:
   m_ObjectHideFlags: 0
@@ -206,20 +221,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &3727889295648372899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129845881813090210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b2ccbd6fc9c66f4ab7534ea5948adcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  height: 11
-  distanceToDespawn: 3000
 --- !u!1001 &62471337118640965
 PrefabInstance:
   m_ObjectHideFlags: 0

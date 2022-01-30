@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1270197432638357315}
+  - component: {fileID: 3496684344302913550}
   - component: {fileID: 1569968490550924475}
   - component: {fileID: 4558366408343276820}
-  - component: {fileID: 3496684344302913550}
   m_Layer: 0
   m_Name: Funnel Chunk 1
   m_TagString: Untagged
@@ -82,6 +82,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3496684344302913550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7126680547611858699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2ccbd6fc9c66f4ab7534ea5948adcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  height: 6
+  distanceToDespawn: 3000
+  chunkBlackList:
+  - {fileID: 3496684344302913550}
+  - {fileID: 3496684344302913550, guid: b1f9ed4ca36aa124db46625fad0a3b6a, type: 3}
+  - {fileID: 3496684344302913550, guid: fd82258d10bc5dc428df32054e3ef3cf, type: 3}
+  - {fileID: 3496684344302913550, guid: 83a46754da076c146bb7bb0dc758f8f9, type: 3}
+  - {fileID: 3496684344302913550, guid: 8c328d568212c324fa1718541f10ac23, type: 3}
+  - {fileID: 3496684344302913550, guid: b00b2dfcb6c7c8f498b08236c30b2f62, type: 3}
+  - {fileID: 3496684344302913550, guid: e3f29b157780480429c8a38e02878aa7, type: 3}
+  - {fileID: 3496684344302913550, guid: cc093832809cb3f42b71ac0f1ee7fe7b, type: 3}
+  - {fileID: 3496684344302913550, guid: f9c3f315481b78b4aaea6b4c8c8208bb, type: 3}
 --- !u!1839735485 &1569968490550924475
 Tilemap:
   m_ObjectHideFlags: 0
@@ -168,20 +192,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &3496684344302913550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7126680547611858699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b2ccbd6fc9c66f4ab7534ea5948adcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  height: 6
-  distanceToDespawn: 3000
 --- !u!1001 &63255152375149799
 PrefabInstance:
   m_ObjectHideFlags: 0

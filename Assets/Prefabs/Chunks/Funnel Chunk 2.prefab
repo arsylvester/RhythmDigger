@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1270197432638357315}
+  - component: {fileID: 3496684344302913550}
   - component: {fileID: 1569968490550924475}
   - component: {fileID: 4558366408343276820}
-  - component: {fileID: 3496684344302913550}
   m_Layer: 0
   m_Name: Funnel Chunk 2
   m_TagString: Untagged
@@ -83,6 +83,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3496684344302913550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7126680547611858699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2ccbd6fc9c66f4ab7534ea5948adcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  height: 6
+  distanceToDespawn: 3000
+  chunkBlackList:
+  - {fileID: 3496684344302913550, guid: f9c3f315481b78b4aaea6b4c8c8208bb, type: 3}
 --- !u!1839735485 &1569968490550924475
 Tilemap:
   m_ObjectHideFlags: 0
@@ -169,22 +185,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &3496684344302913550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7126680547611858699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b2ccbd6fc9c66f4ab7534ea5948adcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  height: 6
-  distanceToDespawn: 3000
-  chunkBlackList:
-  - {fileID: 3496684344302913550, guid: f9c3f315481b78b4aaea6b4c8c8208bb, type: 3}
 --- !u!1001 &63255152375149799
 PrefabInstance:
   m_ObjectHideFlags: 0
