@@ -201,17 +201,17 @@ Canvas:
   m_GameObject: {fileID: 43046099}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_RenderMode: 1
+  m_Camera: {fileID: 1708663478}
+  m_PlaneDistance: 10
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &43046103
 RectTransform:
@@ -341,6 +341,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Credits
       objectReference: {fileID: 0}
+    - target: {fileID: 1694215736689642358, guid: a8c43ed9f4cedc7479bd99df6a10e3f8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694215736689642358, guid: a8c43ed9f4cedc7479bd99df6a10e3f8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8c43ed9f4cedc7479bd99df6a10e3f8, type: 3}
 --- !u!4 &116905745 stripped
@@ -468,7 +476,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 60, y: -100}
-  m_SizeDelta: {x: 200, y: 20}
+  m_SizeDelta: {x: 96, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &196639093
 MonoBehaviour:
@@ -492,8 +500,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Andrew Sylvester
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 163b53dbf70a4414f8c8bc6757840c6e, type: 2}
-  m_sharedMaterial: {fileID: 7919894146474192853, guid: 163b53dbf70a4414f8c8bc6757840c6e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 117d2ddbefcdac949baedb4c1f44b3cd, type: 2}
+  m_sharedMaterial: {fileID: 5798068818716809736, guid: 117d2ddbefcdac949baedb4c1f44b3cd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -517,14 +525,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -662,7 +670,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 60, y: -40}
-  m_SizeDelta: {x: 200, y: 20}
+  m_SizeDelta: {x: 96, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &490939094
 MonoBehaviour:
@@ -686,8 +694,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Christian Black
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 163b53dbf70a4414f8c8bc6757840c6e, type: 2}
-  m_sharedMaterial: {fileID: 7919894146474192853, guid: 163b53dbf70a4414f8c8bc6757840c6e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 117d2ddbefcdac949baedb4c1f44b3cd, type: 2}
+  m_sharedMaterial: {fileID: 5798068818716809736, guid: 117d2ddbefcdac949baedb4c1f44b3cd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -711,14 +719,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1057,7 +1065,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 60, y: -80}
-  m_SizeDelta: {x: 200, y: 20}
+  m_SizeDelta: {x: 96, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &813036425
 MonoBehaviour:
@@ -1081,8 +1089,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Daniel Shae
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 163b53dbf70a4414f8c8bc6757840c6e, type: 2}
-  m_sharedMaterial: {fileID: 7919894146474192853, guid: 163b53dbf70a4414f8c8bc6757840c6e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 117d2ddbefcdac949baedb4c1f44b3cd, type: 2}
+  m_sharedMaterial: {fileID: 5798068818716809736, guid: 117d2ddbefcdac949baedb4c1f44b3cd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1106,14 +1114,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1716,7 +1724,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 60, y: -60}
-  m_SizeDelta: {x: 200, y: 20}
+  m_SizeDelta: {x: 96, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1349338784
 MonoBehaviour:
@@ -1740,8 +1748,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Jeremiah Plauche
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 163b53dbf70a4414f8c8bc6757840c6e, type: 2}
-  m_sharedMaterial: {fileID: 7919894146474192853, guid: 163b53dbf70a4414f8c8bc6757840c6e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 117d2ddbefcdac949baedb4c1f44b3cd, type: 2}
+  m_sharedMaterial: {fileID: 5798068818716809736, guid: 117d2ddbefcdac949baedb4c1f44b3cd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1765,14 +1773,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2014,8 +2022,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 01b94807b676431499c24b80527a8ad5, type: 2}
-  m_sharedMaterial: {fileID: 3006596564720498347, guid: 01b94807b676431499c24b80527a8ad5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 117d2ddbefcdac949baedb4c1f44b3cd, type: 2}
+  m_sharedMaterial: {fileID: 5798068818716809736, guid: 117d2ddbefcdac949baedb4c1f44b3cd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2039,8 +2047,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2497,12 +2505,8 @@ MonoBehaviour:
   go_MainLayoutGroup: {fileID: 981107721}
   go_CreditsLayoutGroup: {fileID: 165695941}
   delayBetweenWords: 0.75
-  startPosition: {x: 0, y: 0, z: 0}
-  endPosition: {x: 0, y: 0, z: 0}
-  creditsPosition: {x: 0, y: 0, z: 0}
-  lerpDuration: 3
-  fadeDuration: 3
-  swoopDuration: 3
+  fadeDuration: 0
+  swoopDuration: 1
   titleSwoopInOffset: {x: 0, y: 5}
 --- !u!224 &2078009961 stripped
 RectTransform:
@@ -3993,6 +3997,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 6
   distanceToDespawn: 3000
+  chunkBlackList: []
 --- !u!1001 &3584975908202821776
 PrefabInstance:
   m_ObjectHideFlags: 0
