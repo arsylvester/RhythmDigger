@@ -805,6 +805,10 @@ PrefabInstance:
       propertyPath: animatePlayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7067131626584333949, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 053534ff62d658a4c9c5304454e80997, type: 2}
     - target: {fileID: 8325515743459368551, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1373,7 +1377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58449afc287023b4fb481e0ecf5dcba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1675779544}
+  Player: {fileID: 1675779550}
   goldTextLabel: {fileID: 1467135754}
   depthLabel: {fileID: 999396730}
   depthText: {fileID: 2134940969}
@@ -4382,11 +4386,17 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &1675779544 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8325515743459368551, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
+--- !u!114 &1675779550 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5641058688064493569, guid: 622fd583f0489914881ee1a42483f03e, type: 3}
   m_PrefabInstance: {fileID: 191698024}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986793b967bf01841abcbbd5a7702d6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1678789012
 GameObject:
   m_ObjectHideFlags: 0

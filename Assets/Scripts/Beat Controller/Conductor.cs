@@ -173,14 +173,17 @@ public class Conductor : Singleton<Conductor>
         // Debug.Log("Time between presses: "+(pressTime));
         // pressTime = 0f;
         // validBeat = (beatElapsed < (secPerBeat * beatRange.x) || (beatElapsed > (secPerBeat * beatRange.y)));
+
         // Debug.Log("beatElapsed+offset: "+(beatElapsed+validBeatOffset)+
         //         " <(secPerBeat * beatRange.x): "+((secPerBeat) * beatRange.x) + 
         //         " >(secPerBeat * beatRange.y): "+((secPerBeat) * beatRange.y) +
         //         " early? "+ early);
-        Debug.Log("beatElapsed+offset: "+(beatElapsed+validBeatOffset)+
-                " <(secPerBeat * beatRange.x): "+((secPerBeat + validBeatOffset) * beatRange.x) + 
-                " >(secPerBeat * beatRange.y): "+((secPerBeat + validBeatOffset) * beatRange.y) +
-                " early? "+ early);
+
+        //Debug.Log("beatElapsed+offset: "+(beatElapsed+validBeatOffset)+
+        //        " <(secPerBeat * beatRange.x): "+((secPerBeat + validBeatOffset) * beatRange.x) + 
+        //        " >(secPerBeat * beatRange.y): "+((secPerBeat + validBeatOffset) * beatRange.y) +
+        //        " early? "+ early);
+
         // validBeat = (beatElapsed > (secPerBeat * beatRange.x) || (beatElapsed < (secPerBeat * beatRange.y)));
         float goalWidth = UI_beatGoal.GetComponent<RectTransform>().sizeDelta.x;
         GameObject topBeat1 = currentBeats[0];

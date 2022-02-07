@@ -8,7 +8,7 @@ using DG.Tweening;
 using UnityEngine.InputSystem;
 public class UIManager : MonoBehaviour
 {
-    public GameObject Player;
+    public PlayerController Player;
     public GameObject goldTextLabel;
     public GameObject depthLabel;
     public TextMeshProUGUI depthText;
@@ -63,7 +63,7 @@ public class UIManager : MonoBehaviour
 
         activeTime += Time.deltaTime;
         // This will cause the "Press ESC to reset" ui to appear
-        if( Keyboard.current.anyKey.wasPressedThisFrame)
+        if( Keyboard.current.anyKey.wasPressedThisFrame || Player.inputAction.PlayerControls.Any.triggered)
         {
             timeOfLastKey = activeTime;
             HideResetUI();
