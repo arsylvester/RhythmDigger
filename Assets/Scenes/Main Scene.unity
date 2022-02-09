@@ -1378,11 +1378,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1675779550}
-  goldTextLabel: {fileID: 1467135754}
-  depthLabel: {fileID: 999396730}
-  depthText: {fileID: 2134940969}
   goldText: {fileID: 444327648}
+  goldTextLabel: {fileID: 1467135755}
   goldTextEnd: {fileID: 249687715}
+  depthText: {fileID: 2134940969}
+  depthLabel: {fileID: 999396730}
   chainText: {fileID: 1587217060}
   chainTextLabel: {fileID: 360770775}
   multText: {fileID: 638925149}
@@ -2104,7 +2104,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: x99
+  m_text: x1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 117d2ddbefcdac949baedb4c1f44b3cd, type: 2}
   m_sharedMaterial: {fileID: 5798068818716809736, guid: 117d2ddbefcdac949baedb4c1f44b3cd, type: 2}

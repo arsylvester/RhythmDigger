@@ -150,8 +150,8 @@ public class StartMenuUIManager : MonoBehaviour
     public void LoadMainMenu()
     {
         TextMeshProUGUI titleText = titleGO.GetComponent<TextMeshProUGUI>();
-        titleText.color = new Color(titleText.color.r, titleText.color.g, titleText.color.b, 0);
-        titleText.DOFade(1f,fadeDuration);
+        //titleText.color = new Color(titleText.color.r, titleText.color.g, titleText.color.b, 0);
+        //titleText.DOFade(1f,fadeDuration);
         titleText.rectTransform.anchoredPosition += titleSwoopInOffset;
         titleText.rectTransform.DOAnchorPos(titleIntialAnchoredPos, swoopDuration);
 
@@ -161,15 +161,11 @@ public class StartMenuUIManager : MonoBehaviour
     IEnumerator TurnOnLayoutText(GameObject layoutGroup, bool inChildren)
     {
         layoutGroup.SetActive(true);      
+
         foreach(RectTransform rt in layoutGroup.transform)
         {
             rt.gameObject.SetActive(true);
-            rt.GetComponent<CanvasGroup>().alpha = 0;
-        } 
-        yield return new WaitForSeconds(delayBetweenWords);
-        foreach(RectTransform rt in layoutGroup.transform)
-        {
-            rt.GetComponent<CanvasGroup>().DOFade(1,fadeDuration);
+            //rt.GetComponent<CanvasGroup>().DOFade(1,fadeDuration);
             yield return new WaitForSeconds(delayBetweenWords);
         }                
     }
