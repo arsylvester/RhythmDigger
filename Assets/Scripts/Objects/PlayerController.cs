@@ -182,12 +182,16 @@ public class PlayerController : InteractableObject
         {
             externalVelocity = Vector2.zero;
         }
-
+            
         // // if (inputAction.PlayerControls.Quit.triggered)
         // {
         //     // StartCoroutine(WaitRestart());
         //     PlayerDeath();
         // }
+        
+        // This is to prevent infinite movement when animating the player
+        if(animatePlayer)
+            InputDir = Vector2.zero;
     }
 
   
@@ -371,24 +375,26 @@ public class PlayerController : InteractableObject
 
     void BufferInputs()
     {
-
-        if (inputAction.PlayerControls.Quit.triggered)
+        if(!animatePlayer) // To prevent the player from using charged attacks on the start screens
+        {
+            if (inputAction.PlayerControls.Quit.triggered)
             quitHold = true;
 
-        if (inputAction.PlayerControls.QuitRelease.triggered)
-            quitHold = false;
+            if (inputAction.PlayerControls.QuitRelease.triggered)
+                quitHold = false;
 
-        if (inputAction.PlayerControls.Button1.triggered)
-        {
-            button1Buffer = inputBuffer;
-            button1Hold = true;
-        }
+            if (inputAction.PlayerControls.Button1.triggered)
+            {
+                button1Buffer = inputBuffer;
+                button1Hold = true;
+            }
 
-        if (inputAction.PlayerControls.Button1Release.triggered)
-        {
-            button1ReleaseBuffer = inputBuffer;
-            button1Hold = false;
-        }
+            if (inputAction.PlayerControls.Button1Release.triggered)
+            {
+                button1ReleaseBuffer = inputBuffer;
+                button1Hold = false;
+            }
+        }    
 
         if (inputAction.PlayerControls.MovePressUp.triggered ||
             inputAction.PlayerControls.MovePressDown.triggered ||
@@ -430,10 +436,18 @@ public class PlayerController : InteractableObject
     IEnumerator WaitRestart()
     {
         // Time.timeScale = 0.5f;
-        UIManager._instance.HideUI();
+        if(!animatePlayer)
+        {
+            UIManager._instance.HideUI();
+        }
+        
         CameraTarget.instance.ResetToTop();
         yield return new WaitUntil(() => CameraTarget.instance.waiting == true);
-        UIManager._instance.ShowEndUI(GameManager._instance.GetGold(), (int)transform.position.y, Conductor._instance.highestChain);
+        if(!animatePlayer)
+        {
+            UIManager._instance.ShowEndUI(GameManager._instance.GetGold(), (int)transform.position.y, Conductor._instance.highestChain);
+        }
+        
     }
 
     private void OnDrawGizmos()

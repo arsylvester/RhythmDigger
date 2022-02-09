@@ -8,10 +8,10 @@ public class GameManager : MonoBehaviour
     public int goldMultiplier = 1;
 
     public delegate void GoldGained(int num);
-    public static event GoldGained OnGoldGained;
+    public static event GoldGained OnGoldGained = delegate {};
 
     public delegate void GameOver();
-    public static event GameOver OnGameOver;
+    public static event GameOver OnGameOver = delegate {};
 
     public static GameManager _instance;
 

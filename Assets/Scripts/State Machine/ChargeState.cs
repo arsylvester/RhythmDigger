@@ -33,10 +33,8 @@ public class ChargeState : PlayerState
         playerStateMachine.playerController.anim.SetFloat("yDir", Mathf.Abs(playerStateMachine.playerController.storedDir.y));
     }
 
-
     public override void OnExit()
     {
-
 
     }
 
@@ -47,7 +45,7 @@ public class ChargeState : PlayerState
             if (playerController.currentTime > minTime)
             {
                 playerController.moveBuffer = 0;
-                if (Conductor._instance.CheckValidBeat() || !requireBeat)
+                if (playerController.animatePlayer || Conductor._instance.CheckValidBeat() || !requireBeat)
                 {
                     if (playerController.InputDir == Vector2.left || playerController.InputDir == Vector2.right || playerController.InputDir == Vector2.down)
                         playerController.storedDir = playerController.InputDir;
@@ -79,12 +77,12 @@ public class ChargeState : PlayerState
                         }
                     }
                 }
-                else if (!Conductor._instance.CheckValidBeat())
+                else //if (!Conductor._instance.CheckValidBeat())
                 {
                     playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
                 }
             }
-			else
+            else
             {
                 playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
             }

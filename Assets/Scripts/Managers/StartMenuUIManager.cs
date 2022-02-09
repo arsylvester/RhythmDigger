@@ -8,43 +8,137 @@ using DG.Tweening;
 
 public class StartMenuUIManager : MonoBehaviour
 {
-    [SerializeField] GameObject go_Title, go_ReturnBT, go_MainLayoutGroup, go_CreditsLayoutGroup;
+    [SerializeField] GameObject titleGO;
+    [SerializeField] GameObject mainLayoutGroupGO; 
+    [SerializeField] GameObject creditsPanelGO;
+    [SerializeField] GameObject controlsParentGO;
+    [SerializeField] GameObject btnCtrlNextGO;
+    [SerializeField] GameObject btnCtrlPrevGO;
+    public int currentControlsPage;
+    [SerializeField] GameObject[] controlsPages;
     [SerializeField] float delayBetweenWords = 0.75f;
     private RectTransform titleRectTransform;
     [SerializeField] float fadeDuration = 6f, swoopDuration = 3f;
     private Vector2 titleIntialAnchoredPos;
     [SerializeField] public Vector2 titleSwoopInOffset;
+    [SerializeField] public TimelineController timelineController;
     
     // Start is called before the first frame update
     void Start()
     {
-        titleRectTransform = go_Title.GetComponent<RectTransform>();
+        titleRectTransform = titleGO.GetComponent<RectTransform>();
         titleIntialAnchoredPos = titleRectTransform.anchoredPosition;
         LoadMainMenu();
+        try{
+            timelineController = TimelineController._instance;
+        } catch {}
     }
 
-    public void QuitButton()
+    void Awake()
+    {
+        currentControlsPage = 0;
+        
+    }
+
+    public void BtnQuit()
     {
         Application.Quit();
     }
 
-    public void StartButton()
+    public void BtnStart()
     {
-        SceneManager.LoadScene("Main Scene");
+        Debug.Log("Starting game");
+        if(timelineController)
+        {
+            timelineController.PlayTimeline_StartGame();
+        }
+        else
+        {
+            SceneManager.LoadScene("Main Scene");
+        }
+        
     }
 
-    public void CreditsButton()
+    public void BtnControlsNext()
     {
-        go_MainLayoutGroup.SetActive(false);
-        go_CreditsLayoutGroup.SetActive(true);
-        go_ReturnBT.SetActive(true);
+        if(currentControlsPage < controlsPages.Length)
+        {
+            controlsPages[currentControlsPage].SetActive(false);
+            currentControlsPage++;
+            timelineController.ResetScene();
+            controlsPages[currentControlsPage].SetActive(true);
+            if(currentControlsPage == controlsPages.Length-1)
+            {
+                btnCtrlNextGO.gameObject.SetActive(false);
+            }
+            if(currentControlsPage > 0)
+            {
+                btnCtrlPrevGO.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void BtnControlsPrev()
+    {
+        if(currentControlsPage > 0)
+        {
+            controlsPages[currentControlsPage].SetActive(false);
+            currentControlsPage--;
+            timelineController.ResetScene();
+            controlsPages[currentControlsPage].SetActive(true);
+            if(currentControlsPage == 0)
+            {
+                btnCtrlPrevGO.gameObject.SetActive(false);
+            }
+            if(controlsPages.Length > currentControlsPage)
+            {
+                btnCtrlNextGO.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void BtnOpenControls()
+    {
+        mainLayoutGroupGO.SetActive(false);
+        controlsParentGO.SetActive(true);
+        currentControlsPage = 0;
+        foreach (GameObject obj  in controlsPages)
+        {
+            obj.SetActive(false);
+        }
+        controlsPages[0].SetActive(true);
+        btnCtrlPrevGO.gameObject.SetActive(false);
+        if(controlsPages.Length > 1){
+            btnCtrlNextGO.gameObject.SetActive(true);
+        }
+        else{
+            btnCtrlNextGO.gameObject.SetActive(false);
+        }
+    }  
+
+    public void BtnOpenCredits()
+    {
+        mainLayoutGroupGO.SetActive(false);
+        creditsPanelGO.SetActive(true);
     }   
 
-    public void ReturnButton()
+    // public void BtnControlsReturn()
+    // {
+    //     TimelineController._instance.ResetScene();
+    //     creditsPanelGO.SetActive(false);
+    //     controlsParentGO.SetActive(false);
+    //     mainLayoutGroupGO.SetActive(true);
+
+    //     // StartCoroutine(TurnOnLayoutText(go_MainLayoutGroup, true));
+    // }
+    public void BtnReturn()
     {
-        go_ReturnBT.SetActive(false);
-        go_CreditsLayoutGroup.SetActive(false);
-        StartCoroutine(TurnOnLayoutText(go_MainLayoutGroup, true));
+        TimelineController._instance.ResetScene();
+        creditsPanelGO.SetActive(false);
+        controlsParentGO.SetActive(false);
+        mainLayoutGroupGO.SetActive(true);
+        titleGO.SetActive(true);
+        // StartCoroutine(TurnOnLayoutText(go_MainLayoutGroup, true));
     }
 
     public void SettingsButton()
@@ -55,13 +149,13 @@ public class StartMenuUIManager : MonoBehaviour
     
     public void LoadMainMenu()
     {
-        TextMeshProUGUI titleText = go_Title.GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI titleText = titleGO.GetComponent<TextMeshProUGUI>();
         titleText.color = new Color(titleText.color.r, titleText.color.g, titleText.color.b, 0);
         titleText.DOFade(1f,fadeDuration);
         titleText.rectTransform.anchoredPosition += titleSwoopInOffset;
         titleText.rectTransform.DOAnchorPos(titleIntialAnchoredPos, swoopDuration);
 
-        StartCoroutine(TurnOnLayoutText(go_MainLayoutGroup, true));
+        StartCoroutine(TurnOnLayoutText(mainLayoutGroupGO, true));
     }
 
     IEnumerator TurnOnLayoutText(GameObject layoutGroup, bool inChildren)

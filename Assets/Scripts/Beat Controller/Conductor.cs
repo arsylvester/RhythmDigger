@@ -90,7 +90,7 @@ public class Conductor : Singleton<Conductor>
     {
         if(musicPlaying)
         {
-            UIManager._instance.UpdateChainCount(chainSize);
+            // UIManager._instance.UpdateChainCount(chainSize);
             // determine how many seconds since the song started
             songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
 
@@ -138,7 +138,7 @@ public class Conductor : Singleton<Conductor>
         yield return new WaitForSeconds(delayTime); //0.206
         InvokeRepeating("CreateBeats",0,secPerBeat);
         // InvokeRepeating("FlashAllBeats", 0, secPerBeat);
-        InvokeRepeating("FlashVignette", 0, secPerBeat);
+        // InvokeRepeating("FlashVignette", 0, secPerBeat);
     }
     void FlashAllBeats()
 	{
@@ -165,6 +165,7 @@ public class Conductor : Singleton<Conductor>
             UIManager._instance.NotificationText("Early!");
         else
             UIManager._instance.NotificationText("Late!");
+        // UIManager._instance.UpdateChainCount(chainSize);
         UpdateComboAnim();
     }
     // float pressTime = 0f;
@@ -195,9 +196,10 @@ public class Conductor : Singleton<Conductor>
             // heartbeatAnimator.SetTrigger("good");
             StartCoroutine(killBeat(topBeat1));
             StartCoroutine(killBeat(topBeat2));
-            chainSize++;
+            chainSize++; 
             missedBeats = 0;
             GameManager._instance.goldMultiplier = (int)Mathf.Ceil((float)chainSize/10f);
+            // UIManager._instance.UpdateChainCount(chainSize);
             // goldMultiplier = (int)Mathf.Ceil((float)chainSize/3f);
             UpdateComboAnim();
             if (chainSize > highestChain){
@@ -215,10 +217,11 @@ public class Conductor : Singleton<Conductor>
             return false;
         }
     }
-
+    
     void UpdateComboAnim()
     {
         comboAnimator.SetInteger("Multiplier",GameManager._instance.goldMultiplier);
+        UIManager._instance.UpdateChainCount(chainSize);
     }
 
     public void HideBeatUI()
