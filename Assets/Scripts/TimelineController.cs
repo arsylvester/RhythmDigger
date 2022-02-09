@@ -34,7 +34,7 @@ public class TimelineController : Singleton<TimelineController>
 
     public void ResetScene()
     {
-        GameObject oldPlayer = playerController.gameObject;
+        // GameObject oldPlayer = playerController.gameObject;
         
         // DestroyImmediate(startMenuChunkInitialGO,true);
         Destroy(startMenuChunkCurrentTransform.gameObject);
@@ -42,15 +42,17 @@ public class TimelineController : Singleton<TimelineController>
         startMenuChunkCurrentTransform = go.transform;
         ChargeRelease();
         QuitRelease();
-        playerCameraTarget.GetComponent<CameraTarget>().enabled = false;
-        Destroy(oldPlayer);
+        // playerCameraTarget.GetComponent<CameraTarget>().enabled = false;
+        // Destroy(oldPlayer);
         
-        go = Instantiate(playerPrefab,initialPlayerPosition,Quaternion.identity) as GameObject;
+        // go = Instantiate(playerPrefab,initialPlayerPosition,Quaternion.identity) as GameObject;
         
-        playerCameraTarget.GetComponent<CameraTarget>().target = go.transform;
-        playerCameraTarget.GetComponent<CameraTarget>().enabled = true;
+        // playerCameraTarget.GetComponent<CameraTarget>().target = go.transform;
+        // playerCameraTarget.GetComponent<CameraTarget>().enabled = true;
         
-        playerController = go.GetComponent<PlayerController>();
+        // playerController = go.GetComponent<PlayerController>();
+        playerController.playerMachine.ChangeState(PlayerStateEnums.Reset);
+        playerController.gameObject.transform.position = initialPlayerPosition;
 
         // Destroy(oldPlayer);
         // if(playerController.isDead)
