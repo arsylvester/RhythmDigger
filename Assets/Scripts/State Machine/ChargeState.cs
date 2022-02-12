@@ -86,7 +86,11 @@ public class ChargeState : PlayerState
             {
                 playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
             }
+        }
 
+        if  (playerController.currentTime > maxTime)
+		{
+            playerStateMachine.ChangeState(PlayerStateEnums.Hurt);
         }
     }
 }
