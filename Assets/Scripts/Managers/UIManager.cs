@@ -114,7 +114,7 @@ public class UIManager : MonoBehaviour
 
     public void QuitButton()
     {
-        SceneManager.LoadScene("Start Screen");
+        SceneManager.LoadScene(0);
     }
 
     public void ShowResetUI()

@@ -4729,6 +4729,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Beat Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3362036784273910505, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3362036784273910507, guid: a5d95a19fea9d2f40800c5efc5ce30af, type: 3}
       propertyPath: m_SortingOrder
       value: -1
